@@ -3,7 +3,7 @@ import mysql from "mysql2/promise";
 const router = Router();
 
 router.get("/users", async (req, res) => {
-  const query = "SELECT username FROM Users WHERE 1";
+  const query = "SELECT * FROM Users WHERE 1";
   const connection = await mysql.createConnection({
     host: "localhost",
     user: "root",
