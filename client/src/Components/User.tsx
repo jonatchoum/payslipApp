@@ -1,22 +1,70 @@
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import queryUsers from "../Hooks/queryUsers";
+import queryUser from "../Hooks/queryUser";
 
 const User = () => {
   const { id } = useParams();
-  const { isLoading, isError } = queryUsers();
-  if (isLoading) {
+  const user = queryUser(id);
+  const [mois, setMois] = useState("");
+  const [file, setFile] = useState<File | null | Blob>(null);
+  console.log("🚀 ~ file: User.tsx:11 ~ User ~ file", file);
+  if (user.isLoading) {
     return <>Loading</>;
   }
-  if (isError) {
+  if (user.isError) {
     return <>Error</>;
   }
 
+  const handleUpload = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const data = new FormData();
+    //c'est ici que le nom de fichier doit correspondre avec multer sur nodejs express
+    data.append("bulletin", file);
+    data.append("mois", mois);
+    data.append("user", user.data);
+    const response = await axios.post("upload", data, {
+      // headers: {
+      //   "Content-Type": "application/json",
+      // },
+      headers: { "Content-Type": "multipart/form-data" },
+    });
+    console.log("🚀 ~ file: User.tsx:23 ~ handleSubmit ~ response", response);
+  };
+
   return (
-    <div>
-      <div>User {id}</div>
+    <div className="grid place-items-center">
+      <div>{user.data[0].username}</div>
+      {/* <div>{user.data[0].service}</div> */}
       <div>ajouter une fiche de paie</div>
-      <div></div>
+      <form
+        onSubmit={handleUpload}
+        className="grid p-10 gap-5 my-10 place-items-center"
+      >
+        <label htmlFor="bulletinSalaire">Upload un bulletin de salaire</label>
+        <input
+          type="file"
+          name="bulletinSalaire"
+          id="bulletinSalaire"
+          // accept=".pdf"
+          className="p-32 border border-dashed hover:bg-slate-400 rounded-lg"
+          onChange={(e) => {
+            if (!e.target.files) return;
+            setFile(e.target.files[0]);
+          }}
+        />
+        <input
+          type="month"
+          name="bulletin"
+          className="max-w-fit p-1 rounded-lg"
+          onChange={(e) => {
+            setMois(e.target.value);
+          }}
+        />
+        <button type="submit" className="button">
+          envoyer
+        </button>
+      </form>
     </div>
   );
 };
