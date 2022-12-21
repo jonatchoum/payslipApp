@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import queryUser from "../Hooks/queryUser";
+import { toast } from "react-toastify";
 
 const User = () => {
   const { id } = useParams();
@@ -23,23 +24,30 @@ const User = () => {
     data.append("bulletin", file);
     data.append("mois", mois);
     data.append("user", user.data);
-    const response = await axios.post("upload", data, {
-      // headers: {
-      //   "Content-Type": "application/json",
-      // },
-      headers: { "Content-Type": "multipart/form-data" },
-    });
-    console.log("🚀 ~ file: User.tsx:23 ~ handleSubmit ~ response", response);
+    try {
+      const response = await axios.post("upload", data, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+      if (response.status === 200) {
+        toast.success("fichier envoyé");
+      }
+      console.log("🚀 ~ file: User.tsx:23 ~ handleSubmit ~ response", response);
+    } catch (error) {
+      toast.error("oups le fichier n'a pas pu être envoyé");
+    }
   };
 
   return (
     <div className="grid place-items-center">
+      <h1>ajouter une fiche de paie</h1>
+      <br />
+      <br />
+      <br />
       <div>{user.data[0].username}</div>
-      {/* <div>{user.data[0].service}</div> */}
-      <div>ajouter une fiche de paie</div>
       <form
         onSubmit={handleUpload}
         className="grid p-10 gap-5 my-10 place-items-center"
+        encType="multipart/form-data"
       >
         <label htmlFor="bulletinSalaire">Upload un bulletin de salaire</label>
         <input

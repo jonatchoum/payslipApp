@@ -8,7 +8,8 @@ import User from "./Components/User";
 import Navbar from "./Components/Navbar";
 import Services from "./Components/Services";
 import Service from "./Components/Service";
-
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 axios.defaults.baseURL = "http://localhost:3000/api/";
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         <Route path="/services" element={<Services></Services>}></Route>
         <Route path="/service/:service" element={<Service></Service>}></Route>
       </Routes>
+      <ToastContainer />
     </div>
   );
 }
