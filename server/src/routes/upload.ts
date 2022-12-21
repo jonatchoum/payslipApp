@@ -8,7 +8,7 @@ const storage = multer.diskStorage({
     cb(null, "../bulletinsDeSalaire");
   },
   filename: (req, file, cb) => {
-    console.log(file);
+    // console.log(file);
     cb(null, Date.now() + "-" + file.originalname);
   },
 });
@@ -16,9 +16,13 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 router.post("/upload", upload.single("bulletin"), (req, res) => {
-  // console.log(req.body);
-  // return res.send("image uploaded");
-  return res.status(200).json({ info: "try", data: req.body });
+  if (!req.body) {
+    console.log("🟥 Mauvaise requête il manque un élément");
+    return res.status(400).json("Mauvaise requête");
+  }
+
+  console.log({ info: "try", file: req.file, data: req.body });
+  return res.status(200).json({ info: "try", file: req.file, data: req.body });
 });
 
 export { router };

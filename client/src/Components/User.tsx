@@ -7,7 +7,7 @@ const User = () => {
   const { id } = useParams();
   const user = queryUser(id);
   const [mois, setMois] = useState("");
-  const [file, setFile] = useState<File | null | Blob>(null);
+  const [file, setFile] = useState<string | Blob>("");
   console.log("🚀 ~ file: User.tsx:11 ~ User ~ file", file);
   if (user.isLoading) {
     return <>Loading</>;
@@ -60,10 +60,23 @@ const User = () => {
           onChange={(e) => {
             setMois(e.target.value);
           }}
+          min="2020-01"
+          max="2025-12"
         />
-        <button type="submit" className="button">
-          envoyer
-        </button>
+
+        {mois && file ? (
+          <button type="submit" className="bg-green-500">
+            envoyer
+          </button>
+        ) : (
+          <button
+            type="submit"
+            className=" disabled:bg-red-500 hover:"
+            disabled
+          >
+            ------
+          </button>
+        )}
       </form>
     </div>
   );
