@@ -1,21 +1,20 @@
 import "./App.css";
 import React from "react";
 import axios from "axios";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Users from "./Components/Users";
+import LoginForm from "./Components/LoginForm";
+import { Route, Routes } from "react-router-dom";
+import User from "./Components/User";
 
 axios.defaults.baseURL = "http://localhost:3000/api/";
 
-const queryClient = new QueryClient();
-
 function App() {
   return (
-    <main>
-      <h1>DEBUT !</h1>
-      <QueryClientProvider client={queryClient}>
-        <Users></Users>
-      </QueryClientProvider>
-    </main>
+    <Routes>
+      <Route path="/" element={<LoginForm></LoginForm>}></Route>
+      <Route path="/users" element={<Users></Users>}></Route>
+      <Route path="/user/:id" element={<User></User>}></Route>
+    </Routes>
   );
 }
 

@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Users = () => {
   const users = useQuery({
@@ -45,7 +46,12 @@ const Users = () => {
             <tr key={id}>
               <td className="">{user.id}</td>
               <td className="">{user.username}</td>
-              <td className="borde">{user.service}</td>
+              <td className="">{user.service}</td>
+              <td>
+                <Link to={`/user/${user.id}`}>
+                  <button className="">edit</button>
+                </Link>
+              </td>
             </tr>
           ))}
         </tbody>
