@@ -5,16 +5,20 @@ import Users from "./Components/Users";
 import LoginForm from "./Components/LoginForm";
 import { Route, Routes } from "react-router-dom";
 import User from "./Components/User";
+import Navbar from "./Components/Navbar";
 
 axios.defaults.baseURL = "http://localhost:3000/api/";
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<LoginForm></LoginForm>}></Route>
-      <Route path="/users" element={<Users></Users>}></Route>
-      <Route path="/user/:id" element={<User></User>}></Route>
-    </Routes>
+    <div>
+      <Navbar />
+      <Routes>
+      <Route path="/login" element={<LoginForm></LoginForm>}></Route>
+        <Route path="/users" element={<Users></Users>}></Route>
+        <Route path="/user/:id" element={<User></User>}></Route>
+      </Routes>
+    </div>
   );
 }
 

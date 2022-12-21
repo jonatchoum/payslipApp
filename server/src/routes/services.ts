@@ -9,6 +9,7 @@ router.get("/services", async (req, res) => {
     user: "root",
     database: "FAKE_DB",
     password: "root",
+    port: 40000,
   });
   try {
     const [rows] = await connection.query(query);

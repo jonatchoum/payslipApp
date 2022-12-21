@@ -10,6 +10,7 @@ router.get("/users", async (req, res) => {
       user: "root",
       database: "FAKE_DB",
       password: "root",
+      port: 40000,
     });
     const [rows] = await connection.query(query);
     res.json({ data: rows });

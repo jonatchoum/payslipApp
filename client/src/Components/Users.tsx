@@ -22,34 +22,49 @@ const Users = () => {
     service: string;
     admin: boolean;
   };
+
+  console.log("🚀 ~ file: Users.tsx:26 ~ Users ~ users.data", users.data);
   console.log("🚀 ~ file: Users.tsx:26 ~ Users ~ services.data", services.data);
 
+  type Service = {
+    service: string;
+  };
   return (
     <>
-      <>{}</>
-      {/* <table className="table-auto border-separate border-spacing-4 border text-left">
-        <thead>
-          <tr>
-            <th>id</th>
-            <th>username</th>
-            <th>service</th>
-          </tr>
-        </thead>
-        <tbody>
-          {users.data.data.map((user: User, id: number) => (
-            <tr key={id}>
-              <td className="">{user.id}</td>
-              <td className="">{user.username}</td>
-              <td className="">{user.service}</td>
-              <td>
-                <Link to={`/user/${user.id}`}>
-                  <button className="">edit</button>
-                </Link>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table> */}
+      <>USERS PAGE</>
+      <>
+        {services.data.map((service: Service, index: number) => (
+          <div key={index}>
+            <br />
+            <table className="table-auto min-w-full border-blue-500 border-separate border-spacing-4 border text-left">
+              <caption>{service.service}</caption>
+              <thead>
+                <tr>
+                  <th>id</th>
+                  <th>username</th>
+                  <th>service</th>
+                </tr>
+              </thead>
+              <tbody>
+                {users.data
+                  .filter((user: User) => user.service == service.service)
+                  .map((user: User, id: number) => (
+                    <tr key={id}>
+                      <td className="">{user.id}</td>
+                      <td className="">{user.username}</td>
+                      <td className="">{user.service}</td>
+                      <td>
+                        <Link to={`/user/${user.id}`}>
+                          <button className="">edit</button>
+                        </Link>
+                      </td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+          </div>
+        ))}
+      </>
     </>
   );
 };

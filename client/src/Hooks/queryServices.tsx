@@ -3,13 +3,9 @@ import axios from "axios";
 
 const queryServices = () => {
   return useQuery({
-    queryKey: ["users"],
+    queryKey: ["services"],
     queryFn: async () => {
       const response = await axios.get("services");
-      console.log(
-        "🚀 ~ file: queryUsers.tsx:9 ~ queryFn: ~ response",
-        response
-      );
       return response.data.data;
     },
   });
