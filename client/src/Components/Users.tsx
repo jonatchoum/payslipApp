@@ -1,25 +1,17 @@
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import React from "react";
 import { Link } from "react-router-dom";
+import queryServices from "../Hooks/queryServices";
+import queryUsers from "../Hooks/queryUsers";
 
 const Users = () => {
-  const users = useQuery({
-    queryKey: ["users"],
-    queryFn: async () => {
-      const { data } = await axios.get("users");
-      console.log("🚀 ~ file: App.tsx:30 ~ queryFn: ~ data", data);
-      return data;
-    },
-  });
+  const users = queryUsers();
+  const services = queryServices();
 
-  const { isLoading, isError, data, error } = users;
-
-  if (isLoading) {
+  if (users.isLoading || services.isLoading) {
     return <>Loading</>;
   }
-  if (isError) {
-    return <>Error : {error}</>;
+  if (users.isError || services.isError) {
+    return <>Error</>;
   }
 
   type User = {
@@ -30,10 +22,12 @@ const Users = () => {
     service: string;
     admin: boolean;
   };
+  console.log("🚀 ~ file: Users.tsx:26 ~ Users ~ services.data", services.data);
 
   return (
     <>
-      <table className="table-auto border-separate border-spacing-4 border text-left">
+      <>{}</>
+      {/* <table className="table-auto border-separate border-spacing-4 border text-left">
         <thead>
           <tr>
             <th>id</th>
@@ -42,7 +36,7 @@ const Users = () => {
           </tr>
         </thead>
         <tbody>
-          {data.data.map((user: User, id: number) => (
+          {users.data.data.map((user: User, id: number) => (
             <tr key={id}>
               <td className="">{user.id}</td>
               <td className="">{user.username}</td>
@@ -55,10 +49,9 @@ const Users = () => {
             </tr>
           ))}
         </tbody>
-      </table>
+      </table> */}
     </>
   );
-  return <div>Users</div>;
 };
 
 export default Users;

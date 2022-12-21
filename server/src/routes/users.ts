@@ -4,19 +4,19 @@ const router = Router();
 
 router.get("/users", async (req, res) => {
   const query = "SELECT * FROM Users WHERE 1";
-  const connection = await mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    database: "FAKE_DB",
-    password: "root",
-  });
   try {
+    const connection = await mysql.createConnection({
+      host: "localhost",
+      user: "root",
+      database: "FAKE_DB",
+      password: "root",
+    });
     const [rows] = await connection.query(query);
     res.json({ data: rows });
   } catch (error) {
     res.status(500).json({ error: error });
   } finally {
-    connection.end();
+    // connection.end();
   }
 });
 

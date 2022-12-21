@@ -10,7 +10,7 @@ const queryUsers = () => {
         "🚀 ~ file: queryUsers.tsx:9 ~ queryFn: ~ response",
         response
       );
-      return response.data.data;
+      return response.data;
     },
   });
   //   return useQuery({

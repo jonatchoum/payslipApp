@@ -5,7 +5,7 @@ const queryServices = () => {
   return useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      const response = await axios.get("users");
+      const response = await axios.get("services");
       console.log(
         "🚀 ~ file: queryUsers.tsx:9 ~ queryFn: ~ response",
         response
