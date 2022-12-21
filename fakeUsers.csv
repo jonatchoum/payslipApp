@@ -1,0 +1,51 @@
+id,username,password,role,service,admin
+1,Aubree,ltiQ3BBRq,Subcontractor,Legal,false
+2,Neall,gg1dhT9k6a,Construction Expeditor,Training,true
+3,Mariya,0w1lPpw,Supervisor,Product Management,false
+4,Shoshanna,Le05UOSB,Project Manager,Business Development,false
+5,Taylor,Bwi9CE,Supervisor,Research and Development,false
+6,Noami,G6lHAqysfPDU,Architect,Legal,false
+7,Melodee,sIwGVu7096,Engineer,Services,false
+8,Cesare,fWBynAEF,Estimator,Sales,true
+9,Wynn,K9CFGU,Surveyor,Marketing,false
+10,Jerald,MJUn6M,Construction Expeditor,Research and Development,false
+11,Kailey,Gs3huiv,Project Manager,Marketing,false
+12,Maddie,UWJQlJrs,Estimator,Business Development,false
+13,Brose,TTtoKq25,Subcontractor,Marketing,true
+14,Maddie,mUCzRpIPwOQs,Engineer,Business Development,true
+15,Giffie,uS4gGd2Xiuyy,Engineer,Services,false
+16,Rana,kOx52gUsWBw2,Construction Expeditor,Accounting,true
+17,Brittany,nl2wBmU,Estimator,Sales,true
+18,Leia,GMrC1W7Wl,Subcontractor,Accounting,true
+19,Kilian,44qMs8yfqn,Construction Manager,Accounting,false
+20,Robbi,4QkK1y57n4,Estimator,Legal,false
+21,Shani,TIQDdzvHC1,Estimator,Research and Development,true
+22,Cora,UqmEKGpkg,Estimator,Human Resources,false
+23,Hadleigh,1s6lzoymbSOS,Construction Foreman,Sales,true
+24,Bernadine,D1ziZPUl,Subcontractor,Support,false
+25,Roi,xVhd1YnC,Subcontractor,Sales,true
+26,Napoleon,sWYZLKZH04,Construction Foreman,Accounting,false
+27,Atlanta,0TtGxI5x91m,Construction Manager,Services,false
+28,Cortie,vcIVxJkV,Surveyor,Business Development,true
+29,Caspar,PE4GrPlrA,Engineer,Marketing,false
+30,Lin,3iTmlK,Supervisor,Services,false
+31,Tymon,e6ee0hj,Construction Expeditor,Engineering,false
+32,Bancroft,yszkYmrcr,Estimator,Engineering,true
+33,Morganica,3chxiDuDr,Construction Foreman,Support,true
+34,Orville,3l9xnUFnK8,Project Manager,Sales,true
+35,Curt,rBaQQTwL4UK,Construction Worker,Engineering,false
+36,Gweneth,B2cOp3mW0H,Electrician,Legal,true
+37,Arvy,Ob04KVma,Architect,Research and Development,false
+38,Algernon,ih4VvIrAz,Construction Expeditor,Sales,false
+39,Krisha,l4OdnjrO,Estimator,Business Development,false
+40,Jerad,3VplI9,Engineer,Business Development,false
+41,Mabel,AIzYWax,Supervisor,Sales,false
+42,Marijn,K1tGjlkH,Engineer,Human Resources,true
+43,Sinclare,KAtbLp7,Architect,Sales,true
+44,Dody,ow069shROZHf,Surveyor,Product Management,true
+45,Angelia,H44VdgNkLUCX,Estimator,Human Resources,false
+46,Merle,LrxyOpHBXW,Construction Foreman,Business Development,true
+47,Kirby,nYUkfg,Construction Foreman,Engineering,false
+48,Rafaellle,RnP7g1YRU,Surveyor,Product Management,false
+49,Petronille,GGbOn0,Construction Manager,Legal,false
+50,Rosita,mFSrEX,Subcontractor,Human Resources,true
