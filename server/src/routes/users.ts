@@ -29,6 +29,7 @@ router.get("/user/:id", async (req, res) => {
     user: "root",
     database: "FAKE_DB",
     password: "root",
+    port: 40000,
   });
   try {
     const [rows] = await connection.query(query);
@@ -40,4 +41,23 @@ router.get("/user/:id", async (req, res) => {
   }
 });
 
+router.get("/users/:service", async (req, res) => {
+  const { service } = req.params;
+  const query = `SELECT * FROM Users WHERE service='${service}'`;
+  const connection = await mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    database: "FAKE_DB",
+    password: "root",
+    port: 40000,
+  });
+  try {
+    const [rows] = await connection.query(query);
+    res.json({ data: rows });
+  } catch (error) {
+    res.status(500).json({ error: error });
+  } finally {
+    connection.end();
+  }
+});
 export { router };

@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import queryServices from "../Hooks/queryServices";
 import queryUsers from "../Hooks/queryUsers";
+import { Service, User } from "../Types/myTypes";
 
 const Users = () => {
   const users = queryUsers();
@@ -14,21 +15,9 @@ const Users = () => {
     return <>Error</>;
   }
 
-  type User = {
-    id: number;
-    username: string;
-    password: string;
-    role: string;
-    service: string;
-    admin: boolean;
-  };
+  // console.log("🚀 ~ file: Users.tsx:26 ~ Users ~ users.data", users.data);
+  // console.log("🚀 ~ file: Users.tsx:26 ~ Users ~ services.data", services.data);
 
-  console.log("🚀 ~ file: Users.tsx:26 ~ Users ~ users.data", users.data);
-  console.log("🚀 ~ file: Users.tsx:26 ~ Users ~ services.data", services.data);
-
-  type Service = {
-    service: string;
-  };
   return (
     <>
       <>USERS PAGE</>

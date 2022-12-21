@@ -8,13 +8,13 @@ const LoginForm = () => {
           type="text"
           className="rounded-xl p-2"
           name=""
-          id=""
+          id="username"
           placeholder="Username"
         />
         <input
           type="password"
           className="rounded-xl p-2"
-          id=""
+          id="password"
           placeholder="Password"
         />
         <button className="border border-blue-300" type="submit">
