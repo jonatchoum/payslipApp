@@ -9,7 +9,7 @@ const User = () => {
   const user = queryUser(id);
   const [mois, setMois] = useState("");
   const [file, setFile] = useState<string | Blob>("");
-  console.log("🚀 ~ file: User.tsx:11 ~ User ~ file", file);
+  // console.log("🚀 ~ file: User.tsx:11 ~ User ~ file", file);
   if (user.isLoading) {
     return <>Loading</>;
   }
@@ -21,9 +21,13 @@ const User = () => {
     e.preventDefault();
     const data = new FormData();
     //c'est ici que le nom de fichier doit correspondre avec multer sur nodejs express
-    data.append("bulletin", file);
     data.append("mois", mois);
-    data.append("user", user.data);
+    data.append("user", user.data[0]);
+    console.log(
+      "🚀 ~ file: User.tsx:26 ~ handleUpload ~ user.data",
+      user.data[0]
+    );
+    data.append("bulletin", file);
     try {
       const response = await axios.post("upload", data, {
         headers: { "Content-Type": "multipart/form-data" },
@@ -31,7 +35,7 @@ const User = () => {
       if (response.status === 200) {
         toast.success("fichier envoyé");
       }
-      console.log("🚀 ~ file: User.tsx:23 ~ handleSubmit ~ response", response);
+      // console.log("🚀 ~ file: User.tsx:23 ~ handleSubmit ~ response", response);
     } catch (error) {
       toast.error("oups le fichier n'a pas pu être envoyé");
     }
