@@ -7,7 +7,7 @@ const router = Router();
 //TODO MIDDLEWARE TO CHECK req.body
 
 router.post("/upload", upload, (req, res) => {
-  // console.log("🚀 ~ file: upload.ts:9 ~ req.body", req.body);
+  const user = JSON.parse(req.body.user);
   return res
     .status(200)
     .json({ info: "success", file: req.file, data: req.body });

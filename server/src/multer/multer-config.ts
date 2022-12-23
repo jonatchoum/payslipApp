@@ -1,26 +1,26 @@
 import multer from "multer";
+import fs from "fs";
+import { User } from "../Types/myTypes";
+
+let user: User;
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    if (!(req.body?.mois && req.body?.user)) {
-      console.log(
-        "🚀 ~ file: multer-config.ts:7 ~ 🟥🟥🟥🟥il manque un champs mois ou user"
-      );
+    user = JSON.parse(req.body.user);
+    const dir = `../bulletinsDeSalaire/${user.id}`;
+    //On créer le dossier "dir" qui est un dossier associé à l'id de l'utilisateur si il n'existe pas
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir, { recursive: true });
     }
-    console.log("🚀 ~ file: multer-config.ts:9 ~ req.body", req.body);
-    const { mois, user } = req.body;
-    console.log(user.username);
-    console.log("🚀 ~ file: multer-config.ts:12 ~ mois", mois);
-
-    cb(null, "../bulletinsDeSalaire");
+    cb(null, dir);
   },
 
   filename: (req, file, cb) => {
-    // console.log("🚀 ~ file: multer-config.ts:14 ~ file", file);
-    cb(null, Date.now() + "-" + file.originalname);
+    const { mois } = req.body;
+    cb(null, mois + "_" + user.id + "_" + file.originalname);
   },
 });
 
-//upload.single("key") "key" doit correspondre a la key du fichier du formData passé
-//Form Data : key : (binary)
+// Dans .single("key") "key" doit correspondre a la key du fichier du formData passé niveau frontend
+// Dans l'inspecteur du navigateur  Network Form Data : key : (binary)
 export const upload = multer({ storage: storage }).single("bulletin");

@@ -22,11 +22,9 @@ const User = () => {
     const data = new FormData();
     //c'est ici que le nom de fichier doit correspondre avec multer sur nodejs express
     data.append("mois", mois);
-    data.append("user", user.data[0]);
-    console.log(
-      "🚀 ~ file: User.tsx:26 ~ handleUpload ~ user.data",
-      user.data[0]
-    );
+    //multer accepte seulement des string ou des fichiers donc on converti le user object en string
+    const stringUser = JSON.stringify(user.data[0]);
+    data.append("user", stringUser);
     data.append("bulletin", file);
     try {
       const response = await axios.post("upload", data, {
