@@ -2,6 +2,7 @@ import { Router } from "express";
 import mysql from "mysql2/promise";
 const router = Router();
 const query = "SELECT DISTINCT service FROM `Users` WHERE 1";
+// import { connection } from "../db/dbConn";
 
 router.get("/services", async (req, res) => {
   const connection = await mysql.createConnection({
