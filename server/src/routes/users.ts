@@ -32,8 +32,9 @@ router.get("/user/:id", async (req, res) => {
     port: 40000,
   });
   try {
-    const [rows] = await connection.query(query);
-    res.json({ data: rows });
+    const [user] = await connection.query(query);
+    // console.log("🚀 ~ file: users.ts:37 ~ router.get ~ user", user);
+    res.json({ data: user });
   } catch (error) {
     res.status(500).json({ error: error });
   } finally {
