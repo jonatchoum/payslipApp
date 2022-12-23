@@ -21,18 +21,13 @@ router.post("/upload", upload, async (req, res) => {
     port: 40000,
   });
   try {
-    const [rows] = await connection.query(query);
-    res.json({ data: rows });
+    await connection.query(query);
+    res.json({ response: "Fichier enregistré en BDD" });
   } catch (error) {
     res.status(500).json({ error: error });
   } finally {
     connection.end();
   }
-
-  // console.log("🟢" + req.file?.filename);
-  // return res
-  //   .status(200)
-  //   .json({ info: "success", file: req.file, data: req.body });
 });
 
 export { router };

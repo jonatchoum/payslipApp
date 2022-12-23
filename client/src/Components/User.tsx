@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import queryUser from "../Hooks/queryUser";
@@ -9,7 +9,6 @@ const User = () => {
   const user = queryUser(id);
   const [mois, setMois] = useState("");
   const [file, setFile] = useState<string | Blob>("");
-  // console.log("🚀 ~ file: User.tsx:11 ~ User ~ file", file);
   if (user.isLoading) {
     return <>Loading</>;
   }
@@ -17,7 +16,13 @@ const User = () => {
     return <>Error</>;
   }
 
-  const handleUpload = async (e: React.FormEvent) => {
+  const handleUpload = async (
+    e: React.FormEvent
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // user: UseQueryResult<any, unknown>,
+    // mois: string,
+    // file: string
+  ) => {
     e.preventDefault();
     const data = new FormData();
     //c'est ici que le nom de fichier doit correspondre avec multer sur nodejs express
@@ -33,8 +38,13 @@ const User = () => {
       if (response.status === 200) {
         toast.success("fichier envoyé");
       }
-      // console.log("🚀 ~ file: User.tsx:23 ~ handleSubmit ~ response", response);
+      console.log(response);
     } catch (error) {
+      if (error instanceof AxiosError) {
+        console.log(
+          error.response?.data?.error?.message || "une erreur est survenue jon"
+        );
+      }
       toast.error("oups le fichier n'a pas pu être envoyé");
     }
   };
