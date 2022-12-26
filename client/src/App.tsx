@@ -12,11 +12,11 @@ import Services from "./Components/Services";
 import Service from "./Components/Service";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-axios.defaults.baseURL = "http://localhost:3000/api/";
+axios.defaults.baseURL = "http://192.168.1.47:3000/api/";
 
 function App() {
   return (
-    <div className="">
+    <div className="max-w-screen-md overflow-hidden">
       <Navbar />
       <Routes>
         <Route path="/login" element={<LoginForm></LoginForm>}></Route>

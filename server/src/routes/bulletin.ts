@@ -6,7 +6,7 @@ const router = Router();
 
 router.get("/user/:id/bulletin", async (req, res) => {
   const { id } = req.params;
-  const query = `SELECT * FROM \`bulletin\` WHERE user_id=${id} ORDER BY date`;
+  const query = `SELECT * FROM \`bulletin\` WHERE user_id=${id} ORDER BY date DESC`;
   const connection = await mysql.createConnection({
     host: "localhost",
     user: "root",

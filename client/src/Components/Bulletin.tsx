@@ -20,31 +20,43 @@ const Bulletin = (props: IdProps) => {
     ...new Set<string>(
       bulletins.data.map((fichier: TBulletin) => fichier.date.split("-")[0])
     ),
-  ];
+  ]
+    .sort()
+    .reverse();
 
-  // console.log(bulletins.data);
-  console.log(
-    "🚀 ~ file: Bulletin.tsx:20 ~ Bulletin ~ bulletins.data",
-    bulletins.data
-  );
   return (
-    <div className="App">
-      <h1>FICHIERS</h1>
+    <div className="text-left">
+      <h2 className="text-xl">FICHIERS</h2>
       <div>
         {years.map((year, index) => {
           return (
-            <div key={index}>
-              <div>{year}</div>
+            <details key={index}>
+              <summary>{year}</summary>
               <>
                 {bulletins.data
                   .filter(
                     (fichier: TBulletin) => fichier.date.split("-")[0] === year
                   )
                   .map((fichier: TBulletin) => (
-                    <div key={fichier.id}>{fichier.filename}</div>
+                    <div
+                      key={fichier.id}
+                      className="flex gap-2 place-items-center p-1"
+                    >
+                      <div>{fichier.filename}</div>
+                      <a
+                        href={`http://192.168.1.47:3000/api/download/${props.id}/${fichier.filename}`}
+                        download={true}
+                      >
+                        <img
+                          src="/arrow-down-doc-fill-svgrepo-com.svg"
+                          alt=""
+                          className="w-8 fill-cyan-500"
+                        />
+                      </a>
+                    </div>
                   ))}
               </>
-            </div>
+            </details>
           );
         })}
       </div>

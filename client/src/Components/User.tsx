@@ -52,11 +52,11 @@ const User = () => {
   // console.log("🚀 ~ file: UserRefactor.tsx:11 ~ User ~ user", user.data[0].id);
 
   return (
-    <div className="flex gap-10">
-      <p>
-        id : {user.data[0].id}
-        username : {user.data[0].username}
-      </p>
+    <div className="flex gap-10 flex-wrap place-content-center">
+      <div className="grid">
+        <div>id : {user.data[0].id}</div>
+        <div>username : {user.data[0].username}</div>
+      </div>
       <Bulletin id={user.data[0].id}></Bulletin>
       <form
         className="grid  gap-5 place-items-center"
@@ -69,7 +69,7 @@ const User = () => {
           name="bulletinSalaire"
           id="bulletinSalaire"
           // accept=".pdf"
-          className="p-32 border border-dashed hover:bg-slate-400 rounded-lg"
+          className="p-16 border border-dashed hover:bg-slate-400 rounded-lg"
           onChange={(e) => {
             if (!e.target.files) return;
             setFile(e.target.files[0]);
