@@ -16,15 +16,38 @@ const Bulletin = (props: IdProps) => {
     return <>Error</>;
   }
 
+  const years = [
+    ...new Set<string>(
+      bulletins.data.map((fichier: TBulletin) => fichier.date.split("-")[0])
+    ),
+  ];
+
   // console.log(bulletins.data);
+  console.log(
+    "🚀 ~ file: Bulletin.tsx:20 ~ Bulletin ~ bulletins.data",
+    bulletins.data
+  );
   return (
-    <div>
-      <h2 className="underline text-lg mb-5">listes des bulletins</h2>
-      <ul>
-        {bulletins.data.map((bulletin: TBulletin, index: number) => (
-          <li key={index}>{bulletin.filename}</li>
-        ))}
-      </ul>
+    <div className="App">
+      <h1>FICHIERS</h1>
+      <div>
+        {years.map((year, index) => {
+          return (
+            <div key={index}>
+              <div>{year}</div>
+              <>
+                {bulletins.data
+                  .filter(
+                    (fichier: TBulletin) => fichier.date.split("-")[0] === year
+                  )
+                  .map((fichier: TBulletin) => (
+                    <div key={fichier.id}>{fichier.filename}</div>
+                  ))}
+              </>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };

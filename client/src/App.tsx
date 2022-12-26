@@ -6,7 +6,7 @@ import LoginForm from "./Components/LoginForm";
 import { Route, Routes } from "react-router-dom";
 // import User from "./Components/User";
 //remplacer
-import User from "./Components/UserRefactor";
+import User from "./Components/User";
 import Navbar from "./Components/Navbar";
 import Services from "./Components/Services";
 import Service from "./Components/Service";

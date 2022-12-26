@@ -3,7 +3,7 @@ import axios from "axios";
 
 const queryBulletin = (id: string | undefined) => {
   return useQuery({
-    queryKey: ["bulletin"],
+    queryKey: [`bulletin${id}`],
     queryFn: async () => {
       const response = await axios.get(`user/${id}/bulletin`);
       return response.data.data;

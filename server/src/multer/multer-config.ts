@@ -17,7 +17,7 @@ const storage = multer.diskStorage({
 
   filename: (req, file, cb) => {
     const { mois } = req.body;
-    cb(null, `${mois}_${user.id}_${file.originalname}`);
+    cb(null, `${mois}-05_${user.id}_${file.originalname}`);
   },
 });
 
