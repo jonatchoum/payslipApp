@@ -4,7 +4,9 @@ import axios from "axios";
 import Users from "./Components/Users";
 import LoginForm from "./Components/LoginForm";
 import { Route, Routes } from "react-router-dom";
-import User from "./Components/User";
+// import User from "./Components/User";
+//remplacer
+import User from "./Components/UserRefactor";
 import Navbar from "./Components/Navbar";
 import Services from "./Components/Services";
 import Service from "./Components/Service";
@@ -14,7 +16,7 @@ axios.defaults.baseURL = "http://localhost:3000/api/";
 
 function App() {
   return (
-    <div>
+    <div className="">
       <Navbar />
       <Routes>
         <Route path="/login" element={<LoginForm></LoginForm>}></Route>

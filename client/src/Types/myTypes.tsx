@@ -10,3 +10,10 @@ export type User = {
 export type Service = {
   service: string;
 };
+
+export type TBulletin = {
+  id: number;
+  user_id: number;
+  filename: string;
+  date: string;
+};
