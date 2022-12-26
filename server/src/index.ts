@@ -6,6 +6,8 @@ import { router as users } from "./routes/users";
 import { router as upload } from "./routes/upload";
 import { router as bulletin } from "./routes/bulletin";
 import { router as download } from "./routes/download";
+import { session } from "express-session";
+
 const app = express();
 
 const PORT = 3000;
