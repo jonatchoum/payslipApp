@@ -13,7 +13,7 @@ router.post("/login", async (req, res) => {
 
   console.log(user);
 
-  if (user.length == null) {
+  if (user.length == 0) {
     res.status(404).json({ message: "no user found", data: user });
   } else {
     res.json({ message: "user found", data: user });

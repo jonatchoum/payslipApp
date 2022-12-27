@@ -10,12 +10,12 @@ import { router as login } from "./routes/login";
 // import { session } from "express-session";
 // import passport from "passport";
 // import * as PassportLocal from "passport-local";
-import { connection } from "./db/sequelize/Sequelize";
-import { sequelize } from "./db/sequelize/Sequelize";
+// import { connection } from "./db/sequelize/Sequelize";
+// import { sequelize } from "./db/sequelize/Sequelize";
 
 const app = express();
 
-connection();
+// connection();
 
 // passport.use(new PassportLocal.Strategy({}, async (username, password) => {}));
 
