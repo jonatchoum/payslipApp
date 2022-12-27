@@ -1,6 +1,7 @@
 import { Router } from "express";
 import mysql from "mysql2/promise";
 const router = Router();
+import { passport } from "../Passport/passport-strategy";
 
 router.get("/users", async (req, res) => {
   const query = "SELECT * FROM Users WHERE 1";
@@ -63,6 +64,7 @@ router.get("/users/:service", async (req, res) => {
 });
 
 router.post("/user", async (req, res) => {
+  console.log(req.isAuthenticated());
   // INSERT INTO `Users` (`id`, `username`, `password`, `role`, `service`, `admin`) VALUES ('', NULL, NULL, NULL, NULL, NULL)
   const { username, password, role, service, admin } = req.body;
   const query = `INSERT INTO \`Users\` (\`id\`, \`username\`, \`password\`, \`role\`, \`service\`, \`admin\`) VALUES (NULL, '${username}', '${password}', '${role}', '${service}', '${admin}')`;
