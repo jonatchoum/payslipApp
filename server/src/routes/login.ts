@@ -1,5 +1,4 @@
 import { Router } from "express";
-// import mysql from "mysql2/promise";
 import { User } from "../db/sequelize/Sequelize";
 
 const router = Router();
@@ -7,17 +6,20 @@ const router = Router();
 router.post("/login", async (req, res) => {
   const { username, password } = req.body;
 
-  const user = await User.findAll({
+  const user = await User.findOne({
     where: { username: username, password: password },
   });
 
-  console.log(user);
+  // console.log({ user });
 
-  if (user.length == 0) {
-    res.status(404).json({ message: "no user found", data: user });
-  } else {
-    res.json({ message: "user found", data: user });
+  if (!user) {
+    return res.status(404).json({ message: "no user found" });
   }
+  console.log(
+    "🚀 ~ file: login.ts:15 ~ router.post ~ user?.dataValues.password",
+    user?.dataValues.password
+  );
+  res.json({ message: "user found", data: user });
 });
 
 export { router };
