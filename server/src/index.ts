@@ -11,9 +11,6 @@ import { router as login } from "./routes/loginHash";
 import { router as hashPass } from "./Passport/passport-strategy";
 import { router as logout } from "./routes/logout";
 import { passport } from "./Passport/passport-strategy";
-// import passport from "passport";
-// import LocalStrategy from "passport-local";
-// import { Strategy as LocalStrategy } from "passport-local";
 
 const app = express();
 
@@ -34,7 +31,7 @@ app.use(passport.session());
 // allow passport to use "express-session".
 
 // app.use(cors({ origin: ["http://localhost:5173"], methods: ["GET", "POST"] }));
-app.use(cors({ origin: "*", methods: ["GET", "POST"] }));
+app.use(cors({ origin: "*", methods: ["GET", "POST", "DELETE"] }));
 // app.use(express.urlencoded({}));
 app.use("/api", upload);
 app.use(express.json());
