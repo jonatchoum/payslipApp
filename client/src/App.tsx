@@ -12,18 +12,24 @@ import Services from "./Components/Services";
 import Service from "./Components/Service";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-axios.defaults.baseURL = "http://192.168.1.47:3000/api/";
+import Private from "./Components/Private";
+import Me from "./Components/Me";
+axios.defaults.baseURL = "http://localhost:3000/api/";
+axios.defaults.withCredentials = true;
 
 function App() {
   return (
     <div className="max-w-screen-md overflow-hidden">
       <Navbar />
       <Routes>
-        <Route path="/login" element={<LoginForm></LoginForm>}></Route>
-        <Route path="/users" element={<Users></Users>}></Route>
-        <Route path="/user/:id" element={<User></User>}></Route>
-        <Route path="/services" element={<Services></Services>}></Route>
-        <Route path="/service/:service" element={<Service></Service>}></Route>
+        <Route element={<Private></Private>}>
+          <Route path="/me" element={<Me />}></Route>
+          <Route path="/users" element={<Users />}></Route>
+          <Route path="/user/:id" element={<User />}></Route>
+          <Route path="/services" element={<Services />}></Route>
+          <Route path="/service/:service" element={<Service />}></Route>
+        </Route>
+        <Route path="/login" element={<LoginForm />}></Route>
       </Routes>
       <ToastContainer />
     </div>

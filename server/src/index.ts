@@ -10,6 +10,7 @@ import { router as download } from "./routes/download";
 import { router as login } from "./routes/loginHash";
 import { router as hashPass } from "./Passport/passport-strategy";
 import { router as logout } from "./routes/logout";
+import { router as me } from "./routes/me";
 import { passport } from "./Passport/passport-strategy";
 
 const app = express();
@@ -30,8 +31,15 @@ app.use(passport.initialize());
 app.use(passport.session());
 // allow passport to use "express-session".
 
-// app.use(cors({ origin: ["http://localhost:5173"], methods: ["GET", "POST"] }));
-app.use(cors({ origin: "*", methods: ["GET", "POST", "DELETE"] }));
+app.use(
+  cors({
+    origin: ["http://localhost:5173"],
+    methods: ["GET", "POST", "DELETE"],
+    credentials: true,
+  })
+);
+
+// app.use(cors({ origin: "*", methods: ["GET", "POST", "DELETE"] }));
 // app.use(express.urlencoded({}));
 app.use("/api", upload);
 app.use(express.json());
@@ -42,18 +50,9 @@ app.use("/api", bulletin);
 app.use("/api", download);
 app.use("/api", login);
 app.use("/api", hashPass);
+app.use("/api", me);
 
 app.use("/api", logout);
-// app.delete("/api/logout", (req, res) => {
-//   req.logOut((err) => {
-//     console.log(err);
-//     return res
-//       .status(500)
-//       .json({ message: "une erreur est survenur", data: err });
-//   });
-//   console.log(`-------> User Logged out`);
-//   res.json("logout success");
-// });
 
 app.listen(PORT, () =>
   console.log(`App listening on port ${PORT}\nhttp://localhost:3000/api`)

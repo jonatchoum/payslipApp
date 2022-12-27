@@ -1,10 +1,11 @@
 import { Router } from "express";
 import mysql from "mysql2/promise";
+import { checkAuthenticated } from "../middleware/checkAuthenticated";
 const router = Router();
 const query = "SELECT DISTINCT service FROM `Users` WHERE 1";
 // import { connection } from "../db/dbConn";
 
-router.get("/services", async (req, res) => {
+router.get("/services", checkAuthenticated, async (req, res) => {
   const connection = await mysql.createConnection({
     host: "localhost",
     user: "root",

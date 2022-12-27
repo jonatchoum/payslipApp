@@ -39,10 +39,7 @@ passport.use(
 const router = Router();
 
 router.post("/hash", passport.authenticate("local"), (req, res) => {
-  // console.log(req.user);
   console.log(req.isAuthenticated());
-  // console.log(JSON.stringify(req));
-  // console.log(req.authInfo);
   res.json({ message: "login successfull", data: req.user });
 });
 

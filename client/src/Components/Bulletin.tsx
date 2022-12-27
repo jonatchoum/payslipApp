@@ -44,7 +44,7 @@ const Bulletin = (props: IdProps) => {
                     >
                       <div>{fichier.filename}</div>
                       <a
-                        href={`http://192.168.1.47:3000/api/download/${props.id}/${fichier.filename}`}
+                        href={`http://localhost:3000/api/download/${props.id}/${fichier.filename}`}
                         download={true}
                       >
                         <img
