@@ -23,6 +23,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route element={<Private></Private>}>
+          <Route path="/" element={<Me />}></Route>
           <Route path="/me" element={<Me />}></Route>
           <Route path="/users" element={<Users />}></Route>
           <Route path="/user/:id" element={<User />}></Route>

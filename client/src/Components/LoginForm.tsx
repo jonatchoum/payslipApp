@@ -1,23 +1,37 @@
-import axios from "axios";
 import React, { useState } from "react";
+import { Navigate } from "react-router-dom";
+import useAuth from "../Hooks/useAuth";
+import { useLogin } from "../Hooks/useLogin";
 
 const LoginForm = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const login = async (e: unknown) => {
-    e.preventDefault();
-    const response = await axios.post("/hash", { username, password });
-    console.log(response);
-  };
+  // const auth = useAuth();
+
+  // if (auth.isLoading) {
+  //   return <>Loading</>;
+  // }
+
+  // if (auth.data) {
+  //   return <Navigate to={"/me"} />;
+  // }
 
   console.log({ username, password });
+
+  const mutation = useLogin(username, password);
+
+  const handleSubmit = (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    mutation.mutate();
+  };
+
   return (
     <div>
       <form
         action=""
         className="grid gap-5 border p-5 rounded-xl"
-        onSubmit={login}
+        onSubmit={handleSubmit}
       >
         <input
           type="text"
