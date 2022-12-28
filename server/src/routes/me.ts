@@ -1,8 +1,9 @@
-import { Router } from "express";
+import { Request, Router } from "express";
 
 const router = Router();
 
-router.get("/me", (req, res) => {
+router.get("/me", (req: Request, res) => {
+  console.log(req.user);
   if (!req.isAuthenticated()) {
     return res.status(401).json("NON CONNECTE");
   }

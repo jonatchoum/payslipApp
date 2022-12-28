@@ -29,6 +29,21 @@ const User = sequelize.define(
       allowNull: false,
       // allowNull defaults to true
     },
+    role: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      // allowNull defaults to true
+    },
+    service: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      // allowNull defaults to true
+    },
+    admin: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      // allowNull defaults to true
+    },
   },
   {
     // Other model options go here

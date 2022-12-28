@@ -1,23 +1,9 @@
 import React, { useState } from "react";
-import { Navigate } from "react-router-dom";
-import useAuth from "../Hooks/useAuth";
 import { useLogin } from "../Hooks/useLogin";
 
 const LoginForm = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
-  // const auth = useAuth();
-
-  // if (auth.isLoading) {
-  //   return <>Loading</>;
-  // }
-
-  // if (auth.data) {
-  //   return <Navigate to={"/me"} />;
-  // }
-
-  console.log({ username, password });
 
   const mutation = useLogin(username, password);
 

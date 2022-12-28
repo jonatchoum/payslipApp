@@ -1,10 +1,8 @@
-// import { useMutation } from "@tanstack/react-query";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-// import { redirect } from "react-router-dom";
 import { toast } from "react-toastify";
-import { queryClient } from "../main";
+// import { queryClient } from "../main";
 
 // const navigate = useNavigate();
 
@@ -26,5 +24,4 @@ const useLogin = (username: string, password: string) => {
   });
 };
 
-// const mutation = mutateFile();
 export { useLogin };

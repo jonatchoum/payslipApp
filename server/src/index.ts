@@ -11,6 +11,7 @@ import { router as login } from "./routes/loginHash";
 import { router as hashPass } from "./Passport/passport-strategy";
 import { router as logout } from "./routes/logout";
 import { router as me } from "./routes/me";
+import { router as createUser } from "./routes/createUser";
 import { passport } from "./Passport/passport-strategy";
 
 const app = express();
@@ -22,7 +23,7 @@ app.use(
     secret: "keyboard cat",
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: false },
+    cookie: { path: "/", httpOnly: true, secure: false, maxAge: 36000000 },
   })
 );
 
@@ -51,6 +52,7 @@ app.use("/api", download);
 app.use("/api", login);
 app.use("/api", hashPass);
 app.use("/api", me);
+app.use("/api", createUser);
 
 app.use("/api", logout);
 
