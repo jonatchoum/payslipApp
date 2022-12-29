@@ -1,7 +1,7 @@
 import { Router } from "express";
 import mysql from "mysql2/promise";
 const router = Router();
-import { passport } from "../Passport/passport-strategy";
+// import { passport } from "../Passport/passport-strategy";
 
 router.get("/users", async (req, res) => {
   const query = "SELECT * FROM Users WHERE 1";

@@ -7,7 +7,7 @@ import { Route, Routes } from "react-router-dom";
 // import User from "./Components/User";
 //remplacer
 import User from "./Components/User";
-import Navbar from "./Components/Navbar";
+// import Navbar from "./Components/Navbar";
 import Services from "./Components/Services";
 import Service from "./Components/Service";
 import { ToastContainer } from "react-toastify";
@@ -21,8 +21,7 @@ axios.defaults.withCredentials = true;
 
 function App() {
   return (
-    <div className="max-w-screen-md overflow-hidden">
-      <Navbar />
+    <div className="min-h-screen flex">
       <Routes>
         <Route element={<Private></Private>}>
           <Route path="/" element={<Me />}></Route>

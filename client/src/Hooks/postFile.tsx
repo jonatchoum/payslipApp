@@ -2,7 +2,7 @@ import { UseQueryResult } from "@tanstack/react-query";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-export const handleUpload = async (
+const handleUpload = async (
   e: React.FormEvent,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   user: UseQueryResult<any, unknown>,
@@ -29,3 +29,5 @@ export const handleUpload = async (
     toast.error("oups le fichier n'a pas pu être envoyé");
   }
 };
+
+export default handleUpload;
