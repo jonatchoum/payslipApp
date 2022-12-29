@@ -40,7 +40,7 @@ const User = sequelize.define(
       // allowNull defaults to true
     },
     admin: {
-      type: DataTypes.STRING,
+      type: DataTypes.BOOLEAN,
       allowNull: false,
       // allowNull defaults to true
     },

@@ -1,6 +1,7 @@
 import React from "react";
 import { Navigate, Outlet } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
+import Salarie from "../Pages/Salarie";
 import { Navbar } from "./Navbar";
 
 const Private = () => {
@@ -14,22 +15,28 @@ const Private = () => {
     return <Navigate to={"/login"} replace={true} />;
   }
 
-  return auth.data ? (
-    <main>
-      <Navbar
-        links={[
-          { link: "/me", label: "profile" },
-          { link: "/users", label: "users" },
-          { link: "/services", label: "services" },
-        ]}
-      />
-      <div className="grid place-items-center">
-        <Outlet />
-      </div>
-    </main>
-  ) : (
-    <>probleme</>
-  );
+  const { admin } = auth.data;
+  console.log("🚀 ~ file: Private.tsx:18 ~ Private ~ admin", admin);
+
+  // console.log(auth.data);
+  if (admin) {
+    return (
+      <main>
+        <Navbar
+          links={[
+            { link: "/me", label: "profile" },
+            { link: "/users", label: "users" },
+            { link: "/services", label: "services" },
+          ]}
+        />
+        <div className="grid place-items-center">
+          <Outlet />
+        </div>
+      </main>
+    );
+  }
+  return <Salarie></Salarie>;
+
   // return auth.data ? <Outlet /> : <Navigate to={"/login"} />;
 };
 

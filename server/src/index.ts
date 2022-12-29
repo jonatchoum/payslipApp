@@ -42,8 +42,8 @@ app.use(
 
 // app.use(cors({ origin: "*", methods: ["GET", "POST", "DELETE"] }));
 // app.use(express.urlencoded({}));
-app.use("/api", upload);
 app.use(express.json());
+app.use("/api", upload);
 app.use("/api", root);
 app.use("/api", service);
 app.use("/api", users);
