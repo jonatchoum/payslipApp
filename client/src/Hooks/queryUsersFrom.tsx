@@ -3,7 +3,7 @@ import axios from "axios";
 
 const queryUsersFrom = (service: string | undefined) => {
   return useQuery({
-    queryKey: ["users"],
+    queryKey: [`usersFrom${service}`],
     queryFn: async () => {
       const response = await axios.get(`users/${service}`);
       return response.data.data;

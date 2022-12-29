@@ -1,3 +1,4 @@
+import { Loader } from "@mantine/core";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import React, { useState } from "react";
@@ -40,7 +41,7 @@ const User = () => {
   };
 
   if (user.isLoading) {
-    return <>Loading</>;
+    return <Loader />;
   }
   if (user.isError) {
     return <>Error</>;

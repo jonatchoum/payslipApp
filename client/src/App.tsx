@@ -18,6 +18,8 @@ import Me from "./Components/Me";
 import CreateUser from "./Components/CreateUser";
 import { AuthenticationTitle } from "./Pages/AuthenticationTitle";
 import Notfound from "./Pages/Notfound";
+import Dashboard from "./Pages/Dashboard";
+import MantineUserByService from "./Components/MantineUserByService";
 axios.defaults.baseURL = "http://localhost:3000/api/";
 axios.defaults.withCredentials = true;
 
@@ -33,10 +35,17 @@ function App() {
           <Route path="/services" element={<Services />}></Route>
           <Route path="/service/:service" element={<Service />}></Route>
           <Route path="/createuser" element={<CreateUser />}></Route>
+          <Route path="/dashboard" element={<Dashboard />}>
+            <Route
+              path=":service"
+              element={<MantineUserByService></MantineUserByService>}
+            ></Route>
+            <Route path="profile" element={<Me></Me>}></Route>
+          </Route>
           <Route path="/*" element={<Notfound />}></Route>
         </Route>
         <Route path="/login" element={<AuthenticationTitle />}></Route>
-        <Route path="/test" element={<AuthenticationTitle />}></Route>
+        <Route path="/test" element={<MantineUserByService />}></Route>
       </Routes>
       <ToastContainer />
     </div>

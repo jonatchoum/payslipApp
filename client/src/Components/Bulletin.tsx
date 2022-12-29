@@ -1,3 +1,4 @@
+import { Loader } from "@mantine/core";
 import React from "react";
 import queryBulletin from "../Hooks/queryBulletin";
 import { TBulletin } from "../Types/myTypes";
@@ -10,7 +11,7 @@ const Bulletin = (props: IdProps) => {
   const bulletins = queryBulletin(props.id);
 
   if (bulletins.isLoading) {
-    return <>Loading</>;
+    return <Loader />;
   }
   if (bulletins.isError) {
     return <>Error</>;

@@ -1,3 +1,4 @@
+import { Loader } from "@mantine/core";
 import React from "react";
 import queryMe from "../Hooks/queryMe";
 
@@ -5,7 +6,7 @@ const Me = () => {
   const me = queryMe();
 
   if (me.isLoading) {
-    return <>Loading</>;
+    return <Loader />;
   }
 
   if (me.isError) {

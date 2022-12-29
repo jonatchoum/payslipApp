@@ -1,3 +1,4 @@
+import { Loader } from "@mantine/core";
 import React from "react";
 import { Navigate, Outlet } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
@@ -8,7 +9,7 @@ const Private = () => {
   const auth = useAuth();
 
   if (auth.isLoading) {
-    return <>Loading private</>;
+    return <Loader />;
   }
   if (auth.isError) {
     // return <>Error</>;
@@ -27,6 +28,8 @@ const Private = () => {
             { link: "/me", label: "profile" },
             { link: "/users", label: "users" },
             { link: "/services", label: "services" },
+            { link: "/dashboard", label: "dashboard" },
+            { link: "/test", label: "test" },
           ]}
         />
         <div className="grid place-items-center">

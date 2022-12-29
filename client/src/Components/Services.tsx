@@ -1,3 +1,4 @@
+import { Loader } from "@mantine/core";
 import React from "react";
 import { Link } from "react-router-dom";
 import queryServices from "../Hooks/queryServices";
@@ -7,7 +8,7 @@ const Services = () => {
   const services = queryServices();
 
   if (services.isLoading) {
-    return <>Loading</>;
+    return <Loader />;
   }
 
   if (services.isError) {
