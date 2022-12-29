@@ -12,7 +12,7 @@ router.post("/upload", upload, async (req, res) => {
   const user_id = user.id;
   const filename = req.file?.filename;
   const mois = req.body?.mois;
-  const query = `INSERT INTO \`bulletin\` (\`id\`, \`user_id\`, \`filename\`, \`date\`) VALUES (NULL, '${user_id}', '${filename}', '${mois}-01')`;
+  const query = `INSERT INTO \`bulletin\` (\`id\`, \`user_id\`, \`filename\`, \`date\`) VALUES (NULL, '${user_id}', '${filename}', '${mois}-05')`;
   const connection = await mysql.createConnection({
     host: "localhost",
     user: "root",

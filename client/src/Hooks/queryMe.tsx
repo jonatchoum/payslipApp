@@ -1,14 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
-const queryUser = (id: string | undefined) => {
+const queryMe = () => {
   return useQuery({
-    queryKey: [`user${id}`],
+    queryKey: ["me"],
     queryFn: async () => {
-      const response = await axios.get(`user/${id}`);
+      const response = await axios.get("me");
       return response.data.data;
     },
   });
 };
 
-export default queryUser;
+export default queryMe;
