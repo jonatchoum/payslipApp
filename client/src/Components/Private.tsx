@@ -1,7 +1,7 @@
 import React from "react";
 import { Navigate, Outlet } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
-import Navbar from "./Navbar";
+import { Navbar } from "./Navbar";
 
 const Private = () => {
   const auth = useAuth();
@@ -16,8 +16,16 @@ const Private = () => {
 
   return auth.data ? (
     <main>
-      <Navbar />
-      <Outlet />
+      <Navbar
+        links={[
+          { link: "/me", label: "profile" },
+          { link: "/users", label: "users" },
+          { link: "/services", label: "services" },
+        ]}
+      />
+      <div className="grid place-items-center">
+        <Outlet />
+      </div>
     </main>
   ) : (
     <>probleme</>

@@ -1,4 +1,4 @@
-import "./App.css";
+// import "./App.css";
 import React from "react";
 import axios from "axios";
 import Users from "./Components/Users";
@@ -14,14 +14,15 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Private from "./Components/Private";
 import Me from "./Components/Me";
-import Test from "./Components/Test";
+// import Test from "./Components/Test";
 import CreateUser from "./Components/CreateUser";
+import { AuthenticationTitle } from "./Pages/AuthenticationTitle";
 axios.defaults.baseURL = "http://localhost:3000/api/";
 axios.defaults.withCredentials = true;
 
 function App() {
   return (
-    <div className="min-h-screen flex">
+    <div className="min-h-screen  ">
       <Routes>
         <Route element={<Private></Private>}>
           <Route path="/" element={<Me />}></Route>
@@ -32,8 +33,8 @@ function App() {
           <Route path="/service/:service" element={<Service />}></Route>
           <Route path="/createuser" element={<CreateUser />}></Route>
         </Route>
-        <Route path="/login" element={<LoginForm />}></Route>
-        <Route path="/test" element={<Test />}></Route>
+        <Route path="/login" element={<AuthenticationTitle />}></Route>
+        <Route path="/test" element={<AuthenticationTitle />}></Route>
       </Routes>
       <ToastContainer />
     </div>

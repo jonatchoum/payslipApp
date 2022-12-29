@@ -2,7 +2,6 @@ import React from "react";
 // import { redirect } from "react-router-dom";
 // import mutateLogout from "../Hooks/useLogout";
 import useLogout from "../Hooks/useLogout";
-import { Button } from "@mantine/core";
 const LogoutButton = () => {
   const mutation = useLogout();
 
@@ -12,9 +11,9 @@ const LogoutButton = () => {
   };
 
   return (
-    <Button className="bg-red-500" onClick={handleClick}>
+    <button className="bg-red-500 p-2" onClick={handleClick}>
       Logout
-    </Button>
+    </button>
   );
 };
 
