@@ -1,5 +1,4 @@
-import { SegmentedControl } from "@mantine/core";
-import { useQueryClient } from "@tanstack/react-query";
+import { Loader, SegmentedControl } from "@mantine/core";
 import React from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import queryServices from "../Hooks/queryServices";
@@ -9,7 +8,7 @@ const Dashboard = () => {
   const services = queryServices();
 
   if (services.isLoading) {
-    return <>Loading</>;
+    return <Loader />;
   }
 
   if (services.isError) {
@@ -22,13 +21,12 @@ const Dashboard = () => {
     (service: Service) => service.service
   );
 
-  //   navigate(`${listeServices[0]}`);
-
   return (
-    <div className="flex  w-full max-w-3xl border-4 container gap-5 overflow-hidden">
+    <div className="flex p-5 w-full max-w-3xl border-4 container gap-5 overflow-hidden">
       <SegmentedControl
         className="min-w-fit h-fit "
         data={listeServices}
+        defaultValue=""
         orientation="vertical"
         onChange={(value) => {
           navigate(`${value}`);

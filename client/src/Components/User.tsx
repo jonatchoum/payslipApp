@@ -1,4 +1,5 @@
 import { Button, Input, Loader, Paper } from "@mantine/core";
+import { Dropzone } from "@mantine/dropzone";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import React, { useState } from "react";
@@ -13,7 +14,7 @@ const User = () => {
   const user = queryUser(id);
 
   const [mois, setMois] = useState("");
-  const [file, setFile] = useState<string | Blob>("");
+  const [file, setFile] = useState<File>();
 
   const postFile = (formData: FormData) => {
     return axios.post("/upload", formData);
@@ -32,12 +33,14 @@ const User = () => {
 
   const submitForm = (e: React.FormEvent) => {
     e.preventDefault();
-    const formData = new FormData();
-    formData.append("mois", mois);
-    const stringUser = JSON.stringify(user.data[0]);
-    formData.append("user", stringUser);
-    formData.append("bulletin", file);
-    mutation.mutate(formData);
+    if (file) {
+      const formData = new FormData();
+      formData.append("mois", mois);
+      const stringUser = JSON.stringify(user.data[0]);
+      formData.append("user", stringUser);
+      formData.append("bulletin", file);
+      mutation.mutate(formData);
+    }
   };
 
   if (user.isLoading) {
@@ -49,12 +52,11 @@ const User = () => {
 
   console.log(mois);
   console.log(user.data[0]);
-
-  // console.log("🚀 ~ file: UserRefactor.tsx:11 ~ User ~ user", user.data[0].id);
+  console.log(file);
 
   return (
-    <Paper withBorder shadow="md" p={30} radius="md">
-      <div className="flex gap-10 flex-wrap place-content-center">
+    <Paper withBorder shadow="md" p={20} radius="md" className="w-full">
+      <div className="flex  flex-col gap-10  place-content-center">
         <div className="grid">
           <div>id : {user.data[0].id}</div>
           <div>username : {user.data[0].username}</div>
@@ -65,17 +67,31 @@ const User = () => {
           onSubmit={submitForm}
         >
           <label htmlFor="bulletinSalaire">Upload un bulletin de salaire</label>
-          <input
-            type="file"
-            name="bulletinSalaire"
-            id="bulletinSalaire"
-            // accept=".pdf"
-            className="grid  border border-dashed hover:bg-slate-400 rounded-lg"
-            onChange={(e) => {
-              if (!e.target.files) return;
-              setFile(e.target.files[0]);
-            }}
-          />
+          {mutation.isLoading ? (
+            <Dropzone
+              loading
+              name="bulletinSalaire"
+              onDrop={(file) => {
+                console.log(file);
+                setFile(file[0]);
+              }}
+              multiple={false}
+            >
+              {file ? <>{file.name}</> : <>Choisir fichier</>}
+            </Dropzone>
+          ) : (
+            <Dropzone
+              name="bulletinSalaire"
+              onDrop={(file) => {
+                console.log(file);
+                setFile(file[0]);
+              }}
+              multiple={false}
+            >
+              {file ? <>{file.name}</> : <>Choisir fichier</>}
+            </Dropzone>
+          )}
+
           <Input
             type={"month"}
             name="bulletin"

@@ -1,4 +1,4 @@
-import { Accordion, Loader } from "@mantine/core";
+import { Accordion, Loader, Table } from "@mantine/core";
 import React from "react";
 import queryBulletin from "../Hooks/queryBulletin";
 import { TBulletin } from "../Types/myTypes";
@@ -37,31 +37,37 @@ const Bulletin = (props: IdProps) => {
               <Accordion.Item key={year} value={year}>
                 <Accordion.Control>{year}</Accordion.Control>
                 <Accordion.Panel>
-                  <>
-                    {bulletins.data
-                      .filter(
-                        (fichier: TBulletin) =>
-                          fichier.date.split("-")[0] === year
-                      )
-                      .map((fichier: TBulletin) => (
-                        <div
-                          key={fichier.id}
-                          className="flex gap-2 place-items-center p-1"
-                        >
-                          <div>{fichier.filename}</div>
-                          <a
-                            href={`http://localhost:3000/api/download/${props.id}/${fichier.filename}`}
-                            download={true}
-                          >
-                            <img
-                              src="/arrow-down-doc-fill-svgrepo-com.svg"
-                              alt=""
-                              className="w-8 fill-cyan-500"
-                            />
-                          </a>
-                        </div>
-                      ))}
-                  </>
+                  <Table>
+                    <thead>
+                      {/* <tr>
+                        <th>filename</th>
+                      </tr> */}
+                    </thead>
+                    <tbody>
+                      {bulletins.data
+                        .filter(
+                          (fichier: TBulletin) =>
+                            fichier.date.split("-")[0] === year
+                        )
+                        .map((fichier: TBulletin, index: number) => (
+                          <tr key={index}>
+                            <td>{fichier.filename}</td>
+                            <td>
+                              <a
+                                href={`http://localhost:3000/api/download/${props.id}/${fichier.filename}`}
+                                download={true}
+                              >
+                                <img
+                                  src="/arrow-down-doc-fill-svgrepo-com.svg"
+                                  alt=""
+                                  className="w-8 fill-cyan-500"
+                                />
+                              </a>
+                            </td>
+                          </tr>
+                        ))}
+                    </tbody>
+                  </Table>
                 </Accordion.Panel>
               </Accordion.Item>
             );

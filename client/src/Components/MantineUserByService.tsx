@@ -29,7 +29,7 @@ const MantineUserByService = () => {
   ));
 
   return (
-    <div className="flex gap-5 ">
+    <div className="flex  gap-5 w-full">
       <Paper withBorder shadow="md" p={30} radius="md" className="h-fit">
         <Table
         // className="overflow-hidden w-36 h-fit"
