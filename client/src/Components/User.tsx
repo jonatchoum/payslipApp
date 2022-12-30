@@ -1,5 +1,5 @@
 import { Button, Input, Loader, Paper } from "@mantine/core";
-import { Dropzone } from "@mantine/dropzone";
+import { Dropzone, MIME_TYPES } from "@mantine/dropzone";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import React, { useState } from "react";
@@ -87,6 +87,7 @@ const User = () => {
                 setFile(file[0]);
               }}
               multiple={false}
+              accept={[MIME_TYPES.pdf]}
             >
               {file ? <>{file.name}</> : <>Choisir fichier</>}
             </Dropzone>
