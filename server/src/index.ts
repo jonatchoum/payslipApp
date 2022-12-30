@@ -13,6 +13,7 @@ import { router as logout } from "./routes/logout";
 import { router as me } from "./routes/me";
 import { router as createUser } from "./routes/createUser";
 import { passport } from "./Passport/passport-strategy";
+import { updateUser } from "./routes/updateUser";
 
 const app = express();
 
@@ -53,6 +54,7 @@ app.use("/api", download);
 app.use("/api", hashPass);
 app.use("/api", me);
 app.use("/api", createUser);
+app.put("/api/updateUser", updateUser);
 
 app.use("/api", logout);
 
