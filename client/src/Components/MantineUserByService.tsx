@@ -1,12 +1,12 @@
-import { Loader, Table } from "@mantine/core";
-import { useQueryClient } from "@tanstack/react-query";
+import { Button, Loader, Paper, Table } from "@mantine/core";
 import React from "react";
-import { useParams } from "react-router-dom";
+import { Outlet, useNavigate, useParams } from "react-router-dom";
 import queryUsersFrom from "../Hooks/queryUsersFrom";
 import { User } from "../Types/myTypes";
 
 const MantineUserByService = () => {
   const { service } = useParams();
+  const navigate = useNavigate();
 
   const users = queryUsersFrom(service);
 
@@ -16,32 +16,36 @@ const MantineUserByService = () => {
   if (users.isError) {
     return <>Error</>;
   }
-  if (users.isFetching) {
-    console.log("fetching");
-  }
 
-  //   console.table(users.data);
   const rows = users.data.map((user: User) => (
     <tr key={user.username}>
-      <td>{user.id}</td>
+      <td>
+        <Button onClick={() => navigate(`${user.id}`)}>{user.id}</Button>
+      </td>
+
       <td>{user.username}</td>
-      {/* <td>{user.password}</td> */}
-      <td>{user.service}</td>
+      {/* <td>{user.service}</td> */}
     </tr>
   ));
 
   return (
-    <Table className="overflow-hidden">
-      <thead>
-        <tr>
-          <th>id</th>
-          <th>username</th>
-          {/* <th>hash password</th> */}
-          <th>service</th>
-        </tr>
-      </thead>
-      <tbody>{rows}</tbody>
-    </Table>
+    <div className="flex gap-5 ">
+      <Paper withBorder shadow="md" p={30} radius="md" className="h-fit">
+        <Table
+        // className="overflow-hidden w-36 h-fit"
+        >
+          <thead>
+            <tr>
+              <th>id</th>
+              <th>username</th>
+              {/* <th>service</th> */}
+            </tr>
+          </thead>
+          <tbody>{rows}</tbody>
+        </Table>
+      </Paper>
+      <Outlet />
+    </div>
   );
 };
 

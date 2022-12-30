@@ -12,6 +12,7 @@
     "@babel/core": "^7.20.7",
     "@emotion/react": "^11.10.5",
     "@mantine/core": "^5.9.5",
+    "@mantine/dropzone": "^5.9.5",
     "@mantine/ds": "^5.9.5",
     "@mantine/hooks": "^5.9.5",
     "@mantine/prism": "^5.9.5",

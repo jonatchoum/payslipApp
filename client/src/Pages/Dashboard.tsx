@@ -25,9 +25,9 @@ const Dashboard = () => {
   //   navigate(`${listeServices[0]}`);
 
   return (
-    <div className="flex gap-5 place-content-start w-full max-w-2xl overflow-hidden">
+    <div className="flex  w-full max-w-3xl border-4 container gap-5 overflow-hidden">
       <SegmentedControl
-        className="min-w-fit "
+        className="min-w-fit h-fit "
         data={listeServices}
         orientation="vertical"
         onChange={(value) => {

@@ -1,4 +1,4 @@
-import { Loader } from "@mantine/core";
+import { Accordion, Loader } from "@mantine/core";
 import React from "react";
 import queryBulletin from "../Hooks/queryBulletin";
 import { TBulletin } from "../Types/myTypes";
@@ -26,40 +26,47 @@ const Bulletin = (props: IdProps) => {
     .reverse();
 
   return (
-    <div className="text-left">
+    <div className="text-left w-full pl-4">
       <h2 className="text-xl">FICHIERS</h2>
+
       <div>
-        {years.map((year, index) => {
-          return (
-            <details key={index}>
-              <summary>{year}</summary>
-              <>
-                {bulletins.data
-                  .filter(
-                    (fichier: TBulletin) => fichier.date.split("-")[0] === year
-                  )
-                  .map((fichier: TBulletin) => (
-                    <div
-                      key={fichier.id}
-                      className="flex gap-2 place-items-center p-1"
-                    >
-                      <div>{fichier.filename}</div>
-                      <a
-                        href={`http://localhost:3000/api/download/${props.id}/${fichier.filename}`}
-                        download={true}
-                      >
-                        <img
-                          src="/arrow-down-doc-fill-svgrepo-com.svg"
-                          alt=""
-                          className="w-8 fill-cyan-500"
-                        />
-                      </a>
-                    </div>
-                  ))}
-              </>
-            </details>
-          );
-        })}
+        {/* <Accordion variant="separated" defaultValue={years[0]}> */}
+        <Accordion variant="separated" defaultValue={""}>
+          {years.map((year) => {
+            return (
+              <Accordion.Item key={year} value={year}>
+                <Accordion.Control>{year}</Accordion.Control>
+                <Accordion.Panel>
+                  <>
+                    {bulletins.data
+                      .filter(
+                        (fichier: TBulletin) =>
+                          fichier.date.split("-")[0] === year
+                      )
+                      .map((fichier: TBulletin) => (
+                        <div
+                          key={fichier.id}
+                          className="flex gap-2 place-items-center p-1"
+                        >
+                          <div>{fichier.filename}</div>
+                          <a
+                            href={`http://localhost:3000/api/download/${props.id}/${fichier.filename}`}
+                            download={true}
+                          >
+                            <img
+                              src="/arrow-down-doc-fill-svgrepo-com.svg"
+                              alt=""
+                              className="w-8 fill-cyan-500"
+                            />
+                          </a>
+                        </div>
+                      ))}
+                  </>
+                </Accordion.Panel>
+              </Accordion.Item>
+            );
+          })}
+        </Accordion>
       </div>
     </div>
   );
