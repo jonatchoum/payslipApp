@@ -5,10 +5,10 @@ import queryUsersFrom from "../Hooks/queryUsersFrom";
 import { User } from "../Types/myTypes";
 
 const MantineUserByService = () => {
-  const { service } = useParams();
+  const { societe } = useParams();
   const navigate = useNavigate();
 
-  const users = queryUsersFrom(service);
+  const users = queryUsersFrom(societe);
 
   if (users.isLoading) {
     return <Loader className="grid place-items-center min-w-full min-h-full" />;

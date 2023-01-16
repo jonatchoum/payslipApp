@@ -1,11 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
-const queryUsersFrom = (service: string | undefined) => {
+const queryUsersFrom = (societe: string | undefined) => {
   return useQuery({
-    queryKey: [`usersFrom${service}`],
+    queryKey: [`usersFrom${societe}`],
     queryFn: async () => {
-      const response = await axios.get(`users/${service}`);
+      const response = await axios.get(`users/${societe}`);
       return response.data.data;
     },
   });

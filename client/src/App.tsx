@@ -37,7 +37,7 @@ function App() {
           <Route path="/service/:service" element={<Service />}></Route>
           <Route path="/createuser" element={<CreateUser />}></Route>
           <Route path="/dashboard" element={<Dashboard />}>
-            <Route path=":service" element={<MantineUserByService />}>
+            <Route path=":societe" element={<MantineUserByService />}>
               <Route path=":id" element={<MantineUserUpload />}></Route>
               <Route path="profile" element={<Me></Me>}></Route>
             </Route>

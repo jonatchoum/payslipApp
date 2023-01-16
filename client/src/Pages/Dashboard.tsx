@@ -17,7 +17,7 @@ const Dashboard = () => {
 
   type societe = { societe: string };
 
-  const listesocietes = societes.data.map(
+  const listeSocietes = societes.data.map(
     (societe: societe) => societe.societe
   );
 
@@ -25,7 +25,7 @@ const Dashboard = () => {
     <div className="flex p-5 w-full max-w-3xl border-4 container gap-5 overflow-hidden">
       <SegmentedControl
         className="min-w-fit h-fit "
-        data={listesocietes}
+        data={listeSocietes}
         defaultValue=""
         orientation="vertical"
         onChange={(value) => {
