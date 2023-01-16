@@ -42,6 +42,8 @@ const Users = () => {
                     <tr key={id}>
                       <td className="">{user.id}</td>
                       <td className="">{user.username}</td>
+                      <td className="">{user.prenom}</td>
+                      <td className="">{user.nom}</td>
                       <td className="">{user.societe}</td>
                       <td>
                         <Link to={`/user/${user.id}`}>

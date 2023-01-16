@@ -2,13 +2,14 @@ import { Request, Response } from "express";
 import { User } from "../db/sequelize/Sequelize";
 import bcrypt from "bcrypt";
 
-export const updateUser = async (
-  req: Request,
-  res: Response
-  //   next: NextFunction
-) => {
+export const updateUser = async (req: Request, res: Response) => {
   const saltRounds = 10;
   const { id, username, password, role, service, admin } = req.body;
+  if (!id) {
+    console.log("no id");
+    return res.status(400).json("should provide id");
+  }
+
   try {
     if (username) {
       await User.update({ username: username }, { where: { id: id } });
@@ -27,7 +28,9 @@ export const updateUser = async (
     if (admin) {
       await User.update({ admin: admin }, { where: { id: id } });
     }
-    return res.json("User updated !");
+
+    const user = await User.findByPk(id);
+    return res.json({ message: "User updated !", data: user });
   } catch (error) {
     res.status(403).json({ message: "utilisateur non updaté", error: error });
   }

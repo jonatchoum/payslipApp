@@ -12,8 +12,8 @@ import { router as logout } from "./routes/logout";
 import { router as me } from "./routes/me";
 import { router as createUser } from "./routes/createUser";
 import { router as societes } from "./routes/societes";
-import { passport } from "./Passport/passport-strategy";
 import { updateUser } from "./routes/updateUser";
+import { passport } from "./Passport/passport-strategy";
 
 const app = express();
 
@@ -55,7 +55,7 @@ app.use("/api", societes);
 app.use("/api", login);
 app.use("/api", me);
 app.use("/api", createUser);
-app.put("/api/updateUser", updateUser);
+app.patch("/api/updateUser", updateUser);
 
 app.use("/api", logout);
 

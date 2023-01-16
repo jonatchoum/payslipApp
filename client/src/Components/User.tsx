@@ -36,7 +36,7 @@ const User = () => {
     if (file) {
       const formData = new FormData();
       formData.append("mois", mois);
-      const stringUser = JSON.stringify(user.data[0]);
+      const stringUser = JSON.stringify(user.data);
       formData.append("user", stringUser);
       formData.append("bulletin", file);
       mutation.mutate(formData);
@@ -51,15 +51,15 @@ const User = () => {
   }
 
   console.log(mois);
-  console.log(user.data[0]);
+  console.log(user.data);
   console.log(file);
 
   return (
-    <Paper withBorder shadow="md" p={20} radius="md" className="w-full">
+    <Paper withBorder shadow="md" p={20} radius="md" className="w-full h-fit">
       <div className="flex  flex-col gap-10  place-content-center">
         <div className="grid">
-          <div>id : {user.data[0].id}</div>
-          <div>username : {user.data[0].username}</div>
+          <div>id : {user.data.id}</div>
+          <div>username : {user.data.username}</div>
         </div>
         <form
           className="grid  gap-5 place-items-center"
@@ -110,7 +110,7 @@ const User = () => {
             <Button color={"red"}>------</Button>
           )}
         </form>
-        <Bulletin id={user.data[0].id}></Bulletin>
+        <Bulletin id={user.data.id}></Bulletin>
       </div>
     </Paper>
   );

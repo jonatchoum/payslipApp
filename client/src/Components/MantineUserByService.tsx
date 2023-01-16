@@ -22,23 +22,20 @@ const MantineUserByService = () => {
       <td>
         <Button onClick={() => navigate(`${user.id}`)}>{user.id}</Button>
       </td>
-
-      <td>{user.username}</td>
-      {/* <td>{user.service}</td> */}
+      <td>{user.prenom}</td>
+      <td>{user.nom}</td>
     </tr>
   ));
 
   return (
     <div className="flex  gap-5 w-full">
       <Paper withBorder shadow="md" p={30} radius="md" className="h-fit">
-        <Table
-        // className="overflow-hidden w-36 h-fit"
-        >
+        <Table>
           <thead>
             <tr>
               <th>id</th>
-              <th>username</th>
-              {/* <th>service</th> */}
+              <th>prenom</th>
+              <th>nom</th>
             </tr>
           </thead>
           <tbody>{rows}</tbody>

@@ -105,7 +105,14 @@ export function Navbar({ links }: HeaderSimpleProps) {
   return (
     <Header height={60} mb={120}>
       <Container className={classes.header}>
-        <MantineLogo size={28} />
+        <div className="pt-5  rounded-full">
+          <img
+            src="/grosLogo.png"
+            alt="donibaneLOGO"
+            className="bg-black rounded-b-xl w-full"
+          />
+        </div>
+        {/* <MantineLogo size={28} /> */}
         <Group spacing={5} className={classes.links}>
           {items}
           <LogoutButton></LogoutButton>
