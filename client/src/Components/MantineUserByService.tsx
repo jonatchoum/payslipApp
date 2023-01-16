@@ -1,6 +1,6 @@
 import { Button, Loader, Paper, Table } from "@mantine/core";
 import React from "react";
-import { Outlet, useNavigate, useParams } from "react-router-dom";
+import { Link, Outlet, useNavigate, useParams } from "react-router-dom";
 import queryUsersFrom from "../Hooks/queryUsersFrom";
 import { User } from "../Types/myTypes";
 
@@ -24,6 +24,9 @@ const MantineUserByService = () => {
       </td>
       <td>{user.prenom}</td>
       <td>{user.nom}</td>
+      <td>
+        <Link to={`/UpdateUser/${user.id}`}>modifier</Link>
+      </td>
     </tr>
   ));
 

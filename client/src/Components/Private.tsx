@@ -26,10 +26,11 @@ const Private = () => {
         <Navbar
           links={[
             { link: "/me", label: "profile" },
-            { link: "/users", label: "users" },
-            { link: "/services", label: "services" },
+            { link: "/createUser", label: "Ajouter un utilisateur" },
+            // { link: "/users", label: "users" },
+            // { link: "/services", label: "services" },
             { link: "/dashboard", label: "dashboard" },
-            { link: "/test", label: "test" },
+            // { link: "/test", label: "test" },
           ]}
         />
         <div className="grid place-items-center">
