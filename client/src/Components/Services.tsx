@@ -1,26 +1,28 @@
 import { Loader } from "@mantine/core";
 import React from "react";
 import { Link } from "react-router-dom";
-import queryServices from "../Hooks/queryServices";
-import { Service } from "../Types/myTypes";
+import querySocietes from "../Hooks/querySocietes";
+import { Societe } from "../Types/myTypes";
 
 const Services = () => {
-  const services = queryServices();
+  const societes = querySocietes();
 
-  if (services.isLoading) {
+  if (societes.isLoading) {
     return <Loader />;
   }
 
-  if (services.isError) {
+  if (societes.isError) {
     return <>Error</>;
   }
 
+  console.log(societes.data);
+
   return (
     <ul className="flex  around max-w-xl flex-wrap">
-      {services.data.map((service: Service, index: number) => (
+      {societes.data.map((societe: Societe, index: number) => (
         <li key={index} className="text-left p-1">
-          <Link to={`/service/${service.service}`}>
-            <button>{service.service}</button>
+          <Link to={`/service/${societe.societe}`}>
+            <button>{societe.societe}</button>
           </Link>
         </li>
       ))}

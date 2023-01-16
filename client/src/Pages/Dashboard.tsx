@@ -1,31 +1,31 @@
 import { Loader, SegmentedControl } from "@mantine/core";
 import React from "react";
 import { Outlet, useNavigate } from "react-router-dom";
-import queryServices from "../Hooks/queryServices";
+import querySocietes from "../Hooks/querySocietes";
 
 const Dashboard = () => {
   const navigate = useNavigate();
-  const services = queryServices();
+  const societes = querySocietes();
 
-  if (services.isLoading) {
+  if (societes.isLoading) {
     return <Loader />;
   }
 
-  if (services.isError) {
+  if (societes.isError) {
     return <>Error</>;
   }
 
-  type Service = { service: string };
+  type societe = { societe: string };
 
-  const listeServices = services.data.map(
-    (service: Service) => service.service
+  const listesocietes = societes.data.map(
+    (societe: societe) => societe.societe
   );
 
   return (
     <div className="flex p-5 w-full max-w-3xl border-4 container gap-5 overflow-hidden">
       <SegmentedControl
         className="min-w-fit h-fit "
-        data={listeServices}
+        data={listesocietes}
         defaultValue=""
         orientation="vertical"
         onChange={(value) => {

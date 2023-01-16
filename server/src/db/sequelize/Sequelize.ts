@@ -1,7 +1,7 @@
 import { Sequelize, DataTypes } from "sequelize";
 
 // Option 3: Passing parameters separately (other dialects)
-const sequelize = new Sequelize("FAKE_DB", "root", "root", {
+const sequelize = new Sequelize("DONI", "root", "root", {
   host: "localhost",
   dialect: "mysql",
   port: 40000,
@@ -10,11 +10,13 @@ const sequelize = new Sequelize("FAKE_DB", "root", "root", {
 const connection = async () => {
   try {
     await sequelize.authenticate();
-    console.log("Connection has been established successfully.");
+    console.log("🟢 SEQUELIZE Connection has been established successfully.");
   } catch (error) {
-    console.error("Unable to connect to the database:", error);
+    console.error("🔴 SEQUELIZE Unable to connect to the database:", error);
   }
 };
+//Test connection
+connection();
 
 const User = sequelize.define(
   "User",
@@ -24,17 +26,33 @@ const User = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    password: {
+    hash_password: {
       type: DataTypes.STRING,
       allowNull: false,
       // allowNull defaults to true
     },
+    prenom: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      // allowNull defaults to true
+    },
+    nom: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      // allowNull defaults to true
+    },
+
     role: {
       type: DataTypes.STRING,
       allowNull: false,
       // allowNull defaults to true
     },
-    service: {
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      // allowNull defaults to true
+    },
+    societe: {
       type: DataTypes.STRING,
       allowNull: false,
       // allowNull defaults to true
@@ -50,7 +68,5 @@ const User = sequelize.define(
     timestamps: false,
   }
 );
-
-// User.findAll({where : {username : , password : }})
 
 export { connection, sequelize, User };

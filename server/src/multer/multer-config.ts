@@ -1,8 +1,8 @@
 import multer from "multer";
 import fs from "fs";
-import { User } from "../Types/myTypes";
+import { TUser } from "../Types/myTypes";
 
-let user: User;
+let user: TUser;
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {

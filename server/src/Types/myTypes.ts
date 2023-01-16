@@ -1,9 +1,13 @@
-export type User = {
+export type TUser = {
   id: number;
   username: string;
-  password: string;
+  hash_password: string;
+  prenom: string;
+  nom: string;
   role: string;
-  service: string;
+  email: string;
+  societe: string;
+  password: string; // for register only
   admin: boolean;
 };
 

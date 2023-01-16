@@ -2,16 +2,16 @@ import express from "express";
 import cors from "cors";
 import session from "express-session";
 import { router as root } from "./routes/api";
-import { router as service } from "./routes/services";
+// import { router as service } from "./routes/services";
 import { router as users } from "./routes/users";
 import { router as upload } from "./routes/upload";
 import { router as bulletin } from "./routes/bulletin";
 import { router as download } from "./routes/download";
-// import { router as login } from "./routes/loginHash";
-import { router as hashPass } from "./Passport/passport-strategy";
+import { router as login } from "./Passport/passport-strategy";
 import { router as logout } from "./routes/logout";
 import { router as me } from "./routes/me";
 import { router as createUser } from "./routes/createUser";
+import { router as societes } from "./routes/societes";
 import { passport } from "./Passport/passport-strategy";
 import { updateUser } from "./routes/updateUser";
 
@@ -46,12 +46,13 @@ app.use(
 app.use(express.json());
 app.use("/api", upload);
 app.use("/api", root);
-app.use("/api", service);
+// app.use("/api", service);
 app.use("/api", users);
 app.use("/api", bulletin);
 app.use("/api", download);
-// app.use("/api", login);
-app.use("/api", hashPass);
+app.use("/api", societes);
+
+app.use("/api", login);
 app.use("/api", me);
 app.use("/api", createUser);
 app.put("/api/updateUser", updateUser);
