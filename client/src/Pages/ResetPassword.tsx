@@ -1,11 +1,13 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useParams } from "react-router-dom";
 
 const ResetPassword = () => {
+  const { id, token } = useParams();
   return (
-    <div>
-      ResetPassword
-      <Outlet></Outlet>
+    <div className="grid place-items-center">
+      <h1>ResetPassword Page</h1>
+      <div>{id}</div>
+      <div>{token}</div>
     </div>
   );
 };

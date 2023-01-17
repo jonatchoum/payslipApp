@@ -43,9 +43,10 @@ function App() {
           <Route path="/*" element={<Notfound />}></Route>
         </Route>
         <Route path="/login" element={<AuthenticationTitle />}></Route>
-        <Route path="/resetpassword" element={<ResetPassword />}>
-          <Route path=":id/:hash" element={<>idid</>}></Route>
-        </Route>
+        <Route
+          path="/resetpassword/:id/:token"
+          element={<ResetPassword />}
+        ></Route>
         {/* <Route path="/test" element={<MantineUserByService />}></Route> */}
       </Routes>
       <ToastContainer />

@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { User } from "../db/sequelize/Sequelize";
 import { transporter } from "../Nodemailer/nodemailer";
+import jwt from "jsonwebtoken";
 
 const sendResetMail = async (req: Request, res: Response) => {
   const { email } = req.body;
@@ -11,24 +12,28 @@ const sendResetMail = async (req: Request, res: Response) => {
 
   const user: any = await User.findOne({ where: { email: email } });
 
-  const { hash_password, id } = user;
-  console.log({ hash_password });
   if (!user) {
     console.log("not user with provided email found");
     return res.status(400).json({ message: "no email found" });
   }
+
+  const { hash_password, id } = user;
+  console.log({ hash_password });
+
+  const token = jwt.sign(hash_password, email);
+  console.log("🚀 ~ file: sendResetMail.ts:24 ~ sendResetMail ~ token", token);
 
   const message = {
     from: "donibanesalaire@outlook.fr",
     to: email,
     subject: "NodeMailer",
     text: `Bonjour ${user.prenom} ${user.nom} voici un lien pour réinitialiser 
-    votre mot de passe http://localhost:5173/resetPassword/${id}/${hash_password}`,
+    votre mot de passe http://localhost:5173/resetPassword/${id}/${token}`,
     html: `<div>
     Bonjour ${user.prenom} ${user.nom}
     <div>voici un lien pour réinitialiser votre mot de passe</div>
     <button>
-      <a href="http://localhost:5173/resetPassword/${id}/${hash_password}">reset</a>
+      <a href="http://localhost:5173/resetPassword/${id}/${token}">reset</a>
     </button>
   </div>`,
   };

@@ -2,7 +2,6 @@ import express from "express";
 import cors from "cors";
 import session from "express-session";
 import { router as root } from "./routes/api";
-// import { router as service } from "./routes/services";
 import { router as users } from "./routes/users";
 import { router as upload } from "./routes/upload";
 import { router as bulletin } from "./routes/bulletin";
@@ -14,8 +13,8 @@ import { router as createUser } from "./routes/createUser";
 import { router as societes } from "./routes/societes";
 import { updateUser } from "./routes/updateUser";
 import { passport } from "./Passport/passport-strategy";
-// import { testNodemailer, transporter } from "./Nodemailer/nodemailer";
 import { sendResetMail } from "./helper/sendResetMail";
+import { allowResetPassword, resetPassword } from "./helper/resetPassword";
 
 const app = express();
 
@@ -43,15 +42,10 @@ app.use(
   })
 );
 
-// mail test
-// testNodemailer();
-
-// app.use(cors({ origin: "*", methods: ["GET", "POST", "DELETE"] }));
-// app.use(express.urlencoded({}));
 app.use(express.json());
+
 app.use("/api", upload);
 app.use("/api", root);
-// app.use("/api", service);
 app.use("/api", users);
 app.use("/api", bulletin);
 app.use("/api", download);
@@ -63,6 +57,8 @@ app.use("/api", logout);
 
 app.patch("/api/updateUser", updateUser);
 app.post("/api/resetMail", sendResetMail);
+app.post("/api/allowResetPassword", allowResetPassword);
+app.post("/api/resetPassword", resetPassword);
 
 app.listen(PORT, () =>
   console.log(`App listening on port ${PORT}\nhttp://localhost:3000/api`)
