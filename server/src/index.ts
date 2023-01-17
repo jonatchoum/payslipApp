@@ -14,6 +14,7 @@ import { router as createUser } from "./routes/createUser";
 import { router as societes } from "./routes/societes";
 import { updateUser } from "./routes/updateUser";
 import { passport } from "./Passport/passport-strategy";
+import { testNodemailer, transporter } from "./Nodemailer/nodemailer";
 
 const app = express();
 
@@ -40,6 +41,19 @@ app.use(
     credentials: true,
   })
 );
+
+// mail test
+testNodemailer();
+
+// const message = {
+//   from: "donibanesalaire@outlook.fr",
+//   to: "donisalaire@yopmail.com",
+//   subject: "NodeMailer",
+//   text: "another",
+//   // html: "<p>HTML version of the message</p>",
+// };
+
+// transporter.sendMail(message);
 
 // app.use(cors({ origin: "*", methods: ["GET", "POST", "DELETE"] }));
 // app.use(express.urlencoded({}));

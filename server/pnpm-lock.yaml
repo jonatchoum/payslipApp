@@ -7,6 +7,7 @@ specifiers:
   '@types/express-session': ^1.17.5
   '@types/multer': ^1.4.7
   '@types/node': ^18.11.17
+  '@types/nodemailer': ^6.4.7
   '@types/passport': ^1.0.11
   '@types/passport-local': ^1.0.34
   '@types/sequelize': ^4.28.14
@@ -19,6 +20,7 @@ specifiers:
   express-session: ^1.17.3
   multer: 1.4.5-lts.1
   mysql2: ^2.3.3
+  nodemailer: ^6.9.0
   passport: ^0.6.0
   passport-local: ^1.0.0
   sequelize: ^6.28.0
@@ -31,6 +33,7 @@ dependencies:
   '@types/express-session': 1.17.5
   '@types/multer': 1.4.7
   '@types/node': 18.11.17
+  '@types/nodemailer': 6.4.7
   '@types/passport': 1.0.11
   '@types/passport-local': 1.0.34
   '@types/sequelize': 4.28.14
@@ -40,6 +43,7 @@ dependencies:
   express-session: 1.17.3
   multer: 1.4.5-lts.1
   mysql2: 2.3.3
+  nodemailer: 6.9.0
   passport: 0.6.0
   passport-local: 1.0.0
   sequelize: 6.28.0_mysql2@2.3.3
@@ -252,6 +256,12 @@ packages:
 
   /@types/node/18.11.17:
     resolution: {integrity: sha512-HJSUJmni4BeDHhfzn6nF0sVmd1SMezP7/4F0Lq+aXzmp2xm9O7WXrUtHW/CHlYVtZUbByEvWidHqRtcJXGF2Ng==}
+
+  /@types/nodemailer/6.4.7:
+    resolution: {integrity: sha512-f5qCBGAn/f0qtRcd4SEn88c8Fp3Swct1731X4ryPKqS61/A3LmmzN8zaEz7hneJvpjFbUUgY7lru/B/7ODTazg==}
+    dependencies:
+      '@types/node': 18.11.17
+    dev: false
 
   /@types/passport-local/1.0.34:
     resolution: {integrity: sha512-PSc07UdYx+jhadySxxIYWuv6sAnY5e+gesn/5lkPKfBeGuIYn9OPR+AAEDq73VRUh6NBTpvE/iPE62rzZUslog==}
@@ -1584,6 +1594,11 @@ packages:
         optional: true
     dependencies:
       whatwg-url: 5.0.0
+    dev: false
+
+  /nodemailer/6.9.0:
+    resolution: {integrity: sha512-jFaCEGTeT3E/m/5R2MHWiyQH3pSARECRUDM+1hokOYc3lQAAG7ASuy+2jIsYVf+RVa9zePopSQwKNVFH8DKUpA==}
+    engines: {node: '>=6.0.0'}
     dev: false
 
   /nopt/5.0.0:
