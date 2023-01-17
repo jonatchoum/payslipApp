@@ -1,14 +1,5 @@
 import nodemailer from "nodemailer";
 
-const transporter = nodemailer.createTransport({
-  host: "localhost",
-  port: 1025,
-  secure: false, // upgrade later with STARTTLS
-  auth: {
-    user: "donibanesalaire@outlook.fr",
-    pass: "r&v-7^X6a=jwG=A",
-  },
-});
 
 const testNodemailer = () => {
   transporter.verify(function (error) {
