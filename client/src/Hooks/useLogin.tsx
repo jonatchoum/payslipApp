@@ -2,9 +2,6 @@ import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-// import { queryClient } from "../main";
-
-// const navigate = useNavigate();
 
 const useLogin = (username: string, password: string) => {
   const navigate = useNavigate();
@@ -19,7 +16,6 @@ const useLogin = (username: string, password: string) => {
     onSuccess: () => {
       toast.success("Login Success");
       navigate("/me");
-      // queryClient.invalidateQueries({ queryKey: ["auth"] });
     },
   });
 };

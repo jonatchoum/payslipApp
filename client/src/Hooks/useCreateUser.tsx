@@ -2,17 +2,10 @@ import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-const useCreateUser = (form: {
-  username: string;
-  password: string;
-  verifyPassword: string;
-  role: string;
-  service: string;
-  admin: string;
-}) => {
+const useCreateUser = (newUser: object) => {
   return useMutation({
     mutationFn: () => {
-      return axios.post("/createUser", form);
+      return axios.post("/createUser", newUser);
     },
     onError: () => {
       toast.error("Utilisateur non créé");
