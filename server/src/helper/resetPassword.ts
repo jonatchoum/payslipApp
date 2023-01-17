@@ -5,7 +5,7 @@ import bcrypt from "bcrypt";
 import { where } from "sequelize";
 
 const allowResetPassword = async (req: Request, res: Response) => {
-  const { id, token } = req.body;
+  const { id, token } = req.params;
   if (!id && !token) {
     return res.status(401).json({ message: "user and token !" });
   }

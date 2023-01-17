@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   TextInput,
   PasswordInput,
@@ -12,16 +13,22 @@ import {
   Button,
 } from "@mantine/core";
 import { useLogin } from "../Hooks/useLogin";
+import { Navigate } from "react-router-dom";
 
 export function AuthenticationTitle() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const mutation = useLogin(username, password);
 
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
     mutation.mutate();
+  };
+
+  const handleClick = () => {
+    navigate("/resetPasswordMail");
   };
 
   console.log({ username, password });
@@ -65,11 +72,7 @@ export function AuthenticationTitle() {
           />
           <Group position="apart" mt="lg">
             <Checkbox label="Remember me" sx={{ lineHeight: 1 }} />
-            <Anchor<"a">
-              onClick={(event) => event.preventDefault()}
-              href="#"
-              size="sm"
-            >
+            <Anchor<"a"> onClick={handleClick} href="#" size="sm">
               Forgot password?
             </Anchor>
           </Group>

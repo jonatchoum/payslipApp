@@ -57,7 +57,7 @@ app.use("/api", logout);
 
 app.patch("/api/updateUser", updateUser);
 app.post("/api/resetMail", sendResetMail);
-app.post("/api/allowResetPassword", allowResetPassword);
+app.get("/api/allowResetPassword/:id/:token", allowResetPassword);
 app.post("/api/resetPassword", resetPassword);
 
 app.listen(PORT, () =>
