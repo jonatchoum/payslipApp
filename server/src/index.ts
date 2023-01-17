@@ -14,7 +14,8 @@ import { router as createUser } from "./routes/createUser";
 import { router as societes } from "./routes/societes";
 import { updateUser } from "./routes/updateUser";
 import { passport } from "./Passport/passport-strategy";
-import { testNodemailer, transporter } from "./Nodemailer/nodemailer";
+// import { testNodemailer, transporter } from "./Nodemailer/nodemailer";
+import { sendResetMail } from "./helper/sendResetMail";
 
 const app = express();
 
@@ -43,17 +44,7 @@ app.use(
 );
 
 // mail test
-testNodemailer();
-
-// const message = {
-//   from: "donibanesalaire@outlook.fr",
-//   to: "donisalaire@yopmail.com",
-//   subject: "NodeMailer",
-//   text: "another",
-//   // html: "<p>HTML version of the message</p>",
-// };
-
-// transporter.sendMail(message);
+// testNodemailer();
 
 // app.use(cors({ origin: "*", methods: ["GET", "POST", "DELETE"] }));
 // app.use(express.urlencoded({}));
@@ -65,13 +56,13 @@ app.use("/api", users);
 app.use("/api", bulletin);
 app.use("/api", download);
 app.use("/api", societes);
-
 app.use("/api", login);
 app.use("/api", me);
 app.use("/api", createUser);
-app.patch("/api/updateUser", updateUser);
-
 app.use("/api", logout);
+
+app.patch("/api/updateUser", updateUser);
+app.post("/api/resetMail", sendResetMail);
 
 app.listen(PORT, () =>
   console.log(`App listening on port ${PORT}\nhttp://localhost:3000/api`)

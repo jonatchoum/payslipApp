@@ -16,6 +16,7 @@ import Dashboard from "./Pages/Dashboard";
 import MantineUserByService from "./Components/MantineUserByService";
 import MantineUserUpload from "./Components/MantineUserUpload";
 import UpdateUser from "./Pages/UpdateUser";
+import ResetPassword from "./Pages/ResetPassword";
 axios.defaults.baseURL = "http://localhost:3000/api/";
 axios.defaults.withCredentials = true;
 
@@ -42,7 +43,10 @@ function App() {
           <Route path="/*" element={<Notfound />}></Route>
         </Route>
         <Route path="/login" element={<AuthenticationTitle />}></Route>
-        <Route path="/test" element={<MantineUserByService />}></Route>
+        <Route path="/resetpassword" element={<ResetPassword />}>
+          <Route path=":id/:hash" element={<>idid</>}></Route>
+        </Route>
+        {/* <Route path="/test" element={<MantineUserByService />}></Route> */}
       </Routes>
       <ToastContainer />
     </div>

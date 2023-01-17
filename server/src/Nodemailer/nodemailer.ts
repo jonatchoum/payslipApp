@@ -1,8 +1,17 @@
 import nodemailer from "nodemailer";
 
+// const transporter = nodemailer.createTransport({
+//   host: "smtp-mail.outlook.com",
+//   port: 587,
+//   secure: false, // upgrade later with STARTTLS
+//   auth: {
+//     user: "donibanesalaire@outlook.fr",
+//     pass: "r&v-7^X6a=jwG=A",
+//   },
+// });
 const transporter = nodemailer.createTransport({
-  host: "smtp-mail.outlook.com",
-  port: 587,
+  host: "localhost",
+  port: 1025,
   secure: false, // upgrade later with STARTTLS
   auth: {
     user: "donibanesalaire@outlook.fr",
@@ -11,7 +20,7 @@ const transporter = nodemailer.createTransport({
 });
 
 const testNodemailer = () => {
-  transporter.verify(function (error, success) {
+  transporter.verify(function (error) {
     if (error) {
       console.log(error);
     } else {
@@ -38,6 +47,6 @@ const sendMail = async () => {
   }
 };
 
-sendMail();
+// sendMail();
 
-export { transporter, testNodemailer };
+export { transporter, testNodemailer, sendMail };
