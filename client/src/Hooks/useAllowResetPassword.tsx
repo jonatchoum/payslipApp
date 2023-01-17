@@ -1,8 +1,8 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-const useAllowResetPassword = (id: string, token: string) => {
+const useAllowResetPassword = (id: any, token: any) => {
   return useQuery({
     queryKey: [token],
     queryFn: () => {

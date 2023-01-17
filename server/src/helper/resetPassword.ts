@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import { User } from "../db/sequelize/Sequelize";
 import bcrypt from "bcrypt";
-import { where } from "sequelize";
+// import { where } from "sequelize";
 
 const allowResetPassword = async (req: Request, res: Response) => {
   const { id, token } = req.params;
@@ -26,11 +26,13 @@ const allowResetPassword = async (req: Request, res: Response) => {
 
 const resetPassword = async (req: Request, res: Response) => {
   const saltRounds = 10;
-  const { id, password, token } = req.body;
+  const { id, token, password } = req.body;
   if (!(id && password && token)) {
     console.log("no id / password /token provided");
     return res.status(401).json("no id / password / token provided");
   }
+  // console.table([id, token, password]);
+  console.log("🚀 ~ file: resetPassword.ts:35 ~ resetPassword ~ id", id);
   const user: any = await User.findByPk(id);
   if (!user) {
     console.log("No user found to change password");
@@ -44,7 +46,7 @@ const resetPassword = async (req: Request, res: Response) => {
   }
   if (decodedJWT !== hash_password) {
     return res.status(401).json({
-      message: "No auth to reset password",
+      message: "Not allowed to reset password",
       data: { decodedJWT, hash_password },
     });
   }
