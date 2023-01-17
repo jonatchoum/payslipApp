@@ -27,7 +27,7 @@ export const updateUser = async (req: Request, res: Response) => {
     if (societe) {
       await User.update({ societe: societe }, { where: { id: id } });
     }
-    if (admin) {
+    if (admin !== undefined) {
       await User.update({ admin: admin }, { where: { id: id } });
     }
 

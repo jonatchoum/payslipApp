@@ -28,11 +28,11 @@ const UpdateUser = () => {
 
   console.log(userInfoToChange);
   return (
-    <div className="grid gap-5">
+    <div className="grid gap-1 mb-10">
       <h1>
         Modifier {user.data.prenom} {user.data.nom}
       </h1>
-      <form className="grid gap-5" onSubmit={handleSubmit}>
+      <form className="grid gap-2 " onSubmit={handleSubmit}>
         <div>
           <label htmlFor="username">username</label>
           <Input

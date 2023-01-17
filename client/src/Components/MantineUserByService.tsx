@@ -19,11 +19,11 @@ const MantineUserByService = () => {
 
   const rows = users.data.map((user: User) => (
     <tr key={user.username}>
-      <td>
-        <Button onClick={() => navigate(`${user.id}`)}>{user.id}</Button>
-      </td>
       <td>{user.prenom}</td>
       <td>{user.nom}</td>
+      <td>
+        <Button onClick={() => navigate(`${user.id}`)}>$$</Button>
+      </td>
       <td>
         <Link to={`/UpdateUser/${user.id}`}>modifier</Link>
       </td>
@@ -31,14 +31,15 @@ const MantineUserByService = () => {
   ));
 
   return (
-    <div className="flex  gap-5 w-full">
+    <div className="flex  gap-5 w-fit">
       <Paper withBorder shadow="md" p={30} radius="md" className="h-fit">
         <Table>
           <thead>
             <tr>
-              <th>id</th>
               <th>prenom</th>
               <th>nom</th>
+              <th></th>
+              <th></th>
             </tr>
           </thead>
           <tbody>{rows}</tbody>

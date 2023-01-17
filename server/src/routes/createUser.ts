@@ -15,18 +15,7 @@ router.post("/createUser", async (req, res) => {
     !(username && nom && prenom && role && password && email && societe) ||
     admin === undefined
   ) {
-    console.log();
     console.log("manque une info");
-    console.log({
-      username,
-      nom,
-      prenom,
-      role,
-      password,
-      email,
-      societe,
-      admin,
-    });
     return res.status(400).json({
       message: "manque une info",
       data: { username, nom, prenom, role, password, email, societe, admin },

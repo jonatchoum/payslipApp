@@ -14,9 +14,9 @@ const CreateUser = () => {
   console.log(newUser);
 
   return (
-    <div className="grid gap-5">
+    <div className="grid gap-1 mb-10">
       <h1>Create new User !</h1>
-      <form className="grid gap-5" onSubmit={handleSubmit}>
+      <form className="grid gap-2" onSubmit={handleSubmit}>
         <div>
           <label htmlFor="username">username</label>
           <Input
