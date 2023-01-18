@@ -2,9 +2,9 @@ import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-const useUpdateUser = (user: any) => {
+const useUpdateUser = () => {
   return useMutation({
-    mutationFn: () => {
+    mutationFn: (user) => {
       return axios.patch("/updateuser", user);
     },
     onError: () => {

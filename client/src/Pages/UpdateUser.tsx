@@ -12,7 +12,7 @@ const UpdateUser = () => {
   });
 
   const user = queryUser(id);
-  const mutation = useUpdateUser(userInfoToChange);
+  const mutation = useUpdateUser();
 
   if (user.isLoading) {
     return <Loader />;
@@ -23,7 +23,7 @@ const UpdateUser = () => {
 
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    mutation.mutate();
+    mutation.mutate(user);
   };
 
   console.log(userInfoToChange);

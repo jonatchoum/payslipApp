@@ -2,9 +2,9 @@ import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-const useCreateUser = (newUser: object) => {
+const useCreateUser = () => {
   return useMutation({
-    mutationFn: () => {
+    mutationFn: (newUser) => {
       return axios.post("/createUser", newUser);
     },
     onError: () => {
