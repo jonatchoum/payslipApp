@@ -1,15 +1,16 @@
 import { Button, Checkbox, Input, Loader } from "@mantine/core";
 import React, { useState } from "react";
+import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
 import queryUser from "../Hooks/queryUser";
 import useUpdateUser from "../Hooks/useUpdateUser";
 
 const UpdateUser = () => {
   const { id } = useParams();
-  const [userInfoToChange, setUserInfoToChange] = useState<object>({
-    id: id,
-    admin: "false",
-  });
+  // const [userInfoToChange, setUserInfoToChange] = useState<object>({
+  //   id: id,
+  //   admin: "false",
+  // });
 
   const user = queryUser(id);
   const mutation = useUpdateUser();
@@ -21,10 +22,16 @@ const UpdateUser = () => {
     return <>Error</>;
   }
 
-  const handleSubmit = (e: React.SyntheticEvent) => {
-    e.preventDefault();
-    mutation.mutate(user);
-  };
+  // const handleSubmit = (e: React.SyntheticEvent) => {
+  //   e.preventDefault();
+  //   mutation.mutate(user);
+  // };
+
+  const {
+    handleSubmit,
+    formState: { errors },
+    register,
+  } = useForm();
 
   console.log(userInfoToChange);
   return (
