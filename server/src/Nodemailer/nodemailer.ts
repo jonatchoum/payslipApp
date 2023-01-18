@@ -1,5 +1,10 @@
 import nodemailer from "nodemailer";
 
+const transporter = nodemailer.createTransport({
+  host: "localhost",
+  port: 1025,
+  secure: false, // upgrade later with STARTTLS
+});
 
 const testNodemailer = () => {
   transporter.verify(function (error) {
