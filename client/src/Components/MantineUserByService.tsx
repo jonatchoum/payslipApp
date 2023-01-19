@@ -40,12 +40,12 @@ const MantineUserByService = () => {
       <Paper withBorder shadow="md" p={30} radius="md" className="h-fit">
         <Table>
           <thead>
-            {/* <tr>
+            <tr>
               <th>prenom</th>
               <th>nom</th>
-              <th>bulletin</th>
-              <th>edit</th>
-            </tr> */}
+              {/* <th>bulletin</th>
+              <th>edit</th> */}
+            </tr>
           </thead>
           <tbody>{rows}</tbody>
         </Table>
