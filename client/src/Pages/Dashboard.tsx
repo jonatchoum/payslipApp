@@ -22,7 +22,7 @@ const Dashboard = () => {
   );
 
   return (
-    <div className="grid p-5 w-full max-w-4xl border-4 container gap-5 overflow-hidden">
+    <div className="grid p-5 w-full max-w-4xl border-4 container gap-5 overflow-hidden h-full">
       <SegmentedControl
         className="flex flex-wrap min-w-fit h-fit "
         data={listeSocietes}

@@ -22,7 +22,7 @@ const Private = () => {
   // console.log(auth.data);
   if (admin) {
     return (
-      <main>
+      <main className="min-h-full">
         <Navbar
           links={[
             { link: "/me", label: "profile" },

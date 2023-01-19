@@ -1,5 +1,5 @@
 import { Button, Loader, Paper, Table } from "@mantine/core";
-import React from "react";
+import React, { useState } from "react";
 import { Link, Outlet, useNavigate, useParams } from "react-router-dom";
 import queryUsersFrom from "../Hooks/queryUsersFrom";
 import { User } from "../Types/myTypes";
@@ -8,7 +8,7 @@ import { RiFilePaper2Fill } from "react-icons/ri";
 const MantineUserByService = () => {
   const { societe } = useParams();
   const navigate = useNavigate();
-
+  const [row, setRow] = useState("");
   const users = queryUsersFrom(societe);
 
   if (users.isLoading) {
@@ -19,12 +19,20 @@ const MantineUserByService = () => {
   }
 
   const rows = users.data.map((user: User) => (
-    <tr key={user.username}>
+    <tr
+      key={user.username}
+      className={row === user.username ? "bg-slate-200" : ""}
+    >
       <td>{user.prenom}</td>
       <td>{user.nom}</td>
       <td>
         <Link to={`${user.id}`}>
-          <RiFilePaper2Fill className="fill-cyan-500 " />
+          <RiFilePaper2Fill
+            className="fill-cyan-500 "
+            onClick={() => {
+              setRow(user.username);
+            }}
+          />
         </Link>
       </td>
       <td>
