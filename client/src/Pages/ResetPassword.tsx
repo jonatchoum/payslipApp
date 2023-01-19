@@ -1,6 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Input, Loader } from "@mantine/core";
-import React, { useState } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import { Navigate, useParams } from "react-router-dom";
 import { z } from "zod";
@@ -38,10 +38,7 @@ const ResetPassword = () => {
   const query = useAllowResetPassword(id, token);
 
   const mutation = useResetPassword();
-  // const handleSubmit = (e: React.SyntheticEvent) => {
-  //   e.preventDefault();
-  //   mutation.mutate();
-  // };
+
   const onSubmit = (data: any) => {
     mutation.mutate({ ...data, id, token });
   };
