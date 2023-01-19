@@ -1,6 +1,6 @@
 import { Loader } from "@mantine/core";
 import React from "react";
-import Bulletin from "../Components/Bulletin";
+import Bulletin from "../Components/BulletinSalarie";
 import LogoutButton from "../Components/LogoutButton";
 import queryMe from "../Hooks/queryMe";
 

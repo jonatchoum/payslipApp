@@ -15,11 +15,12 @@ const allowResetPassword = async (req: Request, res: Response) => {
   }
   const { hash_password } = user;
   const decodedJWT = jwt.decode(token);
-  console.table([hash_password, token, decodedJWT]);
+
   if (decodedJWT !== hash_password) {
     console.log(hash_password, { decodedJWT });
-    console.log("NON");
-    return res.status(401).json("NON");
+    const message = "Pas authorisé à réinitialiser le mot de passe";
+    console.log(message);
+    return res.status(401).json(message);
   }
   res.json("Allowed to reset password");
 };

@@ -3,7 +3,8 @@ import React from "react";
 import { Link, Outlet, useNavigate, useParams } from "react-router-dom";
 import queryUsersFrom from "../Hooks/queryUsersFrom";
 import { User } from "../Types/myTypes";
-
+import { FiEdit2 } from "react-icons/fi";
+import { RiFilePaper2Fill } from "react-icons/ri";
 const MantineUserByService = () => {
   const { societe } = useParams();
   const navigate = useNavigate();
@@ -22,10 +23,14 @@ const MantineUserByService = () => {
       <td>{user.prenom}</td>
       <td>{user.nom}</td>
       <td>
-        <Button onClick={() => navigate(`${user.id}`)}>$$</Button>
+        <Link to={`${user.id}`}>
+          <RiFilePaper2Fill className="fill-cyan-500 " />
+        </Link>
       </td>
       <td>
-        <Link to={`/UpdateUser/${user.id}`}>modifier</Link>
+        <Link to={`/UpdateUser/${user.id}`}>
+          <FiEdit2 className="stroke-orange-500" />
+        </Link>
       </td>
     </tr>
   ));
@@ -35,12 +40,12 @@ const MantineUserByService = () => {
       <Paper withBorder shadow="md" p={30} radius="md" className="h-fit">
         <Table>
           <thead>
-            <tr>
+            {/* <tr>
               <th>prenom</th>
               <th>nom</th>
-              <th></th>
-              <th></th>
-            </tr>
+              <th>bulletin</th>
+              <th>edit</th>
+            </tr> */}
           </thead>
           <tbody>{rows}</tbody>
         </Table>

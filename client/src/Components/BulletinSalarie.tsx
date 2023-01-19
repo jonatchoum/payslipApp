@@ -72,17 +72,6 @@ const Bulletin = (props: IdProps) => {
                                 />
                               </a>
                             </td>
-                            <td>
-                              <Button
-                                onClick={() => {
-                                  console.log(fichier.id);
-                                  handleClick(fichier.id);
-                                }}
-                                className="bg-red-500"
-                              >
-                                supprimer
-                              </Button>
-                            </td>
                           </tr>
                         ))}
                     </tbody>

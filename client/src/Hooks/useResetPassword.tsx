@@ -2,10 +2,10 @@ import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-const useResetPassword = (id: any, token: any, password: any) => {
+const useResetPassword = () => {
   return useMutation({
-    mutationFn: () => {
-      return axios.post("/resetPassword", { id, token, password });
+    mutationFn: (data) => {
+      return axios.post("/resetPassword", data);
     },
     onError: () => {
       toast.error("Erreur reset password");

@@ -16,6 +16,8 @@ import { passport } from "./Passport/passport-strategy";
 import { sendResetMail } from "./helper/sendResetMail";
 import { allowResetPassword, resetPassword } from "./helper/resetPassword";
 import { deleteBulletin } from "./helper/deleteBulletin";
+import { isAdmin } from "./middleware/isAdmin";
+import { isAuthenticated } from "./middleware/isAuthenticated";
 
 const app = express();
 
@@ -45,22 +47,30 @@ app.use(
 
 app.use(express.json());
 
-app.use("/api", upload);
-app.use("/api", root);
+//route non authentifiées
+app.use("/api", root); // just to test message in browser
+app.use("/api", login);
+
+app.post("/api/resetMail", sendResetMail);
+app.get("/api/allowResetPassword/:id/:token", allowResetPassword);
+app.post("/api/resetPassword", resetPassword);
+
+//routes authentifiées
+app.use(isAuthenticated); // erreur si non connecté
+
 app.use("/api", users);
 app.use("/api", bulletin);
 app.use("/api", download);
 app.use("/api", societes);
-app.use("/api", login);
 app.use("/api", me);
-app.use("/api", createUser);
 app.use("/api", logout);
 
-app.patch("/api/updateUser", updateUser);
-app.post("/api/resetMail", sendResetMail);
-app.get("/api/allowResetPassword/:id/:token", allowResetPassword);
-app.post("/api/resetPassword", resetPassword);
-app.delete("/api/deleteBulletin/:id", deleteBulletin);
+//admin routes
+
+app.patch("/api/updateUser", isAdmin, updateUser);
+app.use("/api", isAdmin, createUser);
+app.use("/api", isAdmin, upload);
+app.delete("/api/deleteBulletin/:id", isAdmin, deleteBulletin);
 
 app.listen(PORT, () =>
   console.log(`App listening on port ${PORT}\nhttp://localhost:3000/api`)
