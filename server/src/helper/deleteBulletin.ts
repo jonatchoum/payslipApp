@@ -2,7 +2,12 @@ import { Request, Response } from "express";
 import { Bulletin } from "../db/sequelize/Sequelize";
 
 const deleteBulletin = async (req: Request, res: Response) => {
-  const { id } = req.body;
+  const { id } = req.params;
+  console.log(
+    "🚀🚀🚀🚀🚀🚀🚀 ~ file: deleteBulletin.ts:6 ~ deleteBulletin ~ id",
+    id
+  );
+  console.log(id);
 
   if (!id) {
     const message = "pas d'id, le bulletin n'a pas pu être supprimé";

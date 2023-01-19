@@ -60,7 +60,7 @@ app.patch("/api/updateUser", updateUser);
 app.post("/api/resetMail", sendResetMail);
 app.get("/api/allowResetPassword/:id/:token", allowResetPassword);
 app.post("/api/resetPassword", resetPassword);
-app.delete("/api/deleteBulletin", deleteBulletin);
+app.delete("/api/deleteBulletin/:id", deleteBulletin);
 
 app.listen(PORT, () =>
   console.log(`App listening on port ${PORT}\nhttp://localhost:3000/api`)

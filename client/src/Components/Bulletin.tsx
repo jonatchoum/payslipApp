@@ -1,6 +1,7 @@
 import { Accordion, Loader, Table } from "@mantine/core";
 import React from "react";
 import queryBulletin from "../Hooks/queryBulletin";
+import { useDeletBulletin } from "../Hooks/useDeleteBulletin";
 import { TBulletin } from "../Types/myTypes";
 
 type IdProps = {
@@ -9,6 +10,13 @@ type IdProps = {
 
 const Bulletin = (props: IdProps) => {
   const bulletins = queryBulletin(props.id);
+
+  const { mutate } = useDeletBulletin();
+
+  const handleClick = (id: number) => {
+    console.log(id);
+    mutate(id);
+  };
 
   if (bulletins.isLoading) {
     return <Loader />;
@@ -65,7 +73,12 @@ const Bulletin = (props: IdProps) => {
                               </a>
                             </td>
                             <td>
-                              <button onClick={() => console.log(fichier.id)}>
+                              <button
+                                onClick={() => {
+                                  console.log(fichier.id);
+                                  handleClick(fichier.id);
+                                }}
+                              >
                                 get info bulletin
                               </button>
                             </td>

@@ -1,15 +1,16 @@
 import { Button, Input, Loader, Paper } from "@mantine/core";
 import { Dropzone, MIME_TYPES } from "@mantine/dropzone";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import queryUser from "../Hooks/queryUser";
-import { queryClient } from "../main";
+// import { queryClient } from "../main";
 import Bulletin from "./Bulletin";
 
 const User = () => {
+  const queryClient = useQueryClient();
   const { id } = useParams();
   const user = queryUser(id);
 
@@ -27,7 +28,7 @@ const User = () => {
     },
     onSuccess: () => {
       toast.success("fichier envoyé");
-      queryClient.invalidateQueries({ queryKey: [`bulletin${id}`] });
+      queryClient.invalidateQueries({ queryKey: [`bulletins`] });
     },
   });
 
