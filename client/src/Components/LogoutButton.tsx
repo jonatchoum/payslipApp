@@ -3,6 +3,7 @@ import React from "react";
 // import mutateLogout from "../Hooks/useLogout";
 import useLogout from "../Hooks/useLogout";
 import { Button } from "@mantine/core";
+import { FiLogOut } from "react-icons/fi";
 const LogoutButton = () => {
   const mutation = useLogout();
 
@@ -12,8 +13,8 @@ const LogoutButton = () => {
   };
 
   return (
-    <Button className="bg-red-500" onClick={handleClick}>
-      Logout
+    <Button className="bg-red-500" onClick={handleClick} compact>
+      <FiLogOut color="" />
     </Button>
   );
 };
