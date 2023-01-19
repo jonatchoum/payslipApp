@@ -55,7 +55,9 @@ const UpdateUser = () => {
             {...register("username")}
           />
           {errors?.username?.message && (
-            <p className="text-red-500 text-xs">{errors.username?.message}</p>
+            <p className="text-red-500 text-xs">
+              {errors.username?.message.toString()}
+            </p>
           )}
         </div>
         <div>
@@ -66,14 +68,18 @@ const UpdateUser = () => {
             {...register("prenom")}
           />
           {errors?.prenom?.message && (
-            <p className="text-red-500 text-xs">{errors.prenom?.message}</p>
+            <p className="text-red-500 text-xs">
+              {errors.prenom?.message.toString()}
+            </p>
           )}
         </div>
         <div>
           <label htmlFor="nom">nom</label>
           <Input type="text" placeholder={user.data.nom} {...register("nom")} />
           {errors?.nom?.message && (
-            <p className="text-red-500 text-xs">{errors.nom?.message}</p>
+            <p className="text-red-500 text-xs">
+              {errors.nom?.message.toString()}
+            </p>
           )}
         </div>
         <div>
@@ -84,7 +90,9 @@ const UpdateUser = () => {
             {...register("role")}
           />
           {errors?.role?.message && (
-            <p className="text-red-500 text-xs">{errors.role?.message}</p>
+            <p className="text-red-500 text-xs">
+              {errors.role?.message.toString()}
+            </p>
           )}
         </div>
         <div>
@@ -95,7 +103,9 @@ const UpdateUser = () => {
             {...register("email")}
           />
           {errors?.email?.message && (
-            <p className="text-red-500 text-xs">{errors.email?.message}</p>
+            <p className="text-red-500 text-xs">
+              {errors.email?.message.toString()}
+            </p>
           )}
         </div>
         <div>
@@ -106,7 +116,9 @@ const UpdateUser = () => {
             {...register("societe")}
           />
           {errors?.societe?.message && (
-            <p className="text-red-500 text-xs">{errors.societe?.message}</p>
+            <p className="text-red-500 text-xs">
+              {errors.societe?.message.toString()}
+            </p>
           )}
         </div>
         <div>
@@ -117,7 +129,9 @@ const UpdateUser = () => {
             {...register("admin")}
           ></Checkbox>
           {errors?.admin?.message && (
-            <p className="text-red-500 text-xs">{errors.admin?.message}</p>
+            <p className="text-red-500 text-xs">
+              {errors.admin?.message.toString()}
+            </p>
           )}
         </div>
         <Button type="submit">modifier</Button>

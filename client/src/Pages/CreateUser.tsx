@@ -1,12 +1,9 @@
 import { Button, Checkbox, Input } from "@mantine/core";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import useCreateUser from "../Hooks/useCreateUser";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation } from "@tanstack/react-query";
-import axios from "axios";
-import { toast } from "react-toastify";
 
 const FormData = z
   .object({
@@ -33,6 +30,8 @@ const FormData = z
     message: "Les mot de passes doivent être identiques",
     path: ["confirmPassword"],
   });
+
+// type FormDate = z.infer<typeof FormData>;
 
 const CreateUser = () => {
   // Password123@
@@ -61,7 +60,11 @@ const CreateUser = () => {
           <label htmlFor="username">username</label>
           <Input type="text" placeholder="username" {...register("username")} />
           {/* {errors && <p>{errors.}</p>} */}
-          <p className="text-red-500">{errors?.username?.message}</p>
+          {errors?.username?.message && (
+            <p className="text-red-500">
+              {errors?.username?.message.toString()}
+            </p>
+          )}
         </div>
         <div>
           <label htmlFor="password">password</label>
@@ -71,7 +74,9 @@ const CreateUser = () => {
             {...register("password")}
           />
           {errors?.password?.message && (
-            <p className="text-red-500">{errors?.password?.message}</p>
+            <p className="text-red-500">
+              {errors?.password?.message.toString()}
+            </p>
           )}
         </div>
         <div>
@@ -82,49 +87,53 @@ const CreateUser = () => {
             {...register("confirmPassword")}
           />
           {errors?.confirmPassword?.message && (
-            <p className="text-red-500">{errors?.confirmPassword?.message}</p>
+            <p className="text-red-500">
+              {errors?.confirmPassword?.message.toString()}
+            </p>
           )}
         </div>
         <div>
           <label htmlFor="prenom">prenom</label>
           <Input type="text" placeholder="prenom" {...register("prenom")} />
           {errors?.prenom?.message && (
-            <p className="text-red-500">{errors?.prenom?.message}</p>
+            <p className="text-red-500">{errors?.prenom?.message.toString()}</p>
           )}
         </div>
         <div>
           <label htmlFor="nom">nom</label>
           <Input type="text" placeholder="nom" {...register("nom")} />
           {errors?.nom?.message && (
-            <p className="text-red-500">{errors?.nom?.message}</p>
+            <p className="text-red-500">{errors?.nom?.message.toString()}</p>
           )}
         </div>
         <div>
           <label htmlFor="role">role</label>
           <Input type="text" placeholder="role" {...register("role")} />
           {errors?.role?.message && (
-            <p className="text-red-500">{errors?.role?.message}</p>
+            <p className="text-red-500">{errors?.role?.message.toString()}</p>
           )}
         </div>
         <div>
           <label htmlFor="email">email</label>
           <Input type="text" placeholder="email" {...register("email")} />
           {errors?.email?.message && (
-            <p className="text-red-500">{errors?.email?.message}</p>
+            <p className="text-red-500">{errors?.email?.message.toString()}</p>
           )}
         </div>
         <div>
           <label htmlFor="societe">societe</label>
           <Input type="text" placeholder="societe" {...register("societe")} />
           {errors?.societe?.message && (
-            <p className="text-red-500">{errors?.societe?.message}</p>
+            <p className="text-red-500">
+              {errors?.societe?.message.toString()}
+            </p>
           )}
         </div>
         <div>
           <label htmlFor="admin">admin</label>
           <Checkbox size="md" {...register("admin")}></Checkbox>
           {errors?.admin?.message && (
-            <p className="text-red-500">{errors?.admin?.message}</p>
+            <p className="text-red-500">{errors?.admin?.message.toString()}</p>
           )}
         </div>
         <Button type="submit">créer</Button>
