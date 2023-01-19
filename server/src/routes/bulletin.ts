@@ -1,27 +1,16 @@
 import { Router } from "express";
-import mysql from "mysql2/promise";
+import { Bulletin } from "../db/sequelize/Sequelize";
 const router = Router();
-
-// import { connection } from "../db/dbConn";
 
 router.get("/user/:id/bulletin", async (req, res) => {
   const { id } = req.params;
-  const query = `SELECT * FROM \`bulletin\` WHERE user_id=${id} ORDER BY date DESC`;
-  const connection = await mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    database: "FAKE_DB",
-    password: "root",
-    port: 40000,
-  });
   try {
-    const [rows] = await connection.query(query);
-    res.json({ data: rows });
+    const bulletins = await Bulletin.findAll({ where: { user_id: id } });
+    res.json({ message: "bulletins obtenus avec succès ", data: bulletins });
   } catch (error) {
-    res.status(500).json({ error: error });
-  } finally {
-    connection.end();
+    res
+      .status(500)
+      .json({ message: "Impossible d'accèder aux bulletins", error: error });
   }
 });
-
 export { router };

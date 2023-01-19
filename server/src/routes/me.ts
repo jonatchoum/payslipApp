@@ -1,12 +1,13 @@
-import { Request, Router } from "express";
+import { Router } from "express";
 
 const router = Router();
 
-router.get("/me", (req: Request, res) => {
-  console.log("🚀 ~ file: me.ts:12 ~ router.get ~ /me", "/me");
+router.get("/me", (req: any, res) => {
   if (!req.isAuthenticated()) {
+    console.log("🔴 Utilisateur non authentifié !");
     return res.status(401).json("NON CONNECTE");
   }
+  console.log("✅utilisateur authentifié");
   res.json({ message: "vous êtes connecté", data: req.user });
 });
 

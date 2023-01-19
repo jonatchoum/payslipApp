@@ -22,12 +22,12 @@ const Dashboard = () => {
   );
 
   return (
-    <div className="flex p-5 w-full max-w-4xl border-4 container gap-5 overflow-hidden">
+    <div className="grid p-5 w-full max-w-4xl border-4 container gap-5 overflow-hidden">
       <SegmentedControl
-        className="min-w-fit h-fit "
+        className="flex flex-wrap min-w-fit h-fit "
         data={listeSocietes}
         defaultValue=""
-        orientation="vertical"
+        orientation="horizontal"
         onChange={(value) => {
           navigate(`${value}`);
         }}

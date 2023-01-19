@@ -15,6 +15,7 @@ import { updateUser } from "./routes/updateUser";
 import { passport } from "./Passport/passport-strategy";
 import { sendResetMail } from "./helper/sendResetMail";
 import { allowResetPassword, resetPassword } from "./helper/resetPassword";
+import { deleteBulletin } from "./helper/deleteBulletin";
 
 const app = express();
 
@@ -59,6 +60,7 @@ app.patch("/api/updateUser", updateUser);
 app.post("/api/resetMail", sendResetMail);
 app.get("/api/allowResetPassword/:id/:token", allowResetPassword);
 app.post("/api/resetPassword", resetPassword);
+app.delete("/api/deleteBulletin", deleteBulletin);
 
 app.listen(PORT, () =>
   console.log(`App listening on port ${PORT}\nhttp://localhost:3000/api`)

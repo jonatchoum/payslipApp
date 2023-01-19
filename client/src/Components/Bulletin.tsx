@@ -64,6 +64,11 @@ const Bulletin = (props: IdProps) => {
                                 />
                               </a>
                             </td>
+                            <td>
+                              <button onClick={() => console.log(fichier.id)}>
+                                get info bulletin
+                              </button>
+                            </td>
                           </tr>
                         ))}
                     </tbody>

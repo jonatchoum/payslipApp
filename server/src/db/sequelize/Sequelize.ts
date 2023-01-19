@@ -16,7 +16,7 @@ const connection = async () => {
   }
 };
 //Test connection
-connection();
+// connection();
 
 const User = sequelize.define(
   "User",
@@ -69,4 +69,26 @@ const User = sequelize.define(
   }
 );
 
-export { connection, sequelize, User };
+const Bulletin = sequelize.define(
+  "Bulletin",
+  {
+    user_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    date: {
+      type: DataTypes.DATE,
+      allowNull: false,
+    },
+    filename: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+  },
+  {
+    timestamps: false,
+  }
+);
+
+connection();
+export { connection, sequelize, User, Bulletin };
