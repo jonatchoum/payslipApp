@@ -1,15 +1,16 @@
-import { Accordion, Button, Loader, Table } from "@mantine/core";
+import { Accordion, Loader, Table } from "@mantine/core";
 import React from "react";
 import queryBulletin from "../Hooks/queryBulletin";
-import { useDeletBulletin } from "../Hooks/useDeleteBulletin";
 import { TBulletin } from "../Types/myTypes";
+import { BulletinDownload } from "./BulletinDownload";
 import { ConfirmModal } from "./ConfirmModal";
+import { currentMonth } from "./MonthHelper";
 
 type IdProps = {
-  id: string | undefined;
+  id: number | undefined;
 };
 
-const Bulletin = (props: IdProps) => {
+const Bulletins = (props: IdProps) => {
   const bulletins = queryBulletin(props.id);
 
   if (bulletins.isLoading) {
@@ -27,6 +28,8 @@ const Bulletin = (props: IdProps) => {
     .sort()
     .reverse();
 
+  console.log(bulletins);
+
   return (
     <div className="text-left w-full pl-4">
       <h2 className="text-xl">FICHIERS</h2>
@@ -39,11 +42,7 @@ const Bulletin = (props: IdProps) => {
               <Accordion.Control>{year}</Accordion.Control>
               <Accordion.Panel>
                 <Table>
-                  <thead>
-                    {/* <tr>
-                        <th>filename</th>
-                      </tr> */}
-                  </thead>
+                  <thead></thead>
                   <tbody>
                     {bulletins.data
                       .filter(
@@ -52,18 +51,14 @@ const Bulletin = (props: IdProps) => {
                       )
                       .map((fichier: TBulletin, index: number) => (
                         <tr key={index}>
-                          <td>{fichier.filename}</td>
+                          <td className="w-fit">
+                            {currentMonth(fichier.date)}
+                          </td>
                           <td>
-                            <a
-                              href={`http://localhost:3000/api/download/${props.id}/${fichier.filename}`}
-                              download={true}
-                            >
-                              <img
-                                src="/arrow-down-doc-fill-svgrepo-com.svg"
-                                alt=""
-                                className="w-8 fill-cyan-500"
-                              />
-                            </a>
+                            <BulletinDownload
+                              filename={fichier.filename}
+                              user_id={fichier.user_id}
+                            />
                           </td>
                           <td>
                             <ConfirmModal
@@ -83,4 +78,4 @@ const Bulletin = (props: IdProps) => {
   );
 };
 
-export default Bulletin;
+export default Bulletins;

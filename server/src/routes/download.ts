@@ -5,6 +5,8 @@ const router = Router();
 const isAuthorized = (req: any, res: Response, next: NextFunction) => {
   const { id } = req.user;
   const { user_id } = req.params;
+  // console.log("🟩🟩🟩🟩🟩🟩🟩🟩");
+  // console.log({ id, user_id });
   const userAuthorized = parseInt(id) === parseInt(user_id);
   console.log(req.user);
   if (!userAuthorized && !req.user.admin) {

@@ -30,7 +30,7 @@ const Service = () => {
             <tr key={id}>
               <td className="">{user.id}</td>
               <td className="">{user.username}</td>
-              <td className="">{user.service}</td>
+              <td className="">{user.societe}</td>
               <td>
                 <Link to={`/user/${user.id}`}>
                   <button className="">edit</button>

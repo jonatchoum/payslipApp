@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
-const queryBulletin = (id: string | undefined) => {
+const queryBulletin = (id: number | undefined) => {
   return useQuery({
     queryKey: ["bulletins", id],
     queryFn: async () => {

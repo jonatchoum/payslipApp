@@ -1,22 +1,23 @@
-import { Accordion, Button, Loader, Table } from "@mantine/core";
+import { Accordion, Loader, Table } from "@mantine/core";
 import React from "react";
 import queryBulletin from "../Hooks/queryBulletin";
-import { useDeletBulletin } from "../Hooks/useDeleteBulletin";
 import { TBulletin } from "../Types/myTypes";
+import { currentMonth } from "./MonthHelper";
+import { BulletinDownload } from "./BulletinDownload";
 
-type IdProps = {
-  id: string | undefined;
+export type IdProps = {
+  id: number;
 };
 
 const Bulletin = (props: IdProps) => {
   const bulletins = queryBulletin(props.id);
 
-  const { mutate } = useDeletBulletin();
+  // const { mutate } = useDeletBulletin();
 
-  const handleClick = (id: number) => {
-    console.log(id);
-    mutate(id);
-  };
+  // const handleClick = (id: number) => {
+  //   console.log(id);
+  //   mutate(id);
+  // };
 
   if (bulletins.isLoading) {
     return <Loader />;
@@ -38,7 +39,6 @@ const Bulletin = (props: IdProps) => {
       <h2 className="text-xl">FICHIERS</h2>
 
       <div>
-        {/* <Accordion variant="separated" defaultValue={years[0]}> */}
         <Accordion variant="separated" defaultValue={""}>
           {years.map((year) => {
             return (
@@ -46,11 +46,7 @@ const Bulletin = (props: IdProps) => {
                 <Accordion.Control>{year}</Accordion.Control>
                 <Accordion.Panel>
                   <Table>
-                    <thead>
-                      {/* <tr>
-                        <th>filename</th>
-                      </tr> */}
-                    </thead>
+                    <thead></thead>
                     <tbody>
                       {bulletins.data
                         .filter(
@@ -59,18 +55,12 @@ const Bulletin = (props: IdProps) => {
                         )
                         .map((fichier: TBulletin, index: number) => (
                           <tr key={index}>
-                            <td>{fichier.filename}</td>
+                            <td>{currentMonth(fichier.date)}</td>
                             <td>
-                              <a
-                                href={`http://localhost:3000/api/download/${props.id}/${fichier.filename}`}
-                                download={true}
-                              >
-                                <img
-                                  src="/arrow-down-doc-fill-svgrepo-com.svg"
-                                  alt=""
-                                  className="w-8 fill-cyan-500"
-                                />
-                              </a>
+                              <BulletinDownload
+                                user_id={fichier.user_id}
+                                filename={fichier.filename}
+                              />
                             </td>
                           </tr>
                         ))}

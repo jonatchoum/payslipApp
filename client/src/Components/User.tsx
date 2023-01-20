@@ -7,7 +7,7 @@ import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import queryUser from "../Hooks/queryUser";
 // import { queryClient } from "../main";
-import Bulletin from "./Bulletin";
+import Bulletins from "./Bulletins";
 
 const User = () => {
   const queryClient = useQueryClient();
@@ -111,7 +111,7 @@ const User = () => {
             <Button color={"red"}>------</Button>
           )}
         </form>
-        <Bulletin id={user.data.id}></Bulletin>
+        <Bulletins id={user.data.id}></Bulletins>
       </div>
     </Paper>
   );

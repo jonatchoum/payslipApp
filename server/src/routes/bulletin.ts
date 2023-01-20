@@ -5,7 +5,10 @@ const router = Router();
 router.get("/user/:id/bulletin", async (req, res) => {
   const { id } = req.params;
   try {
-    const bulletins = await Bulletin.findAll({ where: { user_id: id } });
+    const bulletins = await Bulletin.findAll({
+      where: { user_id: id },
+      order: [["date", "DESC"]],
+    });
     res.json({ message: "bulletins obtenus avec succès ", data: bulletins });
   } catch (error) {
     res
