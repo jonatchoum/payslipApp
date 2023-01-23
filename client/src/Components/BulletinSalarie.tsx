@@ -12,13 +12,6 @@ export type IdProps = {
 const Bulletin = (props: IdProps) => {
   const bulletins = queryBulletin(props.id);
 
-  // const { mutate } = useDeletBulletin();
-
-  // const handleClick = (id: number) => {
-  //   console.log(id);
-  //   mutate(id);
-  // };
-
   if (bulletins.isLoading) {
     return <Loader />;
   }
@@ -54,7 +47,7 @@ const Bulletin = (props: IdProps) => {
                             fichier.date.split("-")[0] === year
                         )
                         .map((fichier: TBulletin, index: number) => (
-                          <tr key={index}>
+                          <tr key={index} className="hover:bg-slate-200">
                             <td>{currentMonth(fichier.date)}</td>
                             <td>
                               <BulletinDownload

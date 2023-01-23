@@ -17,16 +17,23 @@ const LastBulletin = (props: any) => {
   }
 
   const lastBulletin: TBulletin = bulletins.data[0];
+  console.log(
+    "🚀 ~ file: LastBulletin.tsx:20 ~ LastBulletin ~ lastBulletin",
+    lastBulletin
+  );
+  console.log(bulletins);
+
+  if (!lastBulletin) return <h2>Pas encore de bulletins</h2>;
 
   return (
     <>
-      <h2>Votre dernier bulletin de salaire</h2>
+      <h3>Votre dernier bulletin de salaire</h3>
       <a
         href={`http://localhost:3000/api/download/${lastBulletin.user_id}/${lastBulletin.filename}`}
         download={true}
-        className="w-full"
+        className="w-full text-black no-underline"
       >
-        <div className="grid place-items-center border-dashed border-4 border-red-500 w-full p-5 rounded-xl my-10">
+        <div className="h-full grid place-items-center border-dashed border-4 border-gray-800 w-full p-5 rounded-xl my-10 hover:bg-slate-300">
           {/* <h1>Last bulletin</h1> */}
 
           <h3>{currentMonthYear(lastBulletin.date)}</h3>

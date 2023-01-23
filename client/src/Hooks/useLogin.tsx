@@ -11,11 +11,17 @@ const useLogin = (username: string, password: string) => {
       return axios.post("/login", { username, password });
     },
     onError: () => {
-      toast.error("Erreur Login");
+      toast.error("Erreur de connexion");
     },
-    onSuccess: () => {
-      toast.success("Login Success");
-      navigate("/me");
+    onSuccess: (data) => {
+      toast.success("Vous êtes à présent connecté");
+      if (data.data?.data?.admin) {
+        // alert("you are admin");
+        return navigate("/dashboard");
+      }
+      return navigate("/profile");
+      // alert("you are not admin");
+      // console.log(data.data.data.admin);
     },
   });
 };

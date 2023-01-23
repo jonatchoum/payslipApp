@@ -15,7 +15,7 @@ function ConfirmModal(props: any) {
       ),
       labels: { confirm: "Confirmer", cancel: "Annuler" },
       confirmProps: { color: "red" },
-      onCancel: () => console.log("Cancel"),
+      onCancel: () => alert("cancel action"),
       onConfirm: () => mutate(props.id_bulletin),
     });
 

@@ -15,8 +15,6 @@ const Services = () => {
     return <>Error</>;
   }
 
-  console.log(societes.data);
-
   return (
     <ul className="flex  around max-w-xl flex-wrap">
       {societes.data.map((societe: Societe, index: number) => (

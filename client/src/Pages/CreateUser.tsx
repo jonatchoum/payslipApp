@@ -45,13 +45,9 @@ const CreateUser = () => {
   } = useForm({ resolver: zodResolver(FormData) });
 
   const onSubmit = async (data: any) => {
-    console.log(data);
-    console.log("no error");
     mutate(data);
-    console.log("mutation done");
   };
 
-  console.log(errors);
   return (
     <div className="grid gap-1 mb-10">
       <h1>Create new User !</h1>

@@ -12,7 +12,7 @@ const useStyles = createStyles((theme) => ({
     justifyContent: "space-between",
     alignItems: "center",
     height: "100%",
-    backgroundColor: "black",
+    backgroundColor: "",
   },
 
   links: {
@@ -88,14 +88,7 @@ export function Navbar({ links }: HeaderSimpleProps) {
   return (
     <Header height={60} mb={30}>
       <Container className={classes.header}>
-        {/* <div className="pt-5 bg-red-500 rounded-full"> */}
-        <img
-          src="/grosLogo.png"
-          alt="donibaneLOGO"
-          className="max-h-full bg-black  "
-        />
-        {/* <MantineLogo size={28} className="w-full" /> */}
-        {/* </div> */}
+        <img src="/grosLogo.png" alt="donibaneLOGO" className="max-h-full   " />
         <Group spacing={5} className={classes.links}>
           {items}
           <LogoutButton></LogoutButton>

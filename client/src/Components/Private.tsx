@@ -17,20 +17,14 @@ const Private = () => {
   }
 
   const { admin } = auth.data;
-  console.log("🚀 ~ file: Private.tsx:18 ~ Private ~ admin", admin);
 
-  // console.log(auth.data);
   if (admin) {
     return (
       <main className="min-h-full">
         <Navbar
           links={[
-            { link: "/me", label: "profile" },
             { link: "/createUser", label: "Ajouter un utilisateur" },
-            // { link: "/users", label: "users" },
-            // { link: "/services", label: "services" },
             { link: "/dashboard", label: "dashboard" },
-            // { link: "/test", label: "test" },
           ]}
         />
         <div className="grid place-items-center">
@@ -39,7 +33,7 @@ const Private = () => {
       </main>
     );
   }
-  return <Salarie></Salarie>;
+  return <Salarie />;
 
   // return auth.data ? <Outlet /> : <Navigate to={"/login"} />;
 };

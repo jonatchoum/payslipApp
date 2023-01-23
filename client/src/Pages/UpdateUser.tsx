@@ -29,8 +29,6 @@ const UpdateUser = () => {
   const mutation = useUpdateUser();
 
   const onSubmit = (data: any) => {
-    console.log(errors);
-    // console.log({ id, ...data });
     mutation.mutate({ id, ...data });
   };
 

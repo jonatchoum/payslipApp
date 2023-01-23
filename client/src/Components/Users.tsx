@@ -16,9 +16,6 @@ const Users = () => {
     return <>Error</>;
   }
 
-  // console.log("🚀 ~ file: Users.tsx:26 ~ Users ~ users.data", users.data);
-  // console.log("🚀 ~ file: Users.tsx:26 ~ Users ~ societes.data", societes.data);
-
   return (
     <>
       <>USERS PAGE</>

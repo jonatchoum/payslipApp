@@ -51,10 +51,6 @@ const User = () => {
     return <>Error</>;
   }
 
-  console.log(mois);
-  console.log(user.data);
-  console.log(file);
-
   return (
     <Paper withBorder shadow="md" p={20} radius="md" className="w-full h-fit">
       <div className="flex  flex-col gap-10  place-content-center">
@@ -73,7 +69,6 @@ const User = () => {
               loading
               name="bulletinSalaire"
               onDrop={(file) => {
-                console.log(file);
                 setFile(file[0]);
               }}
               multiple={false}
@@ -84,7 +79,6 @@ const User = () => {
             <Dropzone
               name="bulletinSalaire"
               onDrop={(file) => {
-                console.log(file);
                 setFile(file[0]);
               }}
               multiple={false}

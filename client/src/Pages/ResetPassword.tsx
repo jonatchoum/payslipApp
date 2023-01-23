@@ -34,7 +34,6 @@ const ResetPassword = () => {
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: zodResolver(FormData) });
-  console.log(token);
   const query = useAllowResetPassword(id, token);
 
   const mutation = useResetPassword();

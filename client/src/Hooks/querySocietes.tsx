@@ -6,8 +6,6 @@ const queryServices = () => {
     queryKey: ["societes"],
     queryFn: async () => {
       const response = await axios.get("societes");
-      // console.table(response.data.data);
-      // console.log(response.data.data);
       return response.data.data;
     },
   });

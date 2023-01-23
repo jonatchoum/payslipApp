@@ -7,7 +7,6 @@ const ResetPasswordMail = () => {
   const { id, token } = useParams();
   const [email, setEmail] = useState("");
   const mutation = useResetPasswordMail(email);
-  console.log(email);
 
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();

@@ -23,7 +23,7 @@ const Salarie = () => {
       </nav>
       <div className="grid place-items-center container mx-auto px-4">
         <div className="max-w-md  grid place-items-center">
-          <h1>Bulletin de salaire</h1>
+          <h1>Bulletins de salaire</h1>
           <>
             Bienvenue {user.data.prenom} {user.data.nom}
           </>

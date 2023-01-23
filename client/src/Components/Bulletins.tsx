@@ -28,8 +28,6 @@ const Bulletins = (props: IdProps) => {
     .sort()
     .reverse();
 
-  console.log(bulletins);
-
   return (
     <div className="text-left w-full pl-4">
       <h2 className="text-xl">FICHIERS</h2>
@@ -50,7 +48,7 @@ const Bulletins = (props: IdProps) => {
                           fichier.date.split("-")[0] === year
                       )
                       .map((fichier: TBulletin, index: number) => (
-                        <tr key={index}>
+                        <tr key={index} className="">
                           <td className="w-fit">
                             {currentMonth(fichier.date)}
                           </td>

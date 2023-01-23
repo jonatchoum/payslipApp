@@ -13,7 +13,7 @@ const LogoutButton = () => {
   };
 
   return (
-    <Button className="bg-red-500" onClick={handleClick} compact>
+    <Button color={"orange"} onClick={handleClick} compact>
       <FiLogOut color="" />
     </Button>
   );
