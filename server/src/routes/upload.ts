@@ -1,8 +1,8 @@
 import { Router } from "express";
 import { upload } from "../multer/multer-config";
 import { Bulletin } from "../db/sequelize/Sequelize";
+import { sendMailOnUpload } from "../helper/sendMailOnUpload";
 // import multer from "multer";
-
 const router = Router();
 
 //TODO MIDDLEWARE TO CHECK req.body
@@ -20,6 +20,7 @@ router.post("/upload", upload, async (req, res) => {
       filename: filename,
       date: `${mois}-05`,
     });
+    sendMailOnUpload(user_id, mois);
     return res.json({ message: "bulletin ajouté en DB", data: bulletin });
   } catch (error) {
     res.status(500).json({

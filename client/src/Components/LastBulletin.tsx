@@ -17,11 +17,6 @@ const LastBulletin = (props: any) => {
   }
 
   const lastBulletin: TBulletin = bulletins.data[0];
-  console.log(
-    "🚀 ~ file: LastBulletin.tsx:20 ~ LastBulletin ~ lastBulletin",
-    lastBulletin
-  );
-  console.log(bulletins);
 
   if (!lastBulletin) return <h2>Pas encore de bulletins</h2>;
 
