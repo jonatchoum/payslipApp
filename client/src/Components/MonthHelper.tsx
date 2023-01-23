@@ -17,4 +17,9 @@ const currentMonth = (dateBulletin: string) => {
   return month[parseInt(dateBulletin.split("-")[1]) - 1];
 };
 
-export { month, currentMonth };
+const currentMonthYear = (dateBulletin: string) => {
+  const [year] = dateBulletin.split("-");
+  return `${currentMonth(dateBulletin)} ${year}`;
+};
+
+export { month, currentMonth, currentMonthYear };

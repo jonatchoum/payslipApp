@@ -23,7 +23,7 @@ axios.defaults.withCredentials = true;
 
 function App() {
   return (
-    <div className="min-h-screen w-full">
+    <div className=" min-h-screen w-full">
       <Routes>
         <Route element={<Private></Private>}>
           <Route path="/" element={<Me />}></Route>

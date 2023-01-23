@@ -13,17 +13,26 @@ const Salarie = () => {
   if (user.isError) return <>Error</>;
 
   return (
-    <div className="grid place-items-center max-w-3xl mx-auto p-20">
-      <h1>Bulletin de salaire</h1>
-      <>
-        Bienvenue {user.data.prenom} {user.data.nom}
-      </>
-      <div>
-        <LogoutButton></LogoutButton>
+    <>
+      <nav className="flex place-content-center p-2 bg-gray-900 text-teal-50 mb-5">
+        <div className="max-w-xl w-full flex place-content-between">
+          <div>logo</div>
+          <div>titre</div>
+          <LogoutButton></LogoutButton>
+        </div>
+      </nav>
+      <div className="grid place-items-center container mx-auto px-4">
+        <div className="max-w-md  grid place-items-center">
+          <h1>Bulletin de salaire</h1>
+          <>
+            Bienvenue {user.data.prenom} {user.data.nom}
+          </>
+          <div></div>
+          <LastBulletin userId={user.data.id}></LastBulletin>
+          <Bulletin id={user.data.id}></Bulletin>
+        </div>
       </div>
-      <LastBulletin userId={user.data.id}></LastBulletin>
-      <Bulletin id={user.data.id}></Bulletin>
-    </div>
+    </>
   );
 };
 
