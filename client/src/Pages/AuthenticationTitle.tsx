@@ -32,7 +32,7 @@ export function AuthenticationTitle() {
   };
 
   return (
-    <Container size={420} my={40}>
+    <Container size={420} my={40} className="grid">
       <Title
         align="center"
         sx={(theme) => ({
@@ -40,7 +40,8 @@ export function AuthenticationTitle() {
           fontWeight: 900,
         })}
       >
-        Bulletins
+        {/* Lamiasoft */}
+        <img src="logo ona.png" alt="" className="w-full" />
       </Title>
 
       <Paper withBorder shadow="md" p={30} mt={30} radius="md">

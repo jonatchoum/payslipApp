@@ -23,8 +23,8 @@ const Private = () => {
       <main className="min-h-full">
         <Navbar
           links={[
-            { link: "/createUser", label: "Ajouter un utilisateur" },
             { link: "/dashboard", label: "dashboard" },
+            { link: "/createUser", label: "Ajouter un utilisateur" },
           ]}
         />
         <div className="grid place-items-center">

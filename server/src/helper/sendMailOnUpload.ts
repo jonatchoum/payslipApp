@@ -15,7 +15,8 @@ const sendMailOnUpload = async (user_id: number, date: string) => {
     to: user.email,
     subject: "Nouveau bulletin de salaire disponible",
     html: `<div>
-          Bonjour ${user.prenom} ${user.nom}
+          Bonjour ${user.prenom} ${user.nom}</div>
+          <br/>
           <div>Votre bulletin de salaire de ${currentMonthYear(
             date
           )} est désormais disponible au téléchargement</div>

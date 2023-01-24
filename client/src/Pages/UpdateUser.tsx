@@ -1,7 +1,7 @@
 import { Button, Checkbox, Input, Loader } from "@mantine/core";
 import React from "react";
 import { useForm } from "react-hook-form";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import queryUser from "../Hooks/queryUser";
 import useUpdateUser from "../Hooks/useUpdateUser";
 import { z } from "zod";
@@ -134,7 +134,11 @@ const UpdateUser = () => {
         </div>
         <Button type="submit">modifier</Button>
       </form>
-      <Button className="bg-red-500 text-xs">annuler</Button>
+      <Link to={"/dashboard "}>
+        <Button color={"red"} className="w-full">
+          annuler
+        </Button>
+      </Link>
     </div>
   );
 };

@@ -13,7 +13,7 @@ const LogoutButton = () => {
   };
 
   return (
-    <Button color={"orange"} onClick={handleClick} compact>
+    <Button color={"red"} onClick={handleClick} compact>
       <FiLogOut color="" />
     </Button>
   );

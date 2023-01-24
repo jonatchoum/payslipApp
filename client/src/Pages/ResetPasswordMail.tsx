@@ -1,10 +1,9 @@
 import { Button, Input } from "@mantine/core";
 import React, { useState } from "react";
-import { Outlet, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useResetPasswordMail } from "../Hooks/useResetPasswordMail";
 
 const ResetPasswordMail = () => {
-  const { id, token } = useParams();
   const [email, setEmail] = useState("");
   const mutation = useResetPasswordMail(email);
 
@@ -15,17 +14,20 @@ const ResetPasswordMail = () => {
 
   return (
     <div className="grid place-items-center gap-3">
-      <h1>ResetPassword Page</h1>
+      <h1>Réinitialiser votre mot de passe</h1>
       <form className="grid gap-3" onSubmit={handleSubmit}>
         <Input
           placeholder="email"
           onChange={(e) => setEmail(e.target.value)}
           type="email"
         />
-        <Button type="submit">reset</Button>
+        <Button type="submit">confirmer</Button>
+        <Link to={"/login"}>
+          <Button color={"red"} className="w-full">
+            annuler
+          </Button>
+        </Link>
       </form>
-      <div>{id}</div>
-      <div>{token}</div>
     </div>
   );
 };

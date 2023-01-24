@@ -4,10 +4,11 @@ import useCreateUser from "../Hooks/useCreateUser";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Link } from "react-router-dom";
 
 const FormData = z
   .object({
-    username: z.string().min(3, { message: "username invalide !" }),
+    username: z.string().min(3, { message: "Nom d'utilisateur invalide !" }),
     password: z
       .string()
       .regex(new RegExp(".*[A-Z].*"), "Au moins une lettre capitale")
@@ -19,11 +20,11 @@ const FormData = z
       )
       .min(8, "Au moins 8 caractères longs"),
     confirmPassword: z.string(),
-    prenom: z.string().min(3, { message: "prenom invalide !" }),
-    nom: z.string().min(3, { message: "nom invalide !" }),
-    role: z.string().min(3, { message: "role invalide !" }),
-    email: z.string().email({ message: "email invalide !" }),
-    societe: z.string().min(3, { message: "societe invalide !" }),
+    prenom: z.string().min(3, { message: "Prénom invalide !" }),
+    nom: z.string().min(3, { message: "Nom invalide !" }),
+    role: z.string().min(3, { message: "Rôle invalide !" }),
+    email: z.string().email({ message: "Email invalide !" }),
+    societe: z.string().min(3, { message: "Société invalide !" }),
     admin: z.boolean(),
   })
   .refine((data) => data.password === data.confirmPassword, {
@@ -35,7 +36,6 @@ const FormData = z
 
 const CreateUser = () => {
   // Password123@
-
   const { mutate } = useCreateUser();
 
   const {
@@ -50,11 +50,15 @@ const CreateUser = () => {
 
   return (
     <div className="grid gap-1 mb-10">
-      <h1>Create new User !</h1>
+      <h1>Créer un nouvel utilisateur</h1>
       <form className="grid gap-2" onSubmit={handleSubmit(onSubmit)}>
         <div>
-          <label htmlFor="username">username</label>
-          <Input type="text" placeholder="username" {...register("username")} />
+          <label htmlFor="username">Nom d&apos;utilisateur</label>
+          <Input
+            type="text"
+            placeholder="Nom d'utilisateur"
+            {...register("username")}
+          />
           {/* {errors && <p>{errors.}</p>} */}
           {errors?.username?.message && (
             <p className="text-red-500">
@@ -63,10 +67,10 @@ const CreateUser = () => {
           )}
         </div>
         <div>
-          <label htmlFor="password">password</label>
+          <label htmlFor="password">Mot de passe</label>
           <Input
             type="password"
-            placeholder="password"
+            placeholder="Mot de passe"
             {...register("password")}
           />
           {errors?.password?.message && (
@@ -76,10 +80,10 @@ const CreateUser = () => {
           )}
         </div>
         <div>
-          <label htmlFor="password">confirm password</label>
+          <label htmlFor="password">Confirmer le mot de passe</label>
           <Input
             type="password"
-            placeholder="confirm password"
+            placeholder="Confirmer le mot de passe"
             {...register("confirmPassword")}
           />
           {errors?.confirmPassword?.message && (
@@ -89,36 +93,36 @@ const CreateUser = () => {
           )}
         </div>
         <div>
-          <label htmlFor="prenom">prenom</label>
-          <Input type="text" placeholder="prenom" {...register("prenom")} />
+          <label htmlFor="prenom">Prénom</label>
+          <Input type="text" placeholder="Prénom" {...register("prenom")} />
           {errors?.prenom?.message && (
             <p className="text-red-500">{errors?.prenom?.message.toString()}</p>
           )}
         </div>
         <div>
-          <label htmlFor="nom">nom</label>
-          <Input type="text" placeholder="nom" {...register("nom")} />
+          <label htmlFor="nom">Nom</label>
+          <Input type="text" placeholder="Nom" {...register("nom")} />
           {errors?.nom?.message && (
             <p className="text-red-500">{errors?.nom?.message.toString()}</p>
           )}
         </div>
         <div>
-          <label htmlFor="role">role</label>
-          <Input type="text" placeholder="role" {...register("role")} />
+          <label htmlFor="role">Rôle</label>
+          <Input type="text" placeholder="Rôle" {...register("role")} />
           {errors?.role?.message && (
             <p className="text-red-500">{errors?.role?.message.toString()}</p>
           )}
         </div>
         <div>
-          <label htmlFor="email">email</label>
-          <Input type="text" placeholder="email" {...register("email")} />
+          <label htmlFor="email">Email</label>
+          <Input type="text" placeholder="Email" {...register("email")} />
           {errors?.email?.message && (
             <p className="text-red-500">{errors?.email?.message.toString()}</p>
           )}
         </div>
         <div>
-          <label htmlFor="societe">societe</label>
-          <Input type="text" placeholder="societe" {...register("societe")} />
+          <label htmlFor="societe">Société</label>
+          <Input type="text" placeholder="Société" {...register("societe")} />
           {errors?.societe?.message && (
             <p className="text-red-500">
               {errors?.societe?.message.toString()}
@@ -126,16 +130,19 @@ const CreateUser = () => {
           )}
         </div>
         <div>
-          <label htmlFor="admin">admin</label>
-          <Checkbox size="md" {...register("admin")}></Checkbox>
+          <label htmlFor="admin">Admin</label>
+          <Checkbox size="md" {...register("Admin")}></Checkbox>
           {errors?.admin?.message && (
             <p className="text-red-500">{errors?.admin?.message.toString()}</p>
           )}
         </div>
         <Button type="submit">créer</Button>
       </form>
-
-      <Button className="bg-red-500">annuler</Button>
+      <Link to={"/dashboard"}>
+        <Button color={"red"} className="w-full">
+          annuler
+        </Button>
+      </Link>
     </div>
   );
 };

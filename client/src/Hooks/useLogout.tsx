@@ -15,7 +15,6 @@ const useLogout = () => {
       toast.error("Erreur Logout");
     },
     onSuccess: () => {
-      toast.success("Logout Success");
       navigate("/login", { replace: true });
       //removes all queries cache on logout
       queryClient.removeQueries();

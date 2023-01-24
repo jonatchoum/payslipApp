@@ -10,9 +10,9 @@ const useStyles = createStyles((theme) => ({
   header: {
     display: "flex",
     justifyContent: "space-between",
-    alignItems: "center",
+    alignItems: "right",
     height: "100%",
-    backgroundColor: "",
+    backgroundColor: "  ",
   },
 
   links: {
@@ -87,8 +87,8 @@ export function Navbar({ links }: HeaderSimpleProps) {
 
   return (
     <Header height={60} mb={30}>
-      <Container className={classes.header}>
-        <img src="/grosLogo.png" alt="donibaneLOGO" className="max-h-full   " />
+      <Container className={"flex h-full place-content-between"}>
+        <img src="/logo_small.png" alt="donibaneLOGO" className="max-h-full" />
         <Group spacing={5} className={classes.links}>
           {items}
           <LogoutButton></LogoutButton>

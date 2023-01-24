@@ -14,14 +14,10 @@ const useLogin = (username: string, password: string) => {
       toast.error("Erreur de connexion");
     },
     onSuccess: (data) => {
-      toast.success("Vous êtes à présent connecté");
       if (data.data?.data?.admin) {
-        // alert("you are admin");
         return navigate("/dashboard");
       }
       return navigate("/profile");
-      // alert("you are not admin");
-      // console.log(data.data.data.admin);
     },
   });
 };

@@ -55,15 +55,20 @@ const User = () => {
     <Paper withBorder shadow="md" p={20} radius="md" className="w-full h-fit">
       <div className="flex  flex-col gap-10  place-content-center">
         <div className="grid">
-          <div>id : {user.data.id}</div>
-          <div>username : {user.data.username}</div>
+          {/* <div>id : {user.data.id}</div> */}
+          {/* <div>username : {user.data.username}</div> */}
+          <h2 className="text-center">
+            {user.data.prenom} {user.data.nom}
+          </h2>
         </div>
         <form
           className="grid  gap-5 place-items-center"
           encType="multipart/form-data"
           onSubmit={submitForm}
         >
-          <label htmlFor="bulletinSalaire">Upload un bulletin de salaire</label>
+          <label htmlFor="bulletinSalaire">
+            Importer un bulletin de salaire
+          </label>
           {mutation.isLoading ? (
             <Dropzone
               loading
@@ -73,7 +78,7 @@ const User = () => {
               }}
               multiple={false}
             >
-              {file ? <>{file.name}</> : <>Choisir fichier</>}
+              {file ? <>{file.name}</> : <>Choisir ou glisser le fichier</>}
             </Dropzone>
           ) : (
             <Dropzone
@@ -84,7 +89,7 @@ const User = () => {
               multiple={false}
               accept={[MIME_TYPES.pdf]}
             >
-              {file ? <>{file.name}</> : <>Choisir fichier</>}
+              {file ? <>{file.name}</> : <>Choisir ou glisser le fichier</>}
             </Dropzone>
           )}
 

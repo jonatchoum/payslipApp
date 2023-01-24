@@ -30,7 +30,7 @@ const Bulletins = (props: IdProps) => {
 
   return (
     <div className="text-left w-full pl-4">
-      <h2 className="text-xl">FICHIERS</h2>
+      <h2 className="text-xl">Tous les bulletins de salaire</h2>
 
       {/* <Accordion variant="separated" defaultValue={years[0]}> */}
       <Accordion variant="separated" defaultValue={""}>

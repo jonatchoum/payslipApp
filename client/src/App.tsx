@@ -1,6 +1,5 @@
 import React from "react";
 import axios from "axios";
-import Users from "./Components/Users";
 import { Route, Routes } from "react-router-dom";
 import User from "./Components/User";
 import Services from "./Components/Services";
@@ -8,7 +7,6 @@ import Service from "./Components/Service";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Private from "./Components/Private";
-// import Me from "./Components/Me";
 import CreateUser from "./Pages/CreateUser";
 import { AuthenticationTitle } from "./Pages/AuthenticationTitle";
 import Notfound from "./Pages/Notfound";
@@ -26,10 +24,10 @@ function App() {
   return (
     <div className=" min-h-screen pb-5">
       <Routes>
-        <Route element={<Private></Private>}>
+        <Route path="/" element={<Private></Private>}>
+          {/* <Route path="/" element={<Private />}></Route> */}
           <Route path="/profile" element={<Salarie />}></Route>
 
-          <Route path="/users" element={<Users />}></Route>
           <Route path="/user/:id" element={<User />}></Route>
           <Route path="/updateUser/:id" element={<UpdateUser />}></Route>
           <Route path="/createUser" element={<CreateUser />}></Route>
