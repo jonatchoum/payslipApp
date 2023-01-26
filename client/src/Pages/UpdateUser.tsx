@@ -1,4 +1,4 @@
-import { Button, Checkbox, Input, Loader } from "@mantine/core";
+import { Button, Checkbox, Input, Loader, TextInput } from "@mantine/core";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { Link, useParams } from "react-router-dom";
@@ -44,95 +44,64 @@ const UpdateUser = () => {
       <h1>
         Modifier {user.data.prenom} {user.data.nom}
       </h1>
-      <form className="grid gap-2 " onSubmit={handleSubmit(onSubmit)}>
-        <div>
-          <label htmlFor="username">username</label>
-          <Input
-            type="text"
-            placeholder={user.data.username}
-            {...register("username")}
-          />
-          {errors?.username?.message && (
-            <p className="text-red-500 text-xs">
-              {errors.username?.message.toString()}
-            </p>
-          )}
-        </div>
-        <div>
-          <label htmlFor="prenom">prenom</label>
-          <Input
-            type="text"
-            placeholder={user.data.prenom}
-            {...register("prenom")}
-          />
-          {errors?.prenom?.message && (
-            <p className="text-red-500 text-xs">
-              {errors.prenom?.message.toString()}
-            </p>
-          )}
-        </div>
-        <div>
-          <label htmlFor="nom">nom</label>
-          <Input type="text" placeholder={user.data.nom} {...register("nom")} />
-          {errors?.nom?.message && (
-            <p className="text-red-500 text-xs">
-              {errors.nom?.message.toString()}
-            </p>
-          )}
-        </div>
-        <div>
-          <label htmlFor="role">role</label>
-          <Input
-            type="text"
-            placeholder={user.data.role}
-            {...register("role")}
-          />
-          {errors?.role?.message && (
-            <p className="text-red-500 text-xs">
-              {errors.role?.message.toString()}
-            </p>
-          )}
-        </div>
-        <div>
-          <label htmlFor="email">email</label>
-          <Input
-            type="text"
-            placeholder={user.data.email}
-            {...register("email")}
-          />
-          {errors?.email?.message && (
-            <p className="text-red-500 text-xs">
-              {errors.email?.message.toString()}
-            </p>
-          )}
-        </div>
-        <div>
-          <label htmlFor="societe">societe</label>
-          <Input
-            type="text"
-            placeholder={user.data.societe}
-            {...register("societe")}
-          />
-          {errors?.societe?.message && (
-            <p className="text-red-500 text-xs">
-              {errors.societe?.message.toString()}
-            </p>
-          )}
-        </div>
-        <div>
-          <label htmlFor="admin">admin</label>
-          <Checkbox
-            size="md"
-            defaultChecked={user.data.admin}
-            {...register("admin")}
-          ></Checkbox>
-          {errors?.admin?.message && (
-            <p className="text-red-500 text-xs">
-              {errors.admin?.message.toString()}
-            </p>
-          )}
-        </div>
-        <Button type="submit">modifier</Button>
+      <form className="grid gap-2" onSubmit={handleSubmit(onSubmit)}>
+        <TextInput
+          label="Nom d'utilisateur"
+          type="text"
+          placeholder={user.data.username}
+          {...register("username")}
+          error={
+            errors?.username?.message && errors.username.message.toString()
+          }
+        />
+        <TextInput
+          label="Prénom"
+          type="text"
+          placeholder={user.data.prenom}
+          {...register("prenom")}
+          error={errors?.prenom?.message && errors?.prenom?.message.toString()}
+        />
+        <TextInput
+          label="Nom"
+          type="text"
+          placeholder={user.data.nom}
+          {...register("role")}
+          error={errors?.role?.message && errors?.role?.message.toString()}
+        />
+
+        <TextInput
+          label="Rôle"
+          type="text"
+          placeholder={user.data.role}
+          {...register("role")}
+          error={errors?.role?.message && errors?.role?.message.toString()}
+        />
+        <TextInput
+          label="Email"
+          type="text"
+          placeholder={user.data.email}
+          {...register("email")}
+          error={errors?.email?.message && errors?.email?.message.toString()}
+        />
+        <TextInput
+          label="Société"
+          type="text"
+          placeholder={user.data.societe}
+          {...register("societe")}
+          error={
+            errors?.societe?.message && errors?.societe?.message.toString()
+          }
+        />
+
+        <label htmlFor="admin" className="text-sm font-semibold">
+          Admin
+        </label>
+        <Checkbox
+          size="md"
+          {...register("admin")}
+          defaultChecked={user.data.admin}
+        />
+        <Button type="submit">Créer</Button>
       </form>
       <Link to={"/dashboard "}>
         <Button color={"red"} className="w-full">

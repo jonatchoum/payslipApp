@@ -8,36 +8,35 @@ const router = Router();
 const saltRounds = 10;
 
 router.post("/createUser", async (req, res) => {
-  const userInfo = req.body;
-  const { username, nom, prenom, role, password, email, societe, admin } =
-    req.body;
+  // const userInfo = req.body;
+  const { username, nom, prenom, role, email, societe, admin } = req.body;
   if (
-    !(username && nom && prenom && role && password && email && societe) ||
+    !(username && nom && prenom && role && email && societe) ||
     admin === undefined
   ) {
     console.log("manque une info");
     return res.status(400).json({
       message: "manque une info",
-      data: { username, nom, prenom, role, password, email, societe, admin },
+      data: { username, nom, prenom, role, email, societe, admin },
     });
   }
 
   // console.log(req.body);
 
-  const user = await User.findOne({ where: { username: userInfo.username } });
+  const user = await User.findOne({ where: { username: username } });
   if (user) {
     return res.status(403).json("user already exist");
   }
-  const password_hash = await bcrypt.hash(userInfo.password, saltRounds);
+  const password_hash = await bcrypt.hash(username + role, saltRounds);
   const createdUser = await User.create({
-    username: userInfo.username,
+    username: username,
     hash_password: password_hash,
-    prenom: userInfo.prenom,
-    nom: userInfo.nom,
-    role: userInfo.role,
-    email: userInfo.email,
-    societe: userInfo.societe,
-    admin: userInfo.admin,
+    prenom: prenom,
+    nom: nom,
+    role: role,
+    email: email,
+    societe: societe,
+    admin: admin,
   });
 
   res.json({
