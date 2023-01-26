@@ -12,7 +12,7 @@ const useAllowResetPassword = (id: any, token: any) => {
       toast.error("No authorized");
     },
     onSuccess: () => {
-      toast.success("vous pouvez changer votre mdp");
+      // toast.success("vous pouvez changer votre mdp");
     },
   });
 };

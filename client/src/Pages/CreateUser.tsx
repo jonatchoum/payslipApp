@@ -1,4 +1,10 @@
-import { Button, Checkbox, Input } from "@mantine/core";
+import {
+  Button,
+  Checkbox,
+  Input,
+  PasswordInput,
+  TextInput,
+} from "@mantine/core";
 import React from "react";
 import useCreateUser from "../Hooks/useCreateUser";
 import { useForm } from "react-hook-form";
@@ -54,80 +60,85 @@ const CreateUser = () => {
       <form className="grid gap-2" onSubmit={handleSubmit(onSubmit)}>
         <div>
           <label htmlFor="username">Nom d&apos;utilisateur</label>
-          <Input
+          <TextInput
             type="text"
             placeholder="Nom d'utilisateur"
             {...register("username")}
+            error={
+              errors?.username?.message && errors.username.message.toString()
+            }
           />
-          {/* {errors && <p>{errors.}</p>} */}
-          {errors?.username?.message && (
-            <p className="text-red-500">
-              {errors?.username?.message.toString()}
-            </p>
-          )}
         </div>
         <div>
           <label htmlFor="password">Mot de passe</label>
-          <Input
-            type="password"
+          {/* <PasswordInput
+            description="Le mot de passe doit contenir une lettre minuscule, une lettre majuscule, un caratère spécial, un chiffre et doit contenir au moins 8 caractères"
             placeholder="Mot de passe"
             {...register("password")}
+            error={
+              errors?.password?.message && errors?.password?.message.toString()
+            }
           />
-          {errors?.password?.message && (
-            <p className="text-red-500">
-              {errors?.password?.message.toString()}
-            </p>
-          )}
         </div>
         <div>
           <label htmlFor="password">Confirmer le mot de passe</label>
-          <Input
-            type="password"
+          <PasswordInput
             placeholder="Confirmer le mot de passe"
             {...register("confirmPassword")}
-          />
-          {errors?.confirmPassword?.message && (
-            <p className="text-red-500">
-              {errors?.confirmPassword?.message.toString()}
-            </p>
-          )}
+            error={
+              errors?.confirmPassword?.message &&
+              errors?.confirmPassword?.message.toString()
+            }
+          /> */}
         </div>
         <div>
           <label htmlFor="prenom">Prénom</label>
-          <Input type="text" placeholder="Prénom" {...register("prenom")} />
-          {errors?.prenom?.message && (
-            <p className="text-red-500">{errors?.prenom?.message.toString()}</p>
-          )}
+          <TextInput
+            type="text"
+            placeholder="Prénom"
+            {...register("prenom")}
+            error={
+              errors?.prenom?.message && errors?.prenom?.message.toString()
+            }
+          />
         </div>
         <div>
           <label htmlFor="nom">Nom</label>
-          <Input type="text" placeholder="Nom" {...register("nom")} />
-          {errors?.nom?.message && (
-            <p className="text-red-500">{errors?.nom?.message.toString()}</p>
-          )}
+          <TextInput
+            type="text"
+            placeholder="Nom"
+            {...register("nom")}
+            error={errors?.nom?.message && errors?.nom?.message.toString()}
+          />
         </div>
         <div>
           <label htmlFor="role">Rôle</label>
-          <Input type="text" placeholder="Rôle" {...register("role")} />
-          {errors?.role?.message && (
-            <p className="text-red-500">{errors?.role?.message.toString()}</p>
-          )}
+          <TextInput
+            type="text"
+            placeholder="Rôle"
+            {...register("role")}
+            error={errors?.role?.message && errors?.role?.message.toString()}
+          />
         </div>
         <div>
           <label htmlFor="email">Email</label>
-          <Input type="text" placeholder="Email" {...register("email")} />
-          {errors?.email?.message && (
-            <p className="text-red-500">{errors?.email?.message.toString()}</p>
-          )}
+          <TextInput
+            type="text"
+            placeholder="Email"
+            {...register("email")}
+            error={errors?.email?.message && errors?.email?.message.toString()}
+          />
         </div>
         <div>
           <label htmlFor="societe">Société</label>
-          <Input type="text" placeholder="Société" {...register("societe")} />
-          {errors?.societe?.message && (
-            <p className="text-red-500">
-              {errors?.societe?.message.toString()}
-            </p>
-          )}
+          <TextInput
+            type="text"
+            placeholder="Société"
+            {...register("societe")}
+            error={
+              errors?.societe?.message && errors?.societe?.message.toString()
+            }
+          />
         </div>
         <div>
           <label htmlFor="admin">Admin</label>

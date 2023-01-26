@@ -1,5 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Button, Input, Loader } from "@mantine/core";
+import { Button, Input, Loader, PasswordInput } from "@mantine/core";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { Navigate, useParams } from "react-router-dom";
@@ -46,27 +46,27 @@ const ResetPassword = () => {
   if (query.isError) return <Navigate to="/"></Navigate>;
 
   return (
-    <div className="grid place-items-center">
-      <h1>ResetPassword</h1>
+    <div className="container p-2 grid place-items-center max-w-lg mx-auto">
+      <h1>Réinitialiser votre mot de passe</h1>
       <form className="grid gap-5" onSubmit={handleSubmit(onSubmit)}>
-        <Input
-          type="password"
-          placeholder="password"
+        <PasswordInput
+          label="Nouveau mot de passe"
+          required
+          mt="md"
+          placeholder="Mot de passe"
+          description="Le mot de passe doit contenir une lettre minuscule, une lettre majuscule, un caratère spécial, un chiffre et doit contenir au moins 8 caractères"
           {...register("password")}
+          className="w-full"
+          error={errors?.password?.message?.toString()}
         />
-        {errors?.password?.message && (
-          <p className="text-red-500">{errors?.password?.message.toString()}</p>
-        )}
-        <Input
-          type="password"
-          placeholder="confirm password"
+        <PasswordInput
+          label="Confirmer votre nouveau mot de passe"
+          required
+          mt="md"
+          placeholder="Confirmer mot de passe"
           {...register("confirmPassword")}
+          error={errors?.confirmPassword?.message?.toString()}
         />
-        {errors?.confirmPassword?.message && (
-          <p className="text-red-500">
-            {errors?.confirmPassword?.message.toString()}
-          </p>
-        )}
         <Button type="submit">confirmer</Button>
       </form>
     </div>
