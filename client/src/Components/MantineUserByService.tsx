@@ -49,8 +49,10 @@ const MantineUserByService = () => {
         <Table>
           <thead>
             <tr>
-              <th>prenom</th>
-              <th>nom</th>
+              <th>Prénom</th>
+              <th>Nom</th>
+              <th></th>
+              <th></th>
               {/* <th>bulletin</th>
               <th>edit</th> */}
             </tr>

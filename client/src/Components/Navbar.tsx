@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { createStyles, Header, Container, Group, Burger } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import LogoutButton from "./LogoutButton";
 import { FiLogOut } from "react-icons/fi";
 
@@ -66,22 +66,18 @@ interface HeaderSimpleProps {
 
 export function Navbar({ links }: HeaderSimpleProps) {
   const [opened, { toggle }] = useDisclosure(false);
-  const [active, setActive] = useState(links[0].link);
   const { classes, cx } = useStyles();
 
   const items = links.map((link, index) => (
     <div key={index}>
-      <Link
+      <NavLink
         to={link.link}
-        className={cx(classes.link, {
-          [classes.linkActive]: active === link.link,
-        })}
-        onClick={() => {
-          setActive(link.link);
-        }}
+        className={({ isActive }) =>
+          isActive ? cx(classes.link, classes.linkActive) : classes.link
+        }
       >
         {link.label}
-      </Link>
+      </NavLink>
     </div>
   ));
 
