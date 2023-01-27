@@ -19,8 +19,11 @@ import { allowResetPassword, resetPassword } from "./helper/resetPassword";
 import { deleteBulletin } from "./helper/deleteBulletin";
 import { isAdmin } from "./middleware/isAdmin";
 import { isAuthenticated } from "./middleware/isAuthenticated";
+import helmet from "helmet";
 
 const app = express();
+
+app.use(helmet());
 
 app.use(
   session({
