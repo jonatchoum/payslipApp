@@ -1,7 +1,8 @@
 import { User } from "../db/sequelize/Sequelize";
 import bcrypt from "bcrypt";
+import { Request, Response } from "express";
 
-const changePassword = async (req, res) => {
+const changePassword = async (req: Request, res: Response) => {
   const saltRounds = 10;
   const { id, password } = req.body;
   const user = User.findByPk(id);
