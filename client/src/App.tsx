@@ -18,6 +18,8 @@ import ResetPasswordMail from "./Pages/ResetPasswordMail";
 import ResetPassword from "./Pages/ResetPassword";
 import Salarie from "./Pages/Salarie";
 axios.defaults.baseURL = "http://localhost:3000/api/";
+// const API_URL: string = process.env.REACT_APP_API_URL;
+// axios.defaults.baseURL = API_URL;
 axios.defaults.withCredentials = true;
 
 function App() {
@@ -25,9 +27,7 @@ function App() {
     <div className=" min-h-screen pb-5">
       <Routes>
         <Route path="/" element={<Private></Private>}>
-          {/* <Route path="/" element={<Private />}></Route> */}
           <Route path="/profile" element={<Salarie />}></Route>
-
           <Route path="/user/:id" element={<User />}></Route>
           <Route path="/updateUser/:id" element={<UpdateUser />}></Route>
           <Route path="/createUser" element={<CreateUser />}></Route>
@@ -40,7 +40,6 @@ function App() {
           </Route>
           <Route path="/*" element={<Notfound />}></Route>
         </Route>
-        {/* <Route path="/private" element={<Salarie />}></Route> */}
         <Route path="/login" element={<AuthenticationTitle />}></Route>
         <Route
           path="/resetPasswordMail"

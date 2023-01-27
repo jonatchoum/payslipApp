@@ -33,6 +33,7 @@ export function AuthenticationTitle() {
 
   return (
     <Container size={420} my={40} className="grid">
+      {/* <div>{process.env.REACT_APP_API_URL}</div> */}
       <Title
         align="center"
         sx={(theme) => ({

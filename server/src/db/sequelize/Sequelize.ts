@@ -2,9 +2,10 @@ import { Sequelize, DataTypes } from "sequelize";
 
 // Option 3: Passing parameters separately (other dialects)
 const sequelize = new Sequelize("DONI", "root", "root", {
-  host: "localhost",
+  host: process.env.DB_HOST,
   dialect: "mysql",
-  port: 40000,
+  // port: 40000,
+  port: parseInt(process.env.DB_PORT as string),
 });
 
 const connection = async () => {

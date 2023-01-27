@@ -22,8 +22,6 @@ import { isAuthenticated } from "./middleware/isAuthenticated";
 
 const app = express();
 
-const PORT = 3000;
-
 app.use(
   session({
     secret: "keyboard cat",
@@ -73,6 +71,8 @@ app.use("/api", isAdmin, createUser);
 app.use("/api", isAdmin, upload);
 app.delete("/api/deleteBulletin/:id", isAdmin, deleteBulletin);
 
-app.listen(PORT, () =>
-  console.log(`App listening on port ${PORT}\nhttp://localhost:3000/api`)
+app.listen(process.env.PORT, () =>
+  console.log(
+    `App listening on port ${process.env.PORT}\nhttp://localhost:${process.env.PORT}/api`
+  )
 );
