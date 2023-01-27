@@ -86,7 +86,7 @@ export function Navbar({ links }: HeaderSimpleProps) {
       <Container className={"flex h-full place-content-between"}>
         <img
           src="/small_sareasoft.png"
-          alt="donibaneLOGO"
+          alt="sarea soft small logo"
           className="max-h-full"
         />
         <Group spacing={5} className={classes.links}>
