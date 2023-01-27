@@ -20,7 +20,9 @@ const sendMailOnUpload = async (user_id: number, date: string) => {
           <div>Votre bulletin de salaire de ${currentMonthYear(
             date
           )} est désormais disponible au téléchargement</div>
-          <div>Le fichier est accessible depuis <a href="http://localhost:5173/">ce lien</a></div> 
+          <div>Le fichier est accessible depuis <a href="${
+            process.env.CLIENT_URL
+          }/">ce lien</a></div> 
         </div>`,
   };
 

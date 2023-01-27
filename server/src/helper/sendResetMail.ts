@@ -28,12 +28,12 @@ const sendResetMail = async (req: Request, res: Response) => {
     to: email,
     subject: "NodeMailer",
     text: `Bonjour ${user.prenom} ${user.nom} voici un lien pour réinitialiser 
-    votre mot de passe http://localhost:5173/resetPassword/${id}/${token}`,
+    votre mot de passe ${process.env.CLIENT_URL}/resetPassword/${id}/${token}`,
     html: `<div>
     Bonjour ${user.prenom} ${user.nom}
     <div>voici un lien pour réinitialiser votre mot de passe</div>
     <button>
-      <a href="http://localhost:5173/resetPassword/${id}/${token}">reset</a>
+      <a href="${process.env.CLIENT_URL}/resetPassword/${id}/${token}">reset</a>
     </button>
   </div>`,
   };
