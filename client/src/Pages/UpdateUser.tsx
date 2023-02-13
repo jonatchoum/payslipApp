@@ -101,7 +101,7 @@ const UpdateUser = () => {
           {...register("admin")}
           defaultChecked={user.data.admin}
         />
-        <Button type="submit">Créer</Button>
+        <Button type="submit">Modifier</Button>
       </form>
       <Link to={"/dashboard "}>
         <Button color={"red"} className="w-full">
