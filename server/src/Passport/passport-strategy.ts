@@ -42,8 +42,6 @@ passport.use(
 const router = Router();
 
 router.post("/login", passport.authenticate("local"), (req, res) => {
-  // console.log(req.user);
-  console.log(req.isAuthenticated());
   res.json({ message: "login successfull", data: req.user });
 });
 

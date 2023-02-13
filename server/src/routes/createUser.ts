@@ -21,8 +21,6 @@ router.post("/createUser", async (req, res) => {
     });
   }
 
-  // console.log(req.body);
-
   const user = await User.findOne({ where: { username: username } });
   if (user) {
     return res.status(403).json("user already exist");
