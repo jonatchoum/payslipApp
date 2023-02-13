@@ -29,7 +29,7 @@ const testNodemailer = () => {
 // testNodemailer();
 
 const message = {
-  from: "donibanesalaire@outlook.fr",
+  from: "info@sareasoft.com",
   to: "donisalaire@yopmail.com",
   subject: "NodeMailer",
   text: "Encore",

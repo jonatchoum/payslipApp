@@ -11,7 +11,7 @@ const sendMailOnUpload = async (user_id: number, date: string) => {
   }
 
   const message = {
-    from: "donibanesalaire@outlook.fr",
+    from: "info@sareasoft.com",
     to: user.email,
     subject: "Nouveau bulletin de salaire disponible",
     html: `<div>

@@ -24,7 +24,7 @@ const sendResetMail = async (req: Request, res: Response) => {
   console.log("🚀 ~ file: sendResetMail.ts:24 ~ sendResetMail ~ token", token);
 
   const message = {
-    from: "donibanesalaire@outlook.fr",
+    from: "info@sareasoft.com",
     to: email,
     subject: "NodeMailer",
     text: `Bonjour ${user.prenom} ${user.nom} voici un lien pour réinitialiser 
@@ -44,7 +44,7 @@ const sendResetMail = async (req: Request, res: Response) => {
     res.json("Un email de reset de mot de passe a été envoyé");
   } catch (error) {
     console.error(error);
-    res.json({ message: "un problème est survenu", error: error });
+    res.status(500).json({ message: "un problème est survenu", error: error });
   }
 };
 
