@@ -25,7 +25,7 @@ router.get("/download/:user_id/:filename", isAuthorized, (req, res) => {
   const file = path.join(
     __dirname,
     "..",
-    "bulletinDeSalaire",
+    "bulletinsDeSalaire",
     `${user_id}`,
     `${filename}`
   );
