@@ -1,13 +1,15 @@
 import multer from "multer";
 import fs from "fs";
 import { TUser } from "../Types/myTypes";
+import path from "path";
 
 let user: TUser;
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     user = JSON.parse(req.body.user);
-    const dir = `../bulletinsDeSalaire/${user.id}`;
+    // const dir = `../bulletinsDeSalaire/${user.id}`;
+    const dir = path.join(__dirname, "..", "bulletinDeSalaire", `/${user.id}`);
     //On créer le dossier "dir" qui est un dossier associé à l'id de l'utilisateur si il n'existe pas
     if (!fs.existsSync(dir)) {
       fs.mkdirSync(dir, { recursive: true });
