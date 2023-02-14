@@ -25,7 +25,7 @@ const LastBulletin = (props: any) => {
       <h3>Votre dernier bulletin de salaire</h3>
       <a
         // href={`http://localhost:3000/api/download/${lastBulletin.user_id}/${lastBulletin.filename}`}
-        href={`https://sareasoft.com:3000/api/download/${lastBulletin.user_id}/${lastBulletin.filename}`}
+        href={`https://sareasoft.com/api/download/${lastBulletin.user_id}/${lastBulletin.filename}`}
         download={true}
         className="w-full text-black no-underline"
       >
