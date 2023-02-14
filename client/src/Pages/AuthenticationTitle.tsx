@@ -49,13 +49,13 @@ export function AuthenticationTitle() {
         <form action="" onSubmit={handleSubmit}>
           <TextInput
             label="Nom d'utilisateur"
-            placeholder="Your username"
+            placeholder="Votre nom de compte"
             required
             onChange={(e) => setUsername(e.target.value)}
           />
           <PasswordInput
             label="Mot de passe"
-            placeholder="Your password"
+            placeholder="Votre mot de passe"
             required
             mt="md"
             onChange={(e) => setPassword(e.target.value)}
