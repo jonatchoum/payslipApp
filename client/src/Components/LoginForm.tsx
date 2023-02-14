@@ -23,14 +23,14 @@ const LoginForm = () => {
         className="rounded-xl p-2"
         name=""
         id="username"
-        placeholder="Username"
+        placeholder="Nom de Compte"
         onChange={(e) => setUsername(e.target.value)}
       />
       <input
         type="password"
         className="rounded-xl p-2"
         id="password"
-        placeholder="Password"
+        placeholder="Mot de passe"
         onChange={(e) => setPassword(e.target.value)}
       />
       <button className="border border-blue-300" type="submit">

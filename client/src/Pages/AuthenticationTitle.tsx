@@ -61,7 +61,6 @@ export function AuthenticationTitle() {
             onChange={(e) => setPassword(e.target.value)}
           />
           <Group position="apart" mt="lg">
-            {/* <Checkbox label="Remember me" sx={{ lineHeight: 1 }} /> */}
             <Anchor<"a"> onClick={handleClick} href="#" size="sm">
               Mot de passe oublié ?
             </Anchor>
