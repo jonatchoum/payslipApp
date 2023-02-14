@@ -9,7 +9,7 @@ export function BulletinDownload(props: TDownloadInfo) {
   return (
     <a
       // href={`http://localhost:3000/api/download/${props.user_id}/${props.filename}`}
-      href={`https://sareasoft.com:3000/api/download/${props.user_id}/${props.filename}`}
+      href={`https://sareasoft.com/api/download/${props.user_id}/${props.filename}`}
       download={true}
     >
       <img
