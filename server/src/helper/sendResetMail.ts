@@ -31,10 +31,7 @@ const sendResetMail = async (req: Request, res: Response) => {
     votre mot de passe ${process.env.CLIENT_URL}/resetPassword/${id}/${token}`,
     html: `<div>
     Bonjour ${user.prenom} ${user.nom}
-    <div>voici un lien pour réinitialiser votre mot de passe</div>
-    <button>
-      <a href="${process.env.CLIENT_URL}/resetPassword/${id}/${token}">reset</a>
-    </button>
+    <div>Voici un <a href="${process.env.CLIENT_URL}/resetPassword/${id}/${token}">lien</a> pour réinitialiser votre mot de passe</div>
   </div>`,
   };
 
