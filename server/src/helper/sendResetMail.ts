@@ -26,7 +26,7 @@ const sendResetMail = async (req: Request, res: Response) => {
   const message = {
     from: "info@sareasoft.com",
     to: email,
-    subject: "NodeMailer",
+    subject: "Réinitialisation de votre mot de passe",
     text: `Bonjour ${user.prenom} ${user.nom} voici un lien pour réinitialiser 
     votre mot de passe ${process.env.CLIENT_URL}/resetPassword/${id}/${token}`,
     html: `<div>
