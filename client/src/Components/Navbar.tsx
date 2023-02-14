@@ -85,7 +85,7 @@ export function Navbar({ links }: HeaderSimpleProps) {
     <Header height={60} mb={30}>
       <Container className={"flex h-full place-content-between"}>
         <img
-          src="/small_sareasoft.png"
+          src="/sareasoft.svg"
           alt="sarea soft small logo"
           className="max-h-full"
         />

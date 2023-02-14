@@ -17,7 +17,7 @@ const Salarie = () => {
       <nav className="flex place-content-center p-2 bg-gray-200  mb-5">
         <div className="max-w-xs w-full flex place-content-between">
           <img
-            src="/small_sareasoft.png"
+            src="/sareasoft.svg"
             alt="logo_sarea_small"
             className="max-h-8"
           />

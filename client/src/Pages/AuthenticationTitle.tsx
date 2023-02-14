@@ -42,7 +42,7 @@ export function AuthenticationTitle() {
         })}
       >
         {/* Lamiasoft */}
-        <img src="/big_sareasoft.png" alt="" className="w-1/2" />
+        <img src="/sareasoft.svg" alt="" className="w-1/2" />
       </Title>
 
       <Paper withBorder shadow="md" p={30} mt={30} radius="md">
