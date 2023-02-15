@@ -26,26 +26,6 @@ const Demande = () => {
         Veuillez remplir le formulaire ci-dessous pour ouvrir un nouveau ticket.
       </p>
       <form className="grid gap-2" onSubmit={handleSubmit(onSubmit)}>
-        <TextInput
-          placeholder="Adresse email"
-          type="email"
-          label="Adresse email"
-          {...register("mail")}
-          required
-        />
-        <TextInput
-          placeholder="Nom"
-          type="text"
-          label="Nom"
-          {...register("nom")}
-          required
-        />
-        <TextInput
-          placeholder="Numéro de téléphone"
-          type="number"
-          label="Numéro de téléphone"
-          {...register("phone")}
-        />
         <Select
           label="Rubrique d'aide"
           placeholder="Choisir"
@@ -54,8 +34,9 @@ const Demande = () => {
           required
           data={[
             "Changement d'email",
-            "Problème téléchargment bulletin de salaire",
-            "Problème mot de passe",
+            "Problème de téléchargement de bulletin de salaire",
+            "Problème avec votre mot de passe",
+            "Autre",
           ]}
           onChange={(e) => {
             if (e != null) {

@@ -98,5 +98,20 @@ const Bulletin = sequelize.define(
   }
 );
 
+const Ticket = sequelize.define("Ticket", {
+  user_id: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+  },
+  sujet: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  details: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+});
+
 connection();
-export { connection, sequelize, User, Bulletin };
+export { connection, sequelize, User, Bulletin, Ticket };

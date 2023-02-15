@@ -19,6 +19,7 @@ import { allowResetPassword, resetPassword } from "./helper/resetPassword";
 import { deleteBulletin } from "./helper/deleteBulletin";
 import { isAdmin } from "./middleware/isAdmin";
 import { isAuthenticated } from "./middleware/isAuthenticated";
+import { ticket } from "./helper/ticket";
 import helmet from "helmet";
 
 const app = express();
@@ -66,6 +67,7 @@ app.use("/api", download);
 app.use("/api", societes);
 app.use("/api", me);
 app.use("/api", logout);
+app.post("/api/ticket", ticket);
 
 //admin routes
 
