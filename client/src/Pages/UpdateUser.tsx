@@ -103,7 +103,7 @@ const UpdateUser = () => {
         />
         <Button type="submit">Modifier</Button>
       </form>
-      <Link to={"/dashboard "}>
+      <Link to={"/admin/dashboard "}>
         <Button color={"red"} className="w-full">
           annuler
         </Button>

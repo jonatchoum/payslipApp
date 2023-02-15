@@ -2,10 +2,9 @@ import { Loader } from "@mantine/core";
 import React from "react";
 import { Navigate, Outlet } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
-import Salarie from "../Pages/Salarie";
 import { Navbar } from "./Navbar";
 
-const Private = () => {
+const Admin = () => {
   const auth = useAuth();
 
   if (auth.isLoading) {
@@ -32,17 +31,7 @@ const Private = () => {
       </main>
     );
   }
-  return (
-    <div>
-      <Navbar
-        links={[
-          { link: "/profile", label: "Profile" },
-          { link: "/demande", label: "Envoyer une demande" },
-        ]}
-      />
-      <Outlet />
-    </div>
-  );
+  return <Navigate to={"/profile"} />;
 };
 
-export default Private;
+export default Admin;

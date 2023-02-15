@@ -36,7 +36,7 @@ const MantineUserByService = () => {
         </Link>
       </td>
       <td>
-        <Link to={`/UpdateUser/${user.id}`}>
+        <Link to={`/admin/UpdateUser/${user.id}`}>
           <FiEdit2 className="stroke-orange-500" />
         </Link>
       </td>

@@ -1,5 +1,6 @@
 import { Button, Loader } from "@mantine/core";
 import React from "react";
+import { Link } from "react-router-dom";
 import Bulletin from "../Components/BulletinSalarie";
 import LastBulletin from "../Components/LastBulletin";
 import LogoutButton from "../Components/LogoutButton";
@@ -14,22 +15,8 @@ const Salarie = () => {
 
   return (
     <>
-      <nav className="flex place-content-center p-2 bg-gray-200  mb-5">
-        <div className="max-w-md w-full flex place-content-between">
-          <img
-            src="/sareasoft.svg"
-            alt="logo_sarea_small"
-            className="max-h-8"
-          />
-          <div className="flex gap-2 place-items-center">
-            <Button>Envoyer une demande</Button>
-            <LogoutButton></LogoutButton>
-          </div>
-        </div>
-      </nav>
       <div className="grid place-items-center container mx-auto px-4">
         <div className="max-w-md  grid place-items-center">
-          {/* <h1>Bulletins de salaire</h1> */}
           <h2>
             Bienvenue {user.data.prenom} {user.data.nom}
           </h2>

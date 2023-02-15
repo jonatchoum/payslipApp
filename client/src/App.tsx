@@ -18,6 +18,7 @@ import ResetPasswordMail from "./Pages/ResetPasswordMail";
 import ResetPassword from "./Pages/ResetPassword";
 import Salarie from "./Pages/Salarie";
 import Demande from "./Pages/Demande";
+import Admin from "./Components/Admin";
 axios.defaults.baseURL = "http://localhost:3000/api/";
 // axios.defaults.baseURL = "https://sareasoft.com/api/";
 // const API_URL: string = process.env.REACT_APP_API_URL;
@@ -28,30 +29,28 @@ function App() {
   return (
     <div className=" min-h-screen pb-5">
       <Routes>
+        {/* USER ROUTES */}
         <Route path="/" element={<Private></Private>}>
           <Route path="profile" element={<Salarie />}></Route>
           <Route path="demande" element={<Demande></Demande>} />
-          <Route path="/user/:id" element={<User />}></Route>
-          <Route path="/updateUser/:id" element={<UpdateUser />}></Route>
-          <Route path="/createUser" element={<CreateUser />}></Route>
-          <Route path="/services" element={<Services />}></Route>
-          <Route path="/service/:service" element={<Service />}></Route>
-          <Route path="/dashboard" element={<Dashboard />}>
+          {/* <Route path="/*" element={<Notfound />}></Route> */}
+        </Route>
+        {/* ADMIN ROUTES */}
+        <Route path="/admin" element={<Admin></Admin>}>
+          <Route path="createUser" element={<CreateUser />}></Route>
+          <Route path="dashboard" element={<Dashboard />}>
             <Route path=":societe" element={<MantineUserByService />}>
               <Route path=":id" element={<MantineUserUpload />}></Route>
             </Route>
           </Route>
-          <Route path="/*" element={<Notfound />}></Route>
+          <Route path="updateUser/:id" element={<UpdateUser />}></Route>
+          {/* <Route path="/*" element={<Notfound />}></Route> */}
         </Route>
+        {/* PUBLIC ROUTES */}
         <Route path="/login" element={<AuthenticationTitle />}></Route>
-        <Route
-          path="/resetPasswordMail"
-          element={<ResetPasswordMail />}
-        ></Route>
-        <Route
-          path="/resetpassword/:id/:token"
-          element={<ResetPassword />}
-        ></Route>
+        <Route path="/resetPasswordMail" element={<ResetPasswordMail />} />
+        <Route path="/resetpassword/:id/:token" element={<ResetPassword />} />
+        <Route path="/*" element={<Notfound />}></Route>
       </Routes>
       <ToastContainer />
     </div>
@@ -59,3 +58,9 @@ function App() {
 }
 
 export default App;
+
+{
+  /* <Route path="/user/:id" element={<User />}></Route>
+          <Route path="/services" element={<Services />}></Route>
+          <Route path="/service/:service" element={<Service />}></Route> */
+}

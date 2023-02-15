@@ -15,7 +15,7 @@ const useLogin = (username: string, password: string) => {
     },
     onSuccess: (data) => {
       if (data.data?.data?.admin) {
-        return navigate("/dashboard");
+        return navigate("/admin/dashboard");
       }
       return navigate("/profile");
     },
