@@ -3,17 +3,14 @@ import { useNavigate } from "react-router-dom";
 import {
   TextInput,
   PasswordInput,
-  Checkbox,
   Anchor,
   Paper,
   Title,
-  Text,
   Container,
   Group,
   Button,
 } from "@mantine/core";
 import { useLogin } from "../Hooks/useLogin";
-import { Navigate } from "react-router-dom";
 
 export function AuthenticationTitle() {
   const [username, setUsername] = useState("");
@@ -33,7 +30,6 @@ export function AuthenticationTitle() {
 
   return (
     <Container size={420} my={40} className="grid">
-      {/* <div>{process.env.REACT_APP_API_URL}</div> */}
       <Title
         align="center"
         sx={(theme) => ({
@@ -41,11 +37,12 @@ export function AuthenticationTitle() {
           fontWeight: 900,
         })}
       >
-        {/* Lamiasoft */}
         <img src="/sareasoft.svg" alt="" className="w-1/2" />
       </Title>
-
-      <Paper withBorder shadow="md" p={30} mt={30} radius="md">
+      <p className="font-bold text-center text-sky-800">
+        Bienvenue dans votre espace Sareasoft
+      </p>
+      <Paper withBorder shadow="md" p={30} mt={0} radius="md">
         <form action="" onSubmit={handleSubmit}>
           <TextInput
             label="Nom d'utilisateur"

@@ -2,7 +2,6 @@ import { Loader } from "@mantine/core";
 import React from "react";
 import { Navigate, Outlet } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
-import Salarie from "../Pages/Salarie";
 import { Navbar } from "./Navbar";
 
 const Private = () => {
@@ -12,7 +11,6 @@ const Private = () => {
     return <Loader />;
   }
   if (auth.isError) {
-    // return <>Error</>;
     return <Navigate to={"/login"} replace={true} />;
   }
 
@@ -33,9 +31,7 @@ const Private = () => {
       </main>
     );
   }
-  return <Salarie />;
-
-  // return auth.data ? <Outlet /> : <Navigate to={"/login"} />;
+  return <Outlet />;
 };
 
 export default Private;

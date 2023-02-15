@@ -1,10 +1,8 @@
 import React from "react";
-import { useState } from "react";
 import { createStyles, Header, Container, Group, Burger } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import LogoutButton from "./LogoutButton";
-import { FiLogOut } from "react-icons/fi";
 
 const useStyles = createStyles((theme) => ({
   header: {

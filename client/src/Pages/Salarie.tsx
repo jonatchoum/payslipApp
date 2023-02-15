@@ -1,4 +1,4 @@
-import { Loader } from "@mantine/core";
+import { Button, Loader } from "@mantine/core";
 import React from "react";
 import Bulletin from "../Components/BulletinSalarie";
 import LastBulletin from "../Components/LastBulletin";
@@ -15,14 +15,16 @@ const Salarie = () => {
   return (
     <>
       <nav className="flex place-content-center p-2 bg-gray-200  mb-5">
-        <div className="max-w-xs w-full flex place-content-between">
+        <div className="max-w-md w-full flex place-content-between">
           <img
             src="/sareasoft.svg"
             alt="logo_sarea_small"
             className="max-h-8"
           />
-          {/* <div>titre</div> */}
-          <LogoutButton></LogoutButton>
+          <div className="flex gap-2 place-items-center">
+            <Button>Envoyer une demande</Button>
+            <LogoutButton></LogoutButton>
+          </div>
         </div>
       </nav>
       <div className="grid place-items-center container mx-auto px-4">

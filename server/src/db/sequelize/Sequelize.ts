@@ -11,7 +11,7 @@ const sequelize = new Sequelize(
   {
     host: process.env.DB_HOST,
     dialect: "mysql",
-    // port: parseInt(process.env.DB_PORT as string),
+    port: parseInt(process.env.DB_PORT as string),
   }
 );
 
