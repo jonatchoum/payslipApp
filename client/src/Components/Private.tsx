@@ -36,7 +36,7 @@ const Private = () => {
     <div>
       <Navbar
         links={[
-          { link: "/profile", label: "Profile" },
+          { link: "/profile", label: "Profil" },
           { link: "/demande", label: "Envoyer une demande" },
         ]}
       />
