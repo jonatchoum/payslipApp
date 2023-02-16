@@ -65,7 +65,7 @@ const UpdateUser = () => {
           label="Nom"
           type="text"
           placeholder={user.data.nom}
-          {...register("role")}
+          {...register("nom")}
           error={errors?.role?.message && errors?.role?.message.toString()}
         />
 
