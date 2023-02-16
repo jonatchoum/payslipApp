@@ -32,9 +32,10 @@ const ticket = async (req: any, res: Response) => {
       subject: `Nouveau ticket de ${user.username}`,
       html: `<div>
             <div>${user.username} vient d'envoyer un ticket</div>
-            <div>son adresse mail est ${user.email}</div>
-            <div>sujet : ${sujet}</div>
-            <div>details : ${details}</div>
+            <div>Son adresse mail est ${user.email}</div>
+            <div>Sujet : ${sujet}</div>
+            <div>Détails :<br/>
+             ${details}</div>
           </div>`,
     };
 
@@ -46,10 +47,11 @@ const ticket = async (req: any, res: Response) => {
       to: `${user.email}`,
       subject: `Nouveau ticket de ${user.username}`,
       html: `<div>
-          <div>${user.username}<br/>
+          <div>${user.username},<br/>
           Voici un récapitulatif de votre ticket</div>
-          <div>sujet : ${sujet}</div>
-          <div>details : ${details}</div>
+          <div>Sujet : ${sujet}</div>
+          <div>Détails :
+          <br/> ${details}</div>
         </div>`,
     };
 
