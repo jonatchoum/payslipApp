@@ -77,7 +77,7 @@ const updateTicketStatus = async (req: Request, res: Response) => {
       { open: status },
       { where: { id: ticket_id } }
     );
-    res.json({ message: "ticket uopdated !", data: ticket });
+    res.json({ message: "ticket updated !", data: ticket });
   } catch (error) {
     res.status(501).json({ message: "couldnt update ticket", data: ticket });
   }

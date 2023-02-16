@@ -1,35 +1,39 @@
 import { Loader, Table } from "@mantine/core";
 import React from "react";
 import { useGetAllTickets } from "../Hooks/useGetAllTickets";
+import { useGetUsers } from "../Hooks/useGetUsers";
 
 const Ticket = () => {
   const { data, isLoading, isError } = useGetAllTickets();
+  const users = useGetUsers();
+  if (isLoading || users.isLoading) return <Loader />;
+  if (isError || users.isError) return <>Error !!!</>;
 
-  if (isLoading) return <Loader />;
-  if (isError) return <>Error !!!</>;
-
+  const usersData = users.data.data.data;
   const tickets = data.data.data;
-  console.table(tickets);
 
-  type Ticket = { id: number; sujet: string; open: boolean };
+  type Ticket = { id: number; sujet: string; open: boolean; user_id: number };
+  type User = { id: number };
 
   const openTickets = tickets.filter((ticket: Ticket) => ticket.open);
   const closedTickets = tickets.filter((ticket: Ticket) => !ticket.open);
 
-  //   console.log({ openTickets });
-  //   console.log({ closedTickets });
+  const currentUser = (ticket: Ticket) => {
+    const user = usersData.find((user: User) => user.id === ticket.user_id);
+    return <>{user.username}</>;
+  };
 
-  const openTicketsListe = openTickets.map(
-    (ticket: { id: number; sujet: string }) => {
-      return (
-        <tr key={ticket.id} className="">
-          <td>{ticket.id}</td>
-          <td>{ticket.sujet}</td>
-          <td>username</td>
-        </tr>
-      );
-    }
-  );
+  // console.log(usersData.find((user: User) => user.id === 33));
+
+  const openTicketsListe = openTickets.map((ticket: Ticket) => {
+    return (
+      <tr key={ticket.id} className="">
+        <td>{ticket.id}</td>
+        <td>{ticket.sujet}</td>
+        <td>{currentUser(ticket)}</td>
+      </tr>
+    );
+  });
 
   const closedTicketsListe = closedTickets.map(
     (ticket: { id: number; sujet: string }) => {
