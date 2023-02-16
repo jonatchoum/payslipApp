@@ -11,8 +11,15 @@ const Ticket = () => {
 
   const usersData = users.data.data.data;
   const tickets = data.data.data;
+  console.table("🚀 ~ file: Ticket.tsx:14 ~ Ticket ~ tickets", tickets);
 
-  type Ticket = { id: number; sujet: string; open: boolean; user_id: number };
+  type Ticket = {
+    id: number;
+    sujet: string;
+    open: boolean;
+    user_id: number;
+    createdAt: string;
+  };
   type User = { id: number };
 
   const openTickets = tickets.filter((ticket: Ticket) => ticket.open);
@@ -31,35 +38,39 @@ const Ticket = () => {
         <td>{ticket.id}</td>
         <td>{ticket.sujet}</td>
         <td>{currentUser(ticket)}</td>
+        <td>{ticket.createdAt}</td>
       </tr>
     );
   });
 
-  const closedTicketsListe = closedTickets.map(
-    (ticket: { id: number; sujet: string }) => {
-      return (
-        <tr
-          key={ticket.id}
-          className="hover:bg-slate-200"
-          onClick={() => alert("clicke")}
-        >
-          <td>{ticket.id}</td>
-          <td>{ticket.sujet}</td>
-          <td>username</td>
-        </tr>
-      );
-    }
-  );
+  const closedTicketsListe = closedTickets.map((ticket: Ticket) => {
+    return (
+      <tr
+        key={ticket.id}
+        className="hover:bg-slate-200"
+        onClick={() => alert("clicke")}
+      >
+        <td>{ticket.id}</td>
+        <td>{ticket.sujet}</td>
+        <td>{currentUser(ticket)}</td>
+        <td>{ticket.createdAt}</td>
+      </tr>
+    );
+  });
+
+  // let date = new Date(ticket.createdAt)
+  // console.log(date.getDate(), date.getMonth()+1, date.getFullYear(), date.getHours(), date.getMinutes())
 
   return (
     <div>
       <h3>tickets ouverts</h3>
-      <Table className="">
+      <Table>
         <thead>
           <tr>
             <th>Ticket</th>
             <th>Sujet</th>
             <th>De</th>
+            <th>Le</th>
           </tr>
         </thead>
         <tbody>{openTicketsListe}</tbody>
@@ -72,6 +83,7 @@ const Ticket = () => {
             <th>Ticket</th>
             <th>Sujet</th>
             <th>De</th>
+            <th>Le</th>
           </tr>
         </thead>
         <tbody>{closedTicketsListe}</tbody>
