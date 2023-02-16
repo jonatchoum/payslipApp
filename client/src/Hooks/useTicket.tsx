@@ -2,7 +2,7 @@ import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-const postTicket = (data: { id: string; sujet: string; details: string }) => {
+const postTicket = (data: { sujet: string; details: string }) => {
   return axios.post("/ticket", data);
 };
 
