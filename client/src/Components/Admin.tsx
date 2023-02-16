@@ -21,6 +21,7 @@ const Admin = () => {
       <main className="min-h-full">
         <Navbar
           links={[
+            { link: "/admin/tickets", label: "Tickets" },
             { link: "/admin/createUser", label: "Ajouter un utilisateur" },
             { link: "/admin/dashboard", label: "Dashboard" },
           ]}

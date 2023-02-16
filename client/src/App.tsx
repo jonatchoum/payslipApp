@@ -19,6 +19,7 @@ import ResetPassword from "./Pages/ResetPassword";
 import Salarie from "./Pages/Salarie";
 import Demande from "./Pages/Demande";
 import Admin from "./Components/Admin";
+import Ticket from "./Pages/Ticket";
 axios.defaults.baseURL = "http://localhost:3000/api/";
 // axios.defaults.baseURL = "https://sareasoft.com/api/";
 // const API_URL: string = process.env.REACT_APP_API_URL;
@@ -37,20 +38,20 @@ function App() {
         </Route>
         {/* ADMIN ROUTES */}
         <Route path="/admin" element={<Admin></Admin>}>
-          <Route path="createUser" element={<CreateUser />}></Route>
+          <Route path="createUser" element={<CreateUser />} />
           <Route path="dashboard" element={<Dashboard />}>
             <Route path=":societe" element={<MantineUserByService />}>
-              <Route path=":id" element={<MantineUserUpload />}></Route>
+              <Route path=":id" element={<MantineUserUpload />} />
             </Route>
           </Route>
-          <Route path="updateUser/:id" element={<UpdateUser />}></Route>
-          {/* <Route path="/*" element={<Notfound />}></Route> */}
+          <Route path="updateUser/:id" element={<UpdateUser />} />
+          <Route path="tickets" element={<Ticket />} />
         </Route>
         {/* PUBLIC ROUTES */}
-        <Route path="/login" element={<AuthenticationTitle />}></Route>
+        <Route path="/login" element={<AuthenticationTitle />} />
         <Route path="/resetPasswordMail" element={<ResetPasswordMail />} />
         <Route path="/resetpassword/:id/:token" element={<ResetPassword />} />
-        <Route path="/*" element={<Notfound />}></Route>
+        <Route path="/*" element={<Notfound />} />
       </Routes>
       <ToastContainer />
     </div>
