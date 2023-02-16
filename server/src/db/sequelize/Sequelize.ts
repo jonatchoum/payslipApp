@@ -111,6 +111,11 @@ const Ticket = sequelize.define("Ticket", {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  open: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false,
+    defaultValue: true,
+  },
 });
 
 connection();
