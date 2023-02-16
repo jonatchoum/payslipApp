@@ -7,7 +7,7 @@ export const updateUser = async (req: Request, res: Response) => {
     console.log("no id");
     return res.status(400).json("should provide id");
   }
-
+  console.table([id, username, prenom, nom, role, email, societe, admin]);
   try {
     if (username) {
       await User.update({ username: username }, { where: { id: id } });

@@ -1,22 +1,19 @@
-import {
-  Button,
-  Input,
-  Paper,
-  Select,
-  Textarea,
-  TextInput,
-} from "@mantine/core";
+import { Button, Paper, Select, Textarea } from "@mantine/core";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { useTicket } from "../Hooks/useTicket";
 
 const Demande = () => {
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
   const [sujet, setSujet] = useState("");
 
+  const mutation = useTicket();
+
   const onSubmit = (data: any) => {
     console.log({ ...data, sujet });
+    mutation.mutate({ ...data, sujet });
   };
 
   return (

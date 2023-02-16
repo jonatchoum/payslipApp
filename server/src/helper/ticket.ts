@@ -1,5 +1,4 @@
 import { Response } from "express";
-import { sequelize } from "../db/sequelize/Sequelize";
 import { Ticket, User } from "../db/sequelize/Sequelize";
 import { transporter } from "../Nodemailer/nodemailer";
 
@@ -10,13 +9,13 @@ const ticket = async (req: any, res: Response) => {
 
   console.log(id, sujet, details);
 
-  try {
-    const ticket = await Ticket.create({
-      user_id: id,
-      sujet: sujet,
-      details: details,
-    });
+  const ticket: any = await Ticket.create({
+    user_id: id,
+    sujet: sujet,
+    details: details,
+  });
 
+  try {
     console.log(ticket);
 
     const user: any = await User.findByPk(id);
@@ -27,7 +26,7 @@ const ticket = async (req: any, res: Response) => {
       user.email
     );
 
-    const message = {
+    const messageTicket = {
       from: "info@sareasoft.com",
       to: "info@sareasoft.com",
       subject: `Nouveau ticket de ${user.username}`,
@@ -39,12 +38,27 @@ const ticket = async (req: any, res: Response) => {
           </div>`,
     };
 
-    await transporter.sendMail(message);
-    console.log("message envoyé");
+    await transporter.sendMail(messageTicket);
+    console.log("message ticket envoyé");
 
+    const messageUser = {
+      from: "info@sareasoft.com",
+      to: `${user.email}`,
+      subject: `Nouveau ticket de ${user.username}`,
+      html: `<div>
+          <div>${user.username}<br/>
+          Voici un récapitulatif de votre ticket</div>
+          <div>sujet : ${sujet}</div>
+          <div>details : ${details}</div>
+        </div>`,
+    };
+
+    await transporter.sendMail(messageUser);
+    console.log("message user envoyé");
     res.json({ message: "ticket bien envoyé !", data: { ticket } });
   } catch (error) {
     console.log(error);
+    console.log(ticket);
     res.status(500).json({ message: "ticket non ajouté en DB", error: error });
   }
 };
