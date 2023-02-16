@@ -19,7 +19,7 @@ import { allowResetPassword, resetPassword } from "./helper/resetPassword";
 import { deleteBulletin } from "./helper/deleteBulletin";
 import { isAdmin } from "./middleware/isAdmin";
 import { isAuthenticated } from "./middleware/isAuthenticated";
-import { ticket } from "./helper/ticket";
+import { getAllTickets, ticket } from "./helper/ticket";
 import helmet from "helmet";
 
 const app = express();
@@ -74,6 +74,7 @@ app.post("/api/ticket", ticket);
 app.patch("/api/updateUser", isAdmin, updateUser);
 app.use("/api", isAdmin, createUser);
 app.use("/api", isAdmin, upload);
+app.get("/api/getAllTickets", isAdmin, getAllTickets);
 app.delete("/api/deleteBulletin/:id", isAdmin, deleteBulletin);
 
 app.listen(process.env.PORT, () =>

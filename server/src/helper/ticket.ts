@@ -1,4 +1,4 @@
-import { Response } from "express";
+import { Request, Response } from "express";
 import { Ticket, User } from "../db/sequelize/Sequelize";
 import { transporter } from "../Nodemailer/nodemailer";
 
@@ -65,4 +65,8 @@ const ticket = async (req: any, res: Response) => {
   }
 };
 
-export { ticket };
+const getAllTickets = async (req: Request, res: Response) => {
+  const tickets = await Ticket.findAll();
+  res.json({ message: "voici tous les tickets ", data: tickets });
+};
+export { ticket, getAllTickets };
