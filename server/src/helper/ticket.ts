@@ -69,4 +69,18 @@ const getAllTickets = async (req: Request, res: Response) => {
   const tickets = await Ticket.findAll();
   res.json({ message: "voici tous les tickets ", data: tickets });
 };
-export { ticket, getAllTickets };
+
+const updateTicketStatus = async (req: Request, res: Response) => {
+  const { ticket_id, status } = req.body;
+  try {
+    const ticket = await Ticket.update(
+      { open: status },
+      { where: { id: ticket_id } }
+    );
+    res.json({ message: "ticket uopdated !", data: ticket });
+  } catch (error) {
+    res.status(501).json({ message: "couldnt update ticket", data: ticket });
+  }
+};
+
+export { ticket, getAllTickets, updateTicketStatus };

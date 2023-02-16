@@ -21,6 +21,7 @@ import { isAdmin } from "./middleware/isAdmin";
 import { isAuthenticated } from "./middleware/isAuthenticated";
 import { getAllTickets, ticket } from "./helper/ticket";
 import helmet from "helmet";
+import { getAllUsers } from "./helper/getAllUsers";
 
 const app = express();
 
@@ -76,6 +77,7 @@ app.use("/api", isAdmin, createUser);
 app.use("/api", isAdmin, upload);
 app.get("/api/getAllTickets", isAdmin, getAllTickets);
 app.delete("/api/deleteBulletin/:id", isAdmin, deleteBulletin);
+app.get("/api/getAllUsers", isAdmin, getAllUsers);
 
 app.listen(process.env.PORT, () =>
   console.log(
