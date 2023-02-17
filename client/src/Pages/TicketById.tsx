@@ -10,7 +10,7 @@ const TicketById = () => {
   if (!id) return <>No id</>;
 
   type Ticket = {
-    id: number;
+    id: string;
     sujet: string;
     open: boolean;
     user_id: string;
@@ -30,15 +30,15 @@ const TicketById = () => {
     <div>
       <h2>Ticket n°{id}</h2>
       <p>Status : {currentTicket.open ? "ouvert" : "fermé"}</p>
-      <UserInfo />
+      <UserInfo id={currentTicket.user_id} />
       <p>Sujet : {currentTicket.sujet}</p>
       <p>Details : {currentTicket.details}</p>
     </div>
   );
 };
 
-const UserInfo = () => {
-  const user = queryUser("1");
+const UserInfo = (props: { id: string }) => {
+  const user = queryUser(props.id);
 
   if (user.isLoading) return <Loader />;
   if (user.isError) return <>Error</>;
@@ -47,7 +47,9 @@ const UserInfo = () => {
   console.log(currentUser);
   return (
     <>
-      <p>De : {currentUser?.nom}</p>
+      <p>
+        De : {currentUser?.prenom} {currentUser?.nom}
+      </p>
       <p>Email : {currentUser?.email}</p>
     </>
   );

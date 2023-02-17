@@ -1,11 +1,14 @@
 import { Loader, Table } from "@mantine/core";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { useGetAllTickets } from "../Hooks/useGetAllTickets";
 import { useGetUsers } from "../Hooks/useGetUsers";
 
 const Ticket = () => {
   const { data, isLoading, isError } = useGetAllTickets();
   const users = useGetUsers();
+  const navigate = useNavigate();
+
   if (isLoading || users.isLoading) return <Loader />;
   if (isError || users.isError) return <>Error !!!</>;
 
@@ -37,7 +40,7 @@ const Ticket = () => {
       <tr
         key={ticket.id}
         className="hover:bg-slate-200"
-        onClick={() => alert("clicke")}
+        onClick={() => navigate(`/admin/tickets/${ticket.id}`)}
       >
         <td>{ticket.id}</td>
         <td>{ticket.sujet}</td>
@@ -52,7 +55,7 @@ const Ticket = () => {
       <tr
         key={ticket.id}
         className="hover:bg-slate-200"
-        onClick={() => alert("clicke")}
+        onClick={() => navigate(`/admin/tickets/${ticket.id}`)}
       >
         <td>{ticket.id}</td>
         <td>{ticket.sujet}</td>
