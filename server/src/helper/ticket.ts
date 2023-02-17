@@ -84,16 +84,10 @@ const getTicket = async (req: Request, res: Response) => {
 };
 
 const updateTicketStatus = async (req: Request, res: Response) => {
-  const { ticket_id, status } = req.body;
-  try {
-    const ticket = await Ticket.update(
-      { open: status },
-      { where: { id: ticket_id } }
-    );
-    res.json({ message: "ticket updated !", data: ticket });
-  } catch (error) {
-    res.status(501).json({ message: "couldnt update ticket", data: ticket });
-  }
+  const { id } = req.params;
+  const ticket: any = await Ticket.findByPk(id);
+  if (!ticket) return res.status(404).json({ message: "ticket not found!" });
+  ticket.update({ open: !ticket.open });
+  res.json({ message: "Le ticket a changé de status", data: ticket });
 };
-
 export { ticket, getAllTickets, updateTicketStatus, getTicket };
