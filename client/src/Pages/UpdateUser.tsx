@@ -1,5 +1,12 @@
-import { Button, Checkbox, Input, Loader, TextInput } from "@mantine/core";
-import React from "react";
+import {
+  Button,
+  Checkbox,
+  Input,
+  Loader,
+  Select,
+  TextInput,
+} from "@mantine/core";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useParams } from "react-router-dom";
 import queryUser from "../Hooks/queryUser";
@@ -13,7 +20,7 @@ const UserInfoSchema = z.object({
   nom: z.string().optional(),
   role: z.string().optional(),
   email: z.string().email().optional().or(z.literal("")),
-  societe: z.string().optional(),
+  // societe: z.string().optional(),
   admin: z.boolean().optional(),
 });
 
@@ -28,8 +35,10 @@ const UpdateUser = () => {
 
   const mutation = useUpdateUser();
 
+  const [societe, setSociete] = useState("");
+
   const onSubmit = (data: any) => {
-    mutation.mutate({ id, ...data });
+    mutation.mutate({ id, ...data, societe });
   };
 
   if (user.isLoading) {
@@ -83,7 +92,7 @@ const UpdateUser = () => {
           {...register("email")}
           error={errors?.email?.message && errors?.email?.message.toString()}
         />
-        <TextInput
+        {/* <TextInput
           label="Société"
           type="text"
           placeholder={user.data.societe}
@@ -91,8 +100,25 @@ const UpdateUser = () => {
           error={
             errors?.societe?.message && errors?.societe?.message.toString()
           }
+        /> */}
+        <Select
+          label="Société"
+          data={[
+            "AGENCE DU PARC",
+            "DONIBANE TRANSACTION",
+            "AGENCE DONIBANE",
+            "CABINET COSTE IMMOBILIER",
+            "ADMAINTENANCE",
+            "AGENCE SENSEY",
+            "DONIBANE PROMOTION",
+          ]}
+          onChange={(e) => {
+            if (e != null) {
+              setSociete(e);
+            }
+            console.log(societe);
+          }}
         />
-
         <label htmlFor="admin" className="text-sm font-semibold">
           Admin
         </label>

@@ -43,6 +43,7 @@ const CreateUser = () => {
           error={
             errors?.username?.message && errors.username.message.toString()
           }
+          required
         />
         <TextInput
           label="Prénom"
@@ -50,6 +51,7 @@ const CreateUser = () => {
           placeholder="Prénom"
           {...register("prenom")}
           error={errors?.prenom?.message && errors?.prenom?.message.toString()}
+          required
         />
         <TextInput
           label="Nom"
@@ -57,6 +59,7 @@ const CreateUser = () => {
           placeholder="Nom"
           {...register("nom")}
           error={errors?.nom?.message && errors?.nom?.message.toString()}
+          required
         />
         <TextInput
           label="Rôle"
@@ -64,6 +67,7 @@ const CreateUser = () => {
           placeholder="Rôle"
           {...register("role")}
           error={errors?.role?.message && errors?.role?.message.toString()}
+          required
         />
         <TextInput
           label="Email"
@@ -71,16 +75,8 @@ const CreateUser = () => {
           placeholder="Email"
           {...register("email")}
           error={errors?.email?.message && errors?.email?.message.toString()}
+          required
         />
-        {/* <TextInput
-          label="Société"
-          type="text"
-          placeholder="Société"
-          {...register("societe")}
-          error={
-            errors?.societe?.message && errors?.societe?.message.toString()
-          }
-        /> */}
         <Select
           label="Société"
           data={[
@@ -98,6 +94,7 @@ const CreateUser = () => {
             }
             console.log(societe);
           }}
+          required
         />
         <label htmlFor="admin" className="text-sm font-semibold">
           Admin
