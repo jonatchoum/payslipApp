@@ -1,8 +1,8 @@
-import { Card, Loader } from "@mantine/core";
+import { Button, Card, Loader } from "@mantine/core";
 import React from "react";
 import { Navigate, useParams } from "react-router-dom";
 import queryUser from "../Hooks/queryUser";
-import { useGetTicketById } from "../Hooks/useTicket";
+import { useChangeStatus, useGetTicketById } from "../Hooks/useTicket";
 
 const TicketById = () => {
   const { id } = useParams();
@@ -19,6 +19,7 @@ const TicketById = () => {
   };
 
   const ticket = useGetTicketById(id);
+  const mutation = useChangeStatus();
 
   if (ticket.isLoading) return <Loader />;
   if (ticket.isError) return <>Error</>;
@@ -26,21 +27,33 @@ const TicketById = () => {
 
   console.log(ticket.data?.data?.data);
 
+  const handleClick = () => {
+    // alert("clicker");
+    mutation.mutate(currentTicket.id);
+  };
+
   return (
-    <Card shadow="sm" p="lg" radius="md" withBorder>
-      <h2>Ticket n°{id}</h2>
-      <p>
-        <span className="font-bold">Status</span> :{" "}
-        {currentTicket.open ? "ouvert" : "fermé"}
-      </p>
-      <UserInfo id={currentTicket.user_id} />
-      <p>
-        <span className="font-bold">Sujet</span> : {currentTicket.sujet}
-      </p>
-      <p>
-        <span className="font-bold">Détails</span> : {currentTicket.details}
-      </p>
-    </Card>
+    <div>
+      <Card shadow="sm" p="lg" radius="md" withBorder>
+        <div className="flex place-items-center place-content-between">
+          <h2>Ticket n°{id}</h2>
+          <Button className="" onClick={handleClick}>
+            {currentTicket.open ? "fermer" : "ouvrir"}
+          </Button>
+        </div>
+        <p>
+          <span className="font-bold">Status</span> :{" "}
+          {currentTicket.open ? "ouvert" : "fermé"}
+        </p>
+        <UserInfo id={currentTicket.user_id} />
+        <p>
+          <span className="font-bold">Sujet</span> : {currentTicket.sujet}
+        </p>
+        <p>
+          <span className="font-bold">Détails</span> : {currentTicket.details}
+        </p>
+      </Card>
+    </div>
   );
 };
 

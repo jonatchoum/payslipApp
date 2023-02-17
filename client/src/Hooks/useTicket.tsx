@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { toast } from "react-toastify";
 
@@ -29,4 +29,17 @@ const useGetTicketById = (id: string) => {
   });
 };
 
-export { useTicket, useGetTicketById };
+const updateTicketStatus = (id: string) =>
+  axios.patch(`/tickets/updateStatus/${id}`);
+
+const useChangeStatus = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: updateTicketStatus,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["ticket"] });
+    },
+  });
+};
+
+export { useTicket, useGetTicketById, useChangeStatus };
