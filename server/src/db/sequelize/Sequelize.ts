@@ -29,46 +29,39 @@ const connection = async () => {
 const User = sequelize.define(
   "User",
   {
-    // Model attributes are defined here
     username: {
       type: DataTypes.STRING,
       allowNull: false,
+      // allowNull defaults to true
     },
     hash_password: {
       type: DataTypes.STRING,
       allowNull: false,
-      // allowNull defaults to true
     },
     prenom: {
       type: DataTypes.STRING,
       allowNull: false,
-      // allowNull defaults to true
     },
     nom: {
       type: DataTypes.STRING,
       allowNull: false,
-      // allowNull defaults to true
     },
 
     role: {
       type: DataTypes.STRING,
       allowNull: false,
-      // allowNull defaults to true
     },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
-      // allowNull defaults to true
     },
     societe: {
       type: DataTypes.STRING,
       allowNull: false,
-      // allowNull defaults to true
     },
     admin: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
-      // allowNull defaults to true
     },
   },
   {
@@ -118,5 +111,25 @@ const Ticket = sequelize.define("Ticket", {
   },
 });
 
+const TicketConversation = sequelize.define("TicketConversation", {
+  ticket_id: { type: DataTypes.INTEGER, allowNull: false },
+});
+
+const TicketMessage = sequelize.define("TicketMessage", {
+  user_id: { type: DataTypes.INTEGER, allowNull: false },
+  ticket_conversation_id: { type: DataTypes.INTEGER, allowNull: false },
+  admin: { type: DataTypes.BOOLEAN, allowNull: false },
+  content: { type: DataTypes.TEXT, allowNull: false },
+});
+
 connection();
-export { connection, sequelize, User, Bulletin, Ticket };
+
+export {
+  connection,
+  sequelize,
+  User,
+  Bulletin,
+  Ticket,
+  TicketConversation,
+  TicketMessage,
+};

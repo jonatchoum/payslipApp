@@ -21,8 +21,11 @@ import { isAdmin } from "./middleware/isAdmin";
 import { isAuthenticated } from "./middleware/isAuthenticated";
 import {
   getAllTickets,
+  getConversation,
+  getMessagesFromTicket,
   getTicket,
   ticket,
+  ticketResponse,
   updateTicketStatus,
 } from "./helper/ticket";
 import helmet from "helmet";
@@ -85,6 +88,9 @@ app.delete("/api/deleteBulletin/:id", isAdmin, deleteBulletin);
 app.get("/api/getAllUsers", isAdmin, getAllUsers);
 app.get("/api/tickets/:id", isAdmin, getTicket);
 app.patch("/api/tickets/updateStatus/:id", isAdmin, updateTicketStatus);
+app.get("/api/conversation/:id", isAdmin, getConversation);
+app.post("/api/tickets/:id/messages", ticketResponse);
+app.get("/api/tickets/:id/messages", getMessagesFromTicket);
 
 app.listen(process.env.PORT, () =>
   console.log(
