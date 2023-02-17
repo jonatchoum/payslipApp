@@ -1,4 +1,4 @@
-import { Loader } from "@mantine/core";
+import { Card, Loader } from "@mantine/core";
 import React from "react";
 import { Navigate, useParams } from "react-router-dom";
 import queryUser from "../Hooks/queryUser";
@@ -27,13 +27,20 @@ const TicketById = () => {
   console.log(ticket.data?.data?.data);
 
   return (
-    <div>
+    <Card shadow="sm" p="lg" radius="md" withBorder>
       <h2>Ticket n°{id}</h2>
-      <p>Status : {currentTicket.open ? "ouvert" : "fermé"}</p>
+      <p>
+        <span className="font-bold">Status</span> :{" "}
+        {currentTicket.open ? "ouvert" : "fermé"}
+      </p>
       <UserInfo id={currentTicket.user_id} />
-      <p>Sujet : {currentTicket.sujet}</p>
-      <p>Details : {currentTicket.details}</p>
-    </div>
+      <p>
+        <span className="font-bold">Sujet</span> : {currentTicket.sujet}
+      </p>
+      <p>
+        <span className="font-bold">Détails</span> : {currentTicket.details}
+      </p>
+    </Card>
   );
 };
 
@@ -48,9 +55,12 @@ const UserInfo = (props: { id: string }) => {
   return (
     <>
       <p>
-        De : {currentUser?.prenom} {currentUser?.nom}
+        <span className="font-bold">De</span> : {currentUser?.prenom}{" "}
+        {currentUser?.nom}
       </p>
-      <p>Email : {currentUser?.email}</p>
+      <p>
+        <span className="font-bold">Email</span> : {currentUser?.email}
+      </p>
     </>
   );
 };
