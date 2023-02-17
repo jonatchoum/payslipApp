@@ -2,7 +2,6 @@ import { Loader } from "@mantine/core";
 import React from "react";
 import { Navigate, Outlet } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
-import Salarie from "../Pages/Salarie";
 import { Navbar } from "./Navbar";
 
 const Private = () => {
@@ -22,6 +21,7 @@ const Private = () => {
       <main className="min-h-full">
         <Navbar
           links={[
+            { link: "/admin/tickets", label: "Tickets" },
             { link: "/admin/createUser", label: "Ajouter un utilisateur" },
             { link: "/admin/dashboard", label: "Dashboard" },
           ]}
