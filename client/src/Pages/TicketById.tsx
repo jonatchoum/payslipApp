@@ -1,12 +1,12 @@
 import { Button, Card, Loader } from "@mantine/core";
 import React from "react";
-import { Navigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import queryUser from "../Hooks/queryUser";
 import { useChangeStatus, useGetTicketById } from "../Hooks/useTicket";
 
 const TicketById = () => {
   const { id } = useParams();
-
+  const navigate = useNavigate();
   if (!id) return <>No id</>;
 
   type Ticket = {
@@ -33,7 +33,7 @@ const TicketById = () => {
   };
 
   return (
-    <div>
+    <div className="grid gap-2">
       <Card shadow="sm" p="lg" radius="md" withBorder className="max-w-lg">
         <div className="flex place-items-center place-content-between">
           <h2>Ticket n°{id}</h2>
@@ -54,6 +54,12 @@ const TicketById = () => {
           {currentTicket.details}
         </p>
       </Card>
+      <Button
+        onClick={() => navigate("/admin/tickets")}
+        className="place-self-center"
+      >
+        Retour Tickets
+      </Button>
     </div>
   );
 };
