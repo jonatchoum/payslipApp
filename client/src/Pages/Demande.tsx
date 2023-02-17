@@ -15,9 +15,6 @@ const Demande = () => {
   const onSubmit = (data: any) => {
     console.log({ ...data, sujet });
     mutation.mutate({ ...data, sujet });
-    if (mutation.isIdle) {
-      toast.warning("loading !");
-    }
   };
 
   return (

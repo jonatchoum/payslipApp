@@ -70,7 +70,7 @@ const Ticket = () => {
 
   return (
     <div>
-      <h3>tickets ouverts</h3>
+      <h3>Tickets ouverts</h3>
       <Table>
         <thead>
           <tr>
@@ -83,7 +83,7 @@ const Ticket = () => {
         <tbody>{openTicketsListe}</tbody>
       </Table>
 
-      <h3>tickets fermés</h3>
+      <h3>Tickets fermés</h3>
       <Table>
         <thead>
           <tr>

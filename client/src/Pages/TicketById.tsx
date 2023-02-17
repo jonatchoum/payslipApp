@@ -34,7 +34,7 @@ const TicketById = () => {
 
   return (
     <div>
-      <Card shadow="sm" p="lg" radius="md" withBorder>
+      <Card shadow="sm" p="lg" radius="md" withBorder className="max-w-lg">
         <div className="flex place-items-center place-content-between">
           <h2>Ticket n°{id}</h2>
           <Button className="" onClick={handleClick}>
@@ -50,7 +50,8 @@ const TicketById = () => {
           <span className="font-bold">Sujet</span> : {currentTicket.sujet}
         </p>
         <p>
-          <span className="font-bold">Détails</span> : {currentTicket.details}
+          <span className="font-bold">Détails</span> :<br />{" "}
+          {currentTicket.details}
         </p>
       </Card>
     </div>
