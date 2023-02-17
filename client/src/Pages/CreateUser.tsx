@@ -1,5 +1,5 @@
-import { Button, Checkbox, TextInput } from "@mantine/core";
-import React from "react";
+import { Button, Checkbox, Select, TextInput } from "@mantine/core";
+import React, { useState } from "react";
 import useCreateUser from "../Hooks/useCreateUser";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -12,12 +12,13 @@ const FormData = z.object({
   nom: z.string().min(3, { message: "Nom invalide !" }),
   role: z.string().min(3, { message: "Rôle invalide !" }),
   email: z.string().email({ message: "Email invalide !" }),
-  societe: z.string().min(3, { message: "Société invalide !" }),
+  // societe: z.string().min(3, { message: "Société invalide !" }),
   admin: z.boolean(),
 });
 
 const CreateUser = () => {
   const { mutate } = useCreateUser();
+  const [societe, setSociete] = useState("");
 
   const {
     register,
@@ -26,13 +27,13 @@ const CreateUser = () => {
   } = useForm({ resolver: zodResolver(FormData) });
 
   const onSubmit = async (data: any) => {
-    mutate(data);
+    mutate({ ...data, societe });
+    // console.log({ ...data, societe });
   };
 
   return (
     <div className="grid gap-1 mb-10">
       <h1>Créer un nouvel utilisateur</h1>
-      {/* <form className="grid gap-2" onSubmit={() => alert("oks")}> */}
       <form className="grid gap-2" onSubmit={handleSubmit(onSubmit)}>
         <TextInput
           label="Nom d'utilisateur"
@@ -71,7 +72,7 @@ const CreateUser = () => {
           {...register("email")}
           error={errors?.email?.message && errors?.email?.message.toString()}
         />
-        <TextInput
+        {/* <TextInput
           label="Société"
           type="text"
           placeholder="Société"
@@ -79,6 +80,24 @@ const CreateUser = () => {
           error={
             errors?.societe?.message && errors?.societe?.message.toString()
           }
+        /> */}
+        <Select
+          label="Société"
+          data={[
+            "AGENCE DU PARC",
+            "DONIBANE TRANSACTION",
+            "AGENCE DONIBANE",
+            "CABINET COSTE IMMOBILIER",
+            "ADMAINTENANCE",
+            "AGENCE SENSEY",
+            "DONIBANE PROMOTION",
+          ]}
+          onChange={(e) => {
+            if (e != null) {
+              setSociete(e);
+            }
+            console.log(societe);
+          }}
         />
         <label htmlFor="admin" className="text-sm font-semibold">
           Admin

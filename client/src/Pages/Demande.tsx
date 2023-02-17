@@ -2,6 +2,7 @@ import { Button, Paper, Select, Textarea } from "@mantine/core";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { useTicket } from "../Hooks/useTicket";
 
 const Demande = () => {
@@ -14,6 +15,9 @@ const Demande = () => {
   const onSubmit = (data: any) => {
     console.log({ ...data, sujet });
     mutation.mutate({ ...data, sujet });
+    if (mutation.isIdle) {
+      toast.warning("loading !");
+    }
   };
 
   return (
