@@ -14,7 +14,6 @@ const Ticket = () => {
 
   const usersData = users.data.data.data;
   const tickets = data.data.data;
-  console.table("🚀 ~ file: Ticket.tsx:14 ~ Ticket ~ tickets", tickets);
 
   type Ticket = {
     id: number;
@@ -45,7 +44,7 @@ const Ticket = () => {
         <td>{ticket.id}</td>
         <td>{ticket.sujet}</td>
         <td>{currentUser(ticket)}</td>
-        <td>{ticket.createdAt}</td>
+        <td>{<DateFormated date={ticket.createdAt}></DateFormated>}</td>
       </tr>
     );
   });
@@ -60,13 +59,10 @@ const Ticket = () => {
         <td>{ticket.id}</td>
         <td>{ticket.sujet}</td>
         <td>{currentUser(ticket)}</td>
-        <td>{ticket.createdAt}</td>
+        <td>{<DateFormated date={ticket.createdAt}></DateFormated>}</td>
       </tr>
     );
   });
-
-  // let date = new Date(ticket.createdAt)
-  // console.log(date.getDate(), date.getMonth()+1, date.getFullYear(), date.getHours(), date.getMinutes())
 
   return (
     <div>
@@ -97,6 +93,16 @@ const Ticket = () => {
       </Table>
     </div>
   );
+};
+
+const DateFormated = ({ date }: { date: string }) => {
+  const stringDate = new Date(date);
+
+  const dateFormated = `${stringDate.getDate()}/${
+    stringDate.getMonth() + 1
+  }/${stringDate.getFullYear()} ${stringDate.getHours()}h${stringDate.getMinutes()} `;
+
+  return <div>{dateFormated}</div>;
 };
 
 export default Ticket;
