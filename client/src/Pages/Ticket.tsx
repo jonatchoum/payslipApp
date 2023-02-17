@@ -34,7 +34,11 @@ const Ticket = () => {
 
   const openTicketsListe = openTickets.map((ticket: Ticket) => {
     return (
-      <tr key={ticket.id} className="">
+      <tr
+        key={ticket.id}
+        className="hover:bg-slate-200"
+        onClick={() => alert("clicke")}
+      >
         <td>{ticket.id}</td>
         <td>{ticket.sujet}</td>
         <td>{currentUser(ticket)}</td>

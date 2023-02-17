@@ -20,6 +20,7 @@ import Salarie from "./Pages/Salarie";
 import Demande from "./Pages/Demande";
 import Admin from "./Components/Admin";
 import Ticket from "./Pages/Ticket";
+import TicketById from "./Pages/TicketById";
 axios.defaults.baseURL = "http://localhost:3000/api/";
 // axios.defaults.baseURL = "https://sareasoft.com/api/";
 // const API_URL: string = process.env.REACT_APP_API_URL;
@@ -46,6 +47,7 @@ function App() {
           </Route>
           <Route path="updateUser/:id" element={<UpdateUser />} />
           <Route path="tickets" element={<Ticket />} />
+          <Route path="tickets/:id" element={<TicketById />} />
         </Route>
         {/* PUBLIC ROUTES */}
         <Route path="/login" element={<AuthenticationTitle />} />

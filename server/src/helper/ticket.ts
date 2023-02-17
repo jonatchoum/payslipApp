@@ -70,6 +70,19 @@ const getAllTickets = async (req: Request, res: Response) => {
   res.json({ message: "voici tous les tickets ", data: tickets });
 };
 
+const getTicket = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  try {
+    const ticket = await Ticket.findByPk(id);
+    if (!ticket) {
+      return res.status(404).json({ message: "no ticket found" });
+    }
+    res.json({ message: "ticket found", data: ticket });
+  } catch (error) {
+    res.status(501).json({ message: "no ticket found", error: error });
+  }
+};
+
 const updateTicketStatus = async (req: Request, res: Response) => {
   const { ticket_id, status } = req.body;
   try {
@@ -83,4 +96,4 @@ const updateTicketStatus = async (req: Request, res: Response) => {
   }
 };
 
-export { ticket, getAllTickets, updateTicketStatus };
+export { ticket, getAllTickets, updateTicketStatus, getTicket };

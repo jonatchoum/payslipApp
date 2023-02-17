@@ -19,7 +19,7 @@ import { allowResetPassword, resetPassword } from "./helper/resetPassword";
 import { deleteBulletin } from "./helper/deleteBulletin";
 import { isAdmin } from "./middleware/isAdmin";
 import { isAuthenticated } from "./middleware/isAuthenticated";
-import { getAllTickets, ticket } from "./helper/ticket";
+import { getAllTickets, getTicket, ticket } from "./helper/ticket";
 import helmet from "helmet";
 import { getAllUsers } from "./helper/getAllUsers";
 
@@ -78,6 +78,7 @@ app.use("/api", isAdmin, upload);
 app.get("/api/getAllTickets", isAdmin, getAllTickets);
 app.delete("/api/deleteBulletin/:id", isAdmin, deleteBulletin);
 app.get("/api/getAllUsers", isAdmin, getAllUsers);
+app.get("/api/tickets/:id", isAdmin, getTicket);
 
 app.listen(process.env.PORT, () =>
   console.log(

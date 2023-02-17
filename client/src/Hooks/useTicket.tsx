@@ -1,4 +1,4 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { toast } from "react-toastify";
 
@@ -18,4 +18,15 @@ const useTicket = () => {
   });
 };
 
-export { useTicket };
+const getTicketById = (id: string) => {
+  return axios.get(`/tickets/${id}`);
+};
+
+const useGetTicketById = (id: string) => {
+  return useQuery({
+    queryKey: ["ticket", `${id}`],
+    queryFn: () => getTicketById(id),
+  });
+};
+
+export { useTicket, useGetTicketById };
