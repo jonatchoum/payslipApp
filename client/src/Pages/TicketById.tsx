@@ -58,7 +58,6 @@ const TicketById = () => {
           {currentTicket.details}
         </p>
       </div>
-      <Divider />
       <TicketResponse />
     </Card>
   );

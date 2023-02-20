@@ -54,9 +54,9 @@ const Message = ({ admin, content, user_id }: TMessage) => {
   const username = user.data?.data?.data?.username;
   return (
     <div className="">
+      <Divider my="sm" />
       <p>{admin ? "admin" : username}</p>
       <p>{content}</p>
-      <Divider my="sm" />
     </div>
   );
 };
