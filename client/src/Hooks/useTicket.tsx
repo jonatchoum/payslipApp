@@ -48,15 +48,40 @@ const getMessages = (id: string | undefined) => {
 };
 
 const useGetMessages = (id: string | undefined) => {
-  return useQuery({ queryKey: ["messages"], queryFn: () => getMessages(id) });
+  return useQuery({
+    queryKey: ["messages", `${id}`],
+    queryFn: () => getMessages(id),
+  });
 };
 
-const postMessage = (id: string, data: { reply: string }) => {
+const postMessage = ({
+  id,
+  data,
+}: {
+  id: string | undefined;
+  data: { reply: string };
+}) => {
   return axios.post(`/tickets/${id}/messages`, data);
 };
 
-const usePostMessage = (id: string, data: { reply: string }) => {
-  return useMutation({ mutationFn: () => postMessage(id, data) });
+const usePostMessage = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: postMessage,
+    onSuccess: () => {
+      toast.success("Message envoyé");
+      queryClient.invalidateQueries({ queryKey: ["messages"] });
+    },
+    onError: () => toast.error("Le message n'a pa pu être envoyé"),
+  });
+};
+
+const getMyTickets = () => {
+  return axios.get("/tickets/me");
+};
+
+const useGetMyTickets = () => {
+  return useQuery({ queryKey: ["mestickets"], queryFn: getMyTickets });
 };
 
 export {
@@ -65,4 +90,5 @@ export {
   useChangeStatus,
   usePostMessage,
   useGetMessages,
+  useGetMyTickets,
 };

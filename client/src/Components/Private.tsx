@@ -38,6 +38,7 @@ const Private = () => {
         links={[
           { link: "/profile", label: "Profil" },
           { link: "/demande", label: "Envoyer une demande" },
+          { link: "/mestickets", label: "Tickets" },
         ]}
       />
       <Outlet />

@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { Sequelize } from "sequelize";
 import {
   Ticket,
   TicketConversation,
@@ -82,7 +83,15 @@ const ticket = async (req: any, res: Response) => {
     res.status(500).json({ message: "ticket non ajouté en DB", error: error });
   }
 };
-
+const getMyTickets = async (req: any, res: Response) => {
+  const { id } = req.user;
+  try {
+    const tickets = await Ticket.findAll({ where: { user_id: id } });
+    res.json({ message: "Tickets trouvé", data: tickets });
+  } catch (error) {
+    res.status(400).json({ error: error });
+  }
+};
 const getAllTickets = async (req: Request, res: Response) => {
   const tickets = await Ticket.findAll();
   res.json({ message: "voici tous les tickets ", data: tickets });
@@ -112,6 +121,9 @@ const updateTicketStatus = async (req: Request, res: Response) => {
 const postMessage = async (req: any, res: Response) => {
   const { id } = req.params;
   const { reply } = req.body;
+  if (!reply) {
+    return res.status(400).json("la réponse ne doit pas être vite");
+  }
   try {
     const conversation: any = await TicketConversation.findOne({
       where: { ticket_id: id },
@@ -176,4 +188,5 @@ export {
   postMessage,
   getConversation,
   getMessagesFromTicket,
+  getMyTickets,
 };

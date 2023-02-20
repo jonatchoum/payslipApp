@@ -21,6 +21,8 @@ import Demande from "./Pages/Demande";
 import Admin from "./Components/Admin";
 import Ticket from "./Pages/Ticket";
 import TicketById from "./Pages/TicketById";
+import TicketByIdSalarie from "./Pages/TicketByIdSalarie";
+import MyTickets from "./Pages/MyTickets";
 axios.defaults.baseURL = "http://localhost:3000/api/";
 // axios.defaults.baseURL = "https://sareasoft.com/api/";
 // const API_URL: string = process.env.REACT_APP_API_URL;
@@ -35,6 +37,8 @@ function App() {
         <Route path="/" element={<Private></Private>}>
           <Route path="profile" element={<Salarie />}></Route>
           <Route path="demande" element={<Demande></Demande>} />
+          <Route path="mestickets" element={<MyTickets />} />
+          <Route path="mestickets/:id" element={<TicketByIdSalarie />} />
           {/* <Route path="/*" element={<Notfound />}></Route> */}
         </Route>
         {/* ADMIN ROUTES */}

@@ -23,6 +23,7 @@ import {
   getAllTickets,
   getConversation,
   getMessagesFromTicket,
+  getMyTickets,
   getTicket,
   postMessage,
   ticket,
@@ -77,13 +78,14 @@ app.use("/api", societes);
 app.use("/api", me);
 app.use("/api", logout);
 app.post("/api/ticket", ticket);
-app.get("/api/tickets/:id", isAdmin, getTicket);
+app.get("/api/tickets/me", getMyTickets);
+app.get("/api/tickets/:id", getTicket);
 app.get("/api/tickets/:id/messages", getMessagesFromTicket);
-app.get("/api/tickets/:id/conversation", isAdmin, getConversation);
 app.post("/api/tickets/:id/messages", postMessage);
+app.get("/api/tickets/:id/conversation", getConversation);
 
 //admin routes
-
+app.use(isAdmin);
 app.patch("/api/updateUser", isAdmin, updateUser);
 app.use("/api", isAdmin, createUser);
 app.use("/api", isAdmin, upload);
