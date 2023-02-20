@@ -77,6 +77,10 @@ app.use("/api", societes);
 app.use("/api", me);
 app.use("/api", logout);
 app.post("/api/ticket", ticket);
+app.get("/api/tickets/:id", isAdmin, getTicket);
+app.get("/api/tickets/:id/messages", getMessagesFromTicket);
+app.get("/api/tickets/:id/conversation", isAdmin, getConversation);
+app.post("/api/tickets/:id/messages", postMessage);
 
 //admin routes
 
@@ -86,11 +90,7 @@ app.use("/api", isAdmin, upload);
 app.delete("/api/deleteBulletin/:id", isAdmin, deleteBulletin);
 app.get("/api/getAllUsers", isAdmin, getAllUsers);
 app.get("/api/getAllTickets", isAdmin, getAllTickets);
-app.get("/api/tickets/:id", isAdmin, getTicket);
 app.patch("/api/tickets/:id/updateStatus", isAdmin, updateTicketStatus);
-app.get("/api/tickets/:id/conversation", isAdmin, getConversation);
-app.get("/api/tickets/:id/messages", getMessagesFromTicket);
-app.post("/api/tickets/:id/messages", postMessage);
 
 app.listen(process.env.PORT, () =>
   console.log(

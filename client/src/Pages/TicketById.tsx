@@ -1,4 +1,4 @@
-import { Button, Card, Loader } from "@mantine/core";
+import { Button, Card, Divider, Loader } from "@mantine/core";
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import TicketResponse from "../Components/TicketResponse";
@@ -7,7 +7,6 @@ import { useChangeStatus, useGetTicketById } from "../Hooks/useTicket";
 
 const TicketById = () => {
   const { id } = useParams();
-  const navigate = useNavigate();
   if (!id) return <>No id</>;
 
   type Ticket = {
@@ -26,16 +25,20 @@ const TicketById = () => {
   if (ticket.isError) return <>Error</>;
   const currentTicket: Ticket = ticket.data.data.data;
 
-  console.log(ticket.data?.data?.data);
-
   const handleClick = () => {
     // alert("clicker");
     mutation.mutate(currentTicket.id);
   };
 
   return (
-    <div className="grid gap-2">
-      <Card shadow="sm" p="lg" radius="md" withBorder className="max-w-lg">
+    <Card
+      shadow="sm"
+      p="lg"
+      radius="md"
+      withBorder
+      className="max-w-2xl w-full"
+    >
+      <div>
         <div className="flex place-items-center place-content-between">
           <h2>Ticket n°{id}</h2>
           <Button className="" onClick={handleClick}>
@@ -54,15 +57,10 @@ const TicketById = () => {
           <span className="font-bold">Détails</span> :<br />{" "}
           {currentTicket.details}
         </p>
-      </Card>
-      <Button
-        onClick={() => navigate("/admin/tickets")}
-        className="place-self-center"
-      >
-        Retour Tickets
-      </Button>
+      </div>
+      <Divider />
       <TicketResponse />
-    </div>
+    </Card>
   );
 };
 
@@ -73,7 +71,6 @@ const UserInfo = (props: { id: string }) => {
   if (user.isError) return <>Error</>;
 
   const currentUser = user.data;
-  console.log(currentUser);
   return (
     <>
       <p>
