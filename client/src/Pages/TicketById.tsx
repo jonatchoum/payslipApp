@@ -1,6 +1,7 @@
 import { Button, Card, Divider, Loader } from "@mantine/core";
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import PostMessage from "../Components/PostMessage";
 import TicketResponse from "../Components/TicketResponse";
 import queryUser from "../Hooks/queryUser";
 import { useChangeStatus, useGetTicketById } from "../Hooks/useTicket";
@@ -59,6 +60,7 @@ const TicketById = () => {
         </p>
       </div>
       <TicketResponse />
+      <PostMessage />
     </Card>
   );
 };

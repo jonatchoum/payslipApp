@@ -1,6 +1,7 @@
 import { Loader, Table } from "@mantine/core";
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import DateFormated from "../Components/DateFormated";
 import { useGetAllTickets } from "../Hooks/useGetAllTickets";
 import { useGetUser, useGetUsers } from "../Hooks/useGetUsers";
 type Ticket = {
@@ -99,16 +100,6 @@ const UnTicket = (ticket: Ticket) => {
       <td>{<DateFormated date={ticket.createdAt}></DateFormated>}</td>
     </tr>
   );
-};
-
-const DateFormated = ({ date }: { date: string }) => {
-  const stringDate = new Date(date);
-
-  const dateFormated = `${stringDate.getDate()}/${
-    stringDate.getMonth() + 1
-  }/${stringDate.getFullYear()} ${stringDate.getHours()}h${stringDate.getMinutes()} `;
-
-  return <div>{dateFormated}</div>;
 };
 
 export default Ticket;
