@@ -13,16 +13,24 @@ const ticket = async (req: any, res: Response) => {
   const { sujet, details } = req.body;
 
   console.log(id, sujet, details);
-
-  const ticket: any = await Ticket.create({
-    user_id: id,
-    sujet: sujet,
-    details: details,
-  });
-
-  await TicketConversation.create({ ticket_id: ticket.id });
-
   try {
+    const ticket: any = await Ticket.create({
+      user_id: id,
+      sujet: sujet,
+      details: details,
+    });
+
+    const conversation: any = await TicketConversation.create({
+      ticket_id: ticket.id,
+    });
+
+    const message = await TicketMessage.create({
+      user_id: id,
+      ticket_conversation_id: conversation.id,
+      admin: req.user.admin,
+      content: details,
+    });
+
     console.log(ticket);
 
     const user: any = await User.findByPk(id);
@@ -64,7 +72,10 @@ const ticket = async (req: any, res: Response) => {
 
     await transporter.sendMail(messageUser);
     console.log("message user envoyé");
-    res.json({ message: "ticket bien envoyé !", data: { ticket } });
+    res.json({
+      message: "ticket bien envoyé !",
+      data: { ticket: ticket, conversation: conversation, message: message },
+    });
   } catch (error) {
     console.log(error);
     console.log(ticket);
@@ -98,7 +109,7 @@ const updateTicketStatus = async (req: Request, res: Response) => {
   res.json({ message: "Le ticket a changé de status", data: ticket });
 };
 
-const ticketResponse = async (req: any, res: Response) => {
+const postMessage = async (req: any, res: Response) => {
   const { id } = req.params;
   const { reply } = req.body;
   try {
@@ -162,7 +173,7 @@ export {
   getAllTickets,
   updateTicketStatus,
   getTicket,
-  ticketResponse,
+  postMessage,
   getConversation,
   getMessagesFromTicket,
 };

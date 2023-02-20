@@ -30,7 +30,7 @@ const useGetTicketById = (id: string) => {
 };
 
 const updateTicketStatus = (id: string) =>
-  axios.patch(`/tickets/updateStatus/${id}`);
+  axios.patch(`/tickets/${id}/updateStatus`);
 
 const useChangeStatus = () => {
   const queryClient = useQueryClient();

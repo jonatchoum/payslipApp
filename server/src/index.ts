@@ -24,8 +24,8 @@ import {
   getConversation,
   getMessagesFromTicket,
   getTicket,
+  postMessage,
   ticket,
-  ticketResponse,
   updateTicketStatus,
 } from "./helper/ticket";
 import helmet from "helmet";
@@ -83,14 +83,14 @@ app.post("/api/ticket", ticket);
 app.patch("/api/updateUser", isAdmin, updateUser);
 app.use("/api", isAdmin, createUser);
 app.use("/api", isAdmin, upload);
-app.get("/api/getAllTickets", isAdmin, getAllTickets);
 app.delete("/api/deleteBulletin/:id", isAdmin, deleteBulletin);
 app.get("/api/getAllUsers", isAdmin, getAllUsers);
+app.get("/api/getAllTickets", isAdmin, getAllTickets);
 app.get("/api/tickets/:id", isAdmin, getTicket);
-app.patch("/api/tickets/updateStatus/:id", isAdmin, updateTicketStatus);
-app.get("/api/conversation/:id", isAdmin, getConversation);
-app.post("/api/tickets/:id/messages", ticketResponse);
+app.patch("/api/tickets/:id/updateStatus", isAdmin, updateTicketStatus);
+app.get("/api/tickets/:id/conversation", isAdmin, getConversation);
 app.get("/api/tickets/:id/messages", getMessagesFromTicket);
+app.post("/api/tickets/:id/messages", postMessage);
 
 app.listen(process.env.PORT, () =>
   console.log(
