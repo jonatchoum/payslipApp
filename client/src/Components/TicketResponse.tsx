@@ -58,7 +58,7 @@ const Message = ({ admin, content, user_id, createdAt }: TMessage) => {
     <div className="">
       <Divider my="sm" />
       <div className="flex place-content-between">
-        <p>{admin ? "admin" : username}</p>
+        <p className="font-bold">{admin ? "admin" : username}</p>
         <DateFormated date={createdAt}></DateFormated>
       </div>
       <p>{content}</p>

@@ -1,6 +1,7 @@
 import { Button, Card, Divider, Loader } from "@mantine/core";
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import DateFormated from "../Components/DateFormated";
 import PostMessage from "../Components/PostMessage";
 import TicketResponse from "../Components/TicketResponse";
 import queryUser from "../Hooks/queryUser";
@@ -50,6 +51,11 @@ const TicketById = () => {
           <span className="font-bold">Status</span> :{" "}
           {currentTicket.open ? "ouvert" : "fermé"}
         </p>
+        <div className="flex gap-2">
+          <div className="font-bold">Le </div>
+          <div>{" : "}</div>
+          <DateFormated date={currentTicket.createdAt} />
+        </div>
         <UserInfo id={currentTicket.user_id} />
         <p>
           <span className="font-bold">Sujet</span> : {currentTicket.sujet}

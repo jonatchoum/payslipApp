@@ -7,7 +7,7 @@ const DateFormated = ({ date }: { date: string }) => {
     stringDate.getMonth() + 1
   }/${stringDate.getFullYear()} ${stringDate.getHours()}h${stringDate.getMinutes()} `;
 
-  return <div>{dateFormated}</div>;
+  return <div className="underline">{dateFormated}</div>;
 };
 
 export default DateFormated;
