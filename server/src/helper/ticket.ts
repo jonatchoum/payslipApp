@@ -131,6 +131,9 @@ const postMessage = async (req: any, res: Response) => {
       where: { ticket_id: id },
     });
 
+    const ticket: any = await Ticket.findByPk(id);
+    const salarie: any = await User.findByPk(ticket.user_id);
+
     const user: any = await User.findByPk(req.user.id);
 
     if (!user) {
@@ -144,34 +147,67 @@ const postMessage = async (req: any, res: Response) => {
       content: reply,
     });
 
-    const messageToSupport = {
-      from: "info@sareasoft.com",
-      to: "info@sareasoft.com",
-      subject: `Nouveau message de ${user.username}`,
-      html: `<div>
+    if (user.admin) {
+      const messageToSupport = {
+        from: "info@sareasoft.com",
+        to: "info@sareasoft.com",
+        subject: `Nouveau message de admin`,
+        html: `<div>
+            <div>Vous venez d'envoyer un message à ${salarie.username.toUpperCase()}, le voici : </div>
+             <br/>
+            <div>${reply}</div>
+          </div>`,
+      };
+
+      await transporter.sendMail(messageToSupport);
+
+      const messageUser = {
+        from: "info@sareasoft.com",
+        to: `${salarie.email}`,
+        subject: `Réponse support Sareasoft`,
+        html: `<div>
+          <div>${salarie.username.toUpperCase()},<br/>
+          Vous avez reçu une réponse du support de Sareasoft : </div>
+           <br/>
+          <div>${reply}</div>
+        </div>`,
+      };
+
+      await transporter.sendMail(messageUser);
+
+      console.log("📫📫📫📫📫📫📫📫📫📫📫");
+    } else {
+      const messageToSupport = {
+        from: "info@sareasoft.com",
+        to: "info@sareasoft.com",
+        subject: `Nouveau message de ${user.username}`,
+        html: `<div>
             <div>${user.username.toUpperCase()} vient d'envoyer un message</div>
             <div>Son adresse mail est ${user.email}</div>
             <div>Voici son message :</div>
+            <br/>
             <div>${reply}</div>
           </div>`,
-    };
+      };
 
-    await transporter.sendMail(messageToSupport);
+      await transporter.sendMail(messageToSupport);
 
-    const messageUser = {
-      from: "info@sareasoft.com",
-      to: `${userEmail}`,
-      subject: `Récap ticket`,
-      html: `<div>
+      const messageUser = {
+        from: "info@sareasoft.com",
+        to: `${userEmail}`,
+        subject: `Récap ticket`,
+        html: `<div>
           <div>${user.username.toUpperCase()},<br/>
           Vous venez d'envoyer le message suivant au support de Sareasoft : </div>
+          <br/>
           <div>${reply}</div>
         </div>`,
-    };
+      };
 
-    await transporter.sendMail(messageUser);
+      await transporter.sendMail(messageUser);
 
-    console.log("📫📫📫📫📫📫📫📫📫📫📫");
+      console.log("📫📫📫📫📫📫📫📫📫📫📫");
+    }
 
     res.json({
       message: "vous avez bien répondu à la conversation",
