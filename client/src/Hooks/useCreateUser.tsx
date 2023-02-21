@@ -16,5 +16,4 @@ const useCreateUser = () => {
   });
 };
 
-// const mutation = mutateFile();
 export default useCreateUser;

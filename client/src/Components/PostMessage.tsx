@@ -1,4 +1,4 @@
-import { Button, Textarea } from "@mantine/core";
+import { Button, LoadingOverlay, Textarea } from "@mantine/core";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
@@ -18,6 +18,7 @@ const PostMessage = () => {
   };
   return (
     <div>
+      {mutation.isLoading && <LoadingOverlay visible={true} overlayBlur={2} />}
       <h2 className="underline">Répondre</h2>
       <form className="grid gap-2" onSubmit={handleSubmit(onSubmit)}>
         <Textarea autosize minRows={2} {...register("reply")}></Textarea>

@@ -1,4 +1,4 @@
-import { Button, Paper, Select, Textarea } from "@mantine/core";
+import { Button, LoadingOverlay, Paper, Select, Textarea } from "@mantine/core";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
@@ -24,6 +24,9 @@ const Demande = () => {
         Veuillez remplir le formulaire ci-dessous pour ouvrir un nouveau ticket.
       </p>
       <form className="grid gap-2" onSubmit={handleSubmit(onSubmit)}>
+        {mutation.isLoading && (
+          <LoadingOverlay visible={true} overlayBlur={2} className="w-full" />
+        )}
         <Select
           label="Rubrique d'aide"
           placeholder="Choisir"

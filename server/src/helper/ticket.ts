@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { Sequelize } from "sequelize";
+import { Model, Sequelize } from "sequelize";
 import {
   Ticket,
   TicketConversation,
@@ -25,12 +25,12 @@ const ticket = async (req: any, res: Response) => {
       ticket_id: ticket.id,
     });
 
-    const message = await TicketMessage.create({
-      user_id: id,
-      ticket_conversation_id: conversation.id,
-      admin: req.user.admin,
-      content: details,
-    });
+    // const message = await TicketMessage.create({
+    //   user_id: id,
+    //   ticket_conversation_id: conversation.id,
+    //   admin: req.user.admin,
+    //   content: details,
+    // });
 
     console.log(ticket);
 
@@ -75,7 +75,7 @@ const ticket = async (req: any, res: Response) => {
     console.log("message user envoyé");
     res.json({
       message: "ticket bien envoyé !",
-      data: { ticket: ticket, conversation: conversation, message: message },
+      data: { ticket: ticket, conversation: conversation },
     });
   } catch (error) {
     console.log(error);
@@ -121,6 +121,8 @@ const updateTicketStatus = async (req: Request, res: Response) => {
 const postMessage = async (req: any, res: Response) => {
   const { id } = req.params;
   const { reply } = req.body;
+  const userEmail = req.user.email;
+
   if (!reply) {
     return res.status(400).json("la réponse ne doit pas être vite");
   }
@@ -129,12 +131,47 @@ const postMessage = async (req: any, res: Response) => {
       where: { ticket_id: id },
     });
 
+    const user: any = await User.findByPk(req.user.id);
+
+    if (!user) {
+      return res.status(404).json("No user");
+    }
+
     const replyMessage = await TicketMessage.create({
       user_id: req.user.id,
       ticket_conversation_id: conversation.id,
       admin: req.user.admin,
       content: reply,
     });
+
+    const messageToSupport = {
+      from: "info@sareasoft.com",
+      to: "info@sareasoft.com",
+      subject: `Nouveau message de ${user.username}`,
+      html: `<div>
+            <div>${user.username.toUpperCase()} vient d'envoyer un message</div>
+            <div>Son adresse mail est ${user.email}</div>
+            <div>Voici son message :</div>
+            <div>${reply}</div>
+          </div>`,
+    };
+
+    await transporter.sendMail(messageToSupport);
+
+    const messageUser = {
+      from: "info@sareasoft.com",
+      to: `${userEmail}`,
+      subject: `Récap ticket`,
+      html: `<div>
+          <div>${user.username.toUpperCase()},<br/>
+          Vous venez d'envoyer le message suivant au support de Sareasoft : </div>
+          <div>${reply}</div>
+        </div>`,
+    };
+
+    await transporter.sendMail(messageUser);
+
+    console.log("📫📫📫📫📫📫📫📫📫📫📫");
 
     res.json({
       message: "vous avez bien répondu à la conversation",

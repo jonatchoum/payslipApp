@@ -1,4 +1,10 @@
-import { Button, Checkbox, Select, TextInput } from "@mantine/core";
+import {
+  Button,
+  Checkbox,
+  LoadingOverlay,
+  Select,
+  TextInput,
+} from "@mantine/core";
 import React, { useState } from "react";
 import useCreateUser from "../Hooks/useCreateUser";
 import { useForm } from "react-hook-form";
@@ -17,7 +23,7 @@ const FormData = z.object({
 });
 
 const CreateUser = () => {
-  const { mutate } = useCreateUser();
+  const { isLoading, mutate } = useCreateUser();
   const [societe, setSociete] = useState("");
 
   const {
@@ -35,6 +41,9 @@ const CreateUser = () => {
     <div className="grid gap-1 mb-10">
       <h1>Créer un nouvel utilisateur</h1>
       <form className="grid gap-2" onSubmit={handleSubmit(onSubmit)}>
+        {isLoading && (
+          <LoadingOverlay visible={true} overlayBlur={2} className="w-full" />
+        )}
         <TextInput
           label="Nom d'utilisateur"
           type="text"

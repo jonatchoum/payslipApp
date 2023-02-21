@@ -3,6 +3,7 @@ import {
   Checkbox,
   Input,
   Loader,
+  LoadingOverlay,
   Select,
   TextInput,
 } from "@mantine/core";
@@ -54,6 +55,9 @@ const UpdateUser = () => {
         Modifier {user.data.prenom} {user.data.nom}
       </h1>
       <form className="grid gap-2" onSubmit={handleSubmit(onSubmit)}>
+        {mutation.isLoading && (
+          <LoadingOverlay visible={true} overlayBlur={2} className="w-full" />
+        )}
         <TextInput
           label="Nom d'utilisateur"
           type="text"
