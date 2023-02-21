@@ -1,5 +1,6 @@
 import { NextFunction, Response, Router } from "express";
 import path from "path";
+import os from "os";
 
 const router = Router();
 
@@ -20,11 +21,10 @@ router.get("/download/:user_id/:filename", isAuthorized, (req, res) => {
   const { user_id, filename } = req.params;
   console.log("🚀 ~ file: download.ts:8 ~ router.get ~ user_id", user_id);
   console.log("🚀 ~ file: download.ts:7 ~ router.get ~ filename", filename);
-
+  const home = os.homedir();
   console.log("download en cours");
   const file = path.join(
-    __dirname,
-    "..",
+    home,
     "bulletinsDeSalaire",
     `${user_id}`,
     `${filename}`
